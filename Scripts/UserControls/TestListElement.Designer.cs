@@ -57,7 +57,7 @@ namespace TestMakerTaker
             // 
             // editButton
             // 
-            editButton.Location = new Point(395, 3);
+            editButton.Location = new Point(425, 3);
             editButton.Name = "editButton";
             editButton.Size = new Size(104, 31);
             editButton.TabIndex = 2;
@@ -67,7 +67,7 @@ namespace TestMakerTaker
             // 
             // solveButton
             // 
-            solveButton.Location = new Point(395, 40);
+            solveButton.Location = new Point(425, 40);
             solveButton.Name = "solveButton";
             solveButton.Size = new Size(104, 31);
             solveButton.TabIndex = 3;
@@ -77,7 +77,7 @@ namespace TestMakerTaker
             // 
             // exportButton
             // 
-            exportButton.Location = new Point(395, 77);
+            exportButton.Location = new Point(425, 77);
             exportButton.Name = "exportButton";
             exportButton.Size = new Size(104, 31);
             exportButton.TabIndex = 4;
@@ -106,7 +106,7 @@ namespace TestMakerTaker
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
             Margin = new Padding(4);
             Name = "TestListElement";
-            Size = new Size(502, 112);
+            Size = new Size(532, 112);
             ResumeLayout(false);
         }
         #endregion

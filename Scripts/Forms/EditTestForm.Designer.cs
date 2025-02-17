@@ -29,6 +29,7 @@
             // 
             // testForm
             // 
+            testForm.BackColor = Color.White;
             testForm.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
             testForm.Location = new Point(3, 3);
             testForm.Margin = new Padding(4);
@@ -38,14 +39,14 @@
             // 
             // deleteButton
             // 
-            deleteButton.BackColor = Color.Red;
+            deleteButton.BackColor = Color.White;
             deleteButton.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            deleteButton.ForeColor = Color.White;
-            deleteButton.Location = new Point(487, 3);
+            deleteButton.ForeColor = Color.Black;
+            deleteButton.Location = new Point(460, 374);
             deleteButton.Name = "deleteButton";
-            deleteButton.Size = new Size(92, 32);
-            deleteButton.TabIndex = 1;
-            deleteButton.Text = "Delete";
+            deleteButton.Size = new Size(119, 35);
+            deleteButton.TabIndex = 13;
+            deleteButton.Text = "Delete Test";
             deleteButton.UseVisualStyleBackColor = false;
             deleteButton.Click += deleteButton_Click;
             // 
@@ -57,6 +58,7 @@
             ClientSize = new Size(582, 529);
             Controls.Add(deleteButton);
             Controls.Add(testForm);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "EditTestForm";
             Text = "Test Maker Taker - Edit Test";
             FormClosed += EditTestForm_FormClosed;

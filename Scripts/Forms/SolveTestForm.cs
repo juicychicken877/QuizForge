@@ -63,10 +63,10 @@ namespace TestMakerTaker
             // Update next button
             if (currentQuestionIndex == questionCount - 1) {
                 // last question - button should change its text to "Finish Test"
-                nextButton.Text = "Finish Test";
+                nextButton.Text = "Finish";
                 nextButtonMode = NextButtonMode.FinishTest;
             } else {
-                nextButton.Text = "Next Question";
+                nextButton.Text = "Next";
                 nextButtonMode = NextButtonMode.NextQuestion;
             }
             // Update previous button
@@ -109,6 +109,7 @@ namespace TestMakerTaker
         private void NextQuestion() {
             currentQuestionIndex++;
             currentCorrectAnswer = testQuestions[currentQuestionIndex].correctAnswer;
+            currentSelectedAnswerButton = null;
 
             UpdateUI();
             DisplayQuestion(testQuestions[currentQuestionIndex]);
@@ -136,6 +137,7 @@ namespace TestMakerTaker
         private void PreviousQuestion() {
             currentQuestionIndex--;
             currentCorrectAnswer = testQuestions[currentQuestionIndex].correctAnswer;
+            currentSelectedAnswerButton = null;
 
             UpdateUI();
             DisplayQuestion(testQuestions[currentQuestionIndex]);

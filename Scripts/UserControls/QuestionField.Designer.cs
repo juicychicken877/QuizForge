@@ -47,7 +47,7 @@
             questionInput.Location = new Point(3, 3);
             questionInput.Name = "questionInput";
             questionInput.PlaceholderText = "Question";
-            questionInput.Size = new Size(281, 29);
+            questionInput.Size = new Size(369, 29);
             questionInput.TabIndex = 0;
             // 
             // answer1Input
@@ -55,7 +55,7 @@
             answer1Input.Location = new Point(3, 38);
             answer1Input.Name = "answer1Input";
             answer1Input.PlaceholderText = "Answer 1";
-            answer1Input.Size = new Size(242, 29);
+            answer1Input.Size = new Size(329, 29);
             answer1Input.TabIndex = 1;
             // 
             // answer2Input
@@ -63,7 +63,7 @@
             answer2Input.Location = new Point(3, 73);
             answer2Input.Name = "answer2Input";
             answer2Input.PlaceholderText = "Answer 2";
-            answer2Input.Size = new Size(242, 29);
+            answer2Input.Size = new Size(329, 29);
             answer2Input.TabIndex = 2;
             // 
             // answer3Input
@@ -71,7 +71,7 @@
             answer3Input.Location = new Point(3, 108);
             answer3Input.Name = "answer3Input";
             answer3Input.PlaceholderText = "Answer 3";
-            answer3Input.Size = new Size(242, 29);
+            answer3Input.Size = new Size(329, 29);
             answer3Input.TabIndex = 3;
             // 
             // answer4Input
@@ -79,7 +79,7 @@
             answer4Input.Location = new Point(3, 143);
             answer4Input.Name = "answer4Input";
             answer4Input.PlaceholderText = "Answer 4";
-            answer4Input.Size = new Size(242, 29);
+            answer4Input.Size = new Size(329, 29);
             answer4Input.TabIndex = 4;
             // 
             // deleteQuestionButton
@@ -87,7 +87,7 @@
             deleteQuestionButton.Cursor = Cursors.Hand;
             deleteQuestionButton.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
             deleteQuestionButton.ForeColor = Color.Red;
-            deleteQuestionButton.Location = new Point(290, -1);
+            deleteQuestionButton.Location = new Point(378, -1);
             deleteQuestionButton.Name = "deleteQuestionButton";
             deleteQuestionButton.Size = new Size(29, 29);
             deleteQuestionButton.TabIndex = 5;
@@ -102,7 +102,7 @@
             // 
             radioButton1.AutoSize = true;
             radioButton1.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            radioButton1.Location = new Point(264, 40);
+            radioButton1.Location = new Point(352, 40);
             radioButton1.Name = "radioButton1";
             radioButton1.Padding = new Padding(3);
             radioButton1.Size = new Size(20, 19);
@@ -114,7 +114,7 @@
             // 
             radioButton2.AutoSize = true;
             radioButton2.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            radioButton2.Location = new Point(264, 75);
+            radioButton2.Location = new Point(352, 75);
             radioButton2.Name = "radioButton2";
             radioButton2.Padding = new Padding(3);
             radioButton2.Size = new Size(20, 19);
@@ -126,7 +126,7 @@
             // 
             radioButton3.AutoSize = true;
             radioButton3.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            radioButton3.Location = new Point(264, 110);
+            radioButton3.Location = new Point(352, 110);
             radioButton3.Name = "radioButton3";
             radioButton3.Padding = new Padding(3);
             radioButton3.Size = new Size(20, 19);
@@ -138,7 +138,7 @@
             // 
             radioButton4.AutoSize = true;
             radioButton4.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            radioButton4.Location = new Point(264, 145);
+            radioButton4.Location = new Point(352, 145);
             radioButton4.Name = "radioButton4";
             radioButton4.Padding = new Padding(3);
             radioButton4.Size = new Size(20, 19);
@@ -163,9 +163,9 @@
             Controls.Add(answer1Input);
             Controls.Add(questionInput);
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            Margin = new Padding(4);
+            Margin = new Padding(4, 8, 4, 8);
             Name = "QuestionField";
-            Size = new Size(322, 179);
+            Size = new Size(410, 179);
             ((System.ComponentModel.ISupportInitialize)errorProvider).EndInit();
             ResumeLayout(false);
             PerformLayout();

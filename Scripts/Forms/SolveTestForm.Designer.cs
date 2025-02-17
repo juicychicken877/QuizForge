@@ -73,21 +73,21 @@
             // 
             // nextButton
             // 
-            nextButton.Location = new Point(392, 370);
+            nextButton.Location = new Point(438, 370);
             nextButton.Name = "nextButton";
-            nextButton.Size = new Size(121, 33);
+            nextButton.Size = new Size(75, 33);
             nextButton.TabIndex = 4;
-            nextButton.Text = "NextButton";
+            nextButton.Text = "NextB";
             nextButton.UseVisualStyleBackColor = true;
             nextButton.Click += nextButton_Click;
             // 
             // checkAnswerButton
             // 
-            checkAnswerButton.Location = new Point(265, 370);
+            checkAnswerButton.Location = new Point(355, 370);
             checkAnswerButton.Name = "checkAnswerButton";
-            checkAnswerButton.Size = new Size(121, 33);
+            checkAnswerButton.Size = new Size(77, 33);
             checkAnswerButton.TabIndex = 5;
-            checkAnswerButton.Text = "Check Answer";
+            checkAnswerButton.Text = "Answer";
             checkAnswerButton.UseVisualStyleBackColor = true;
             checkAnswerButton.Click += checkAnswerButton_Click;
             // 
@@ -95,9 +95,9 @@
             // 
             previousQuestionButton.Location = new Point(12, 370);
             previousQuestionButton.Name = "previousQuestionButton";
-            previousQuestionButton.Size = new Size(153, 33);
+            previousQuestionButton.Size = new Size(85, 33);
             previousQuestionButton.TabIndex = 6;
-            previousQuestionButton.Text = "Previous Question";
+            previousQuestionButton.Text = "Previous";
             previousQuestionButton.UseVisualStyleBackColor = true;
             previousQuestionButton.Click += previousQuestionButton_Click;
             // 
@@ -124,6 +124,7 @@
             Controls.Add(questionCountLabel);
             Controls.Add(testTitleLabel);
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(4);
             Name = "SolveTestForm";
             Text = "Test Maker Taker - Solve Test";

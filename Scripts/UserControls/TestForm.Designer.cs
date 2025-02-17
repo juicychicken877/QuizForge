@@ -47,7 +47,7 @@
             descriptionInput.Multiline = true;
             descriptionInput.Name = "descriptionInput";
             descriptionInput.PlaceholderText = "Description";
-            descriptionInput.Size = new Size(322, 147);
+            descriptionInput.Size = new Size(442, 147);
             descriptionInput.TabIndex = 7;
             // 
             // titleInput
@@ -57,12 +57,12 @@
             titleInput.MaxLength = 50;
             titleInput.Name = "titleInput";
             titleInput.PlaceholderText = "Title";
-            titleInput.Size = new Size(322, 29);
+            titleInput.Size = new Size(442, 29);
             titleInput.TabIndex = 4;
             // 
             // addQuestionButton
             // 
-            addQuestionButton.Location = new Point(146, 211);
+            addQuestionButton.Location = new Point(266, 211);
             addQuestionButton.Name = "addQuestionButton";
             addQuestionButton.Size = new Size(181, 29);
             addQuestionButton.TabIndex = 9;
@@ -76,13 +76,13 @@
             questionPanel.FlowDirection = FlowDirection.TopDown;
             questionPanel.Location = new Point(5, 246);
             questionPanel.Name = "questionPanel";
-            questionPanel.Size = new Size(348, 256);
+            questionPanel.Size = new Size(442, 256);
             questionPanel.TabIndex = 10;
             questionPanel.WrapContents = false;
             // 
             // actionButton
             // 
-            actionButton.BackColor = Color.LightGreen;
+            actionButton.BackColor = Color.White;
             actionButton.Location = new Point(457, 467);
             actionButton.Name = "actionButton";
             actionButton.Size = new Size(116, 35);
@@ -93,12 +93,12 @@
             // 
             // clearFieldsButton
             // 
-            clearFieldsButton.BackColor = Color.PaleTurquoise;
+            clearFieldsButton.BackColor = Color.White;
             clearFieldsButton.Location = new Point(457, 426);
             clearFieldsButton.Name = "clearFieldsButton";
             clearFieldsButton.Size = new Size(116, 35);
             clearFieldsButton.TabIndex = 12;
-            clearFieldsButton.Text = "Clear Fields";
+            clearFieldsButton.Text = "Clear";
             clearFieldsButton.UseVisualStyleBackColor = false;
             clearFieldsButton.Click += clearFieldsButton_Click;
             // 
