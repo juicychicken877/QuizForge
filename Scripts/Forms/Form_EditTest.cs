@@ -7,16 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TestMakerTaker.Scripts.Forms;
 
 namespace TestMakerTaker
 {
-    public partial class EditTestForm : Form {
+    public partial class Form_EditTest : Form {
         public event EventHandler OnDeleteTestButtonClicked;
 
         public Test testReference = null;
         public TestForm testFormObject { get { return testForm; } }
 
-        public EditTestForm(Test test) {
+        public Form_EditTest(Test test) {
             InitializeComponent();
 
             testFormObject.ChangeActionButtonMode(TestForm.ActionButtonMode.SaveTest);
@@ -35,6 +36,14 @@ namespace TestMakerTaker
         }
 
         private void deleteButton_Click(object sender, EventArgs e) {
+            MessageDialog infoDialog = new MessageDialog(MessageDialog.MessageDialogMode.Error, "Delete Test", "Are you sure you want to delete this test?", "Yes", "No");
+
+            infoDialog.OnYesBtnClick += ProceedDelete;
+
+            infoDialog.ShowDialog();
+        }
+
+        private void ProceedDelete(object? sender, EventArgs e) {
             OnDeleteTestButtonClicked?.Invoke(this, EventArgs.Empty);
         }
     }

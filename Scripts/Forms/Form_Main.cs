@@ -1,16 +1,17 @@
-﻿namespace TestMakerTaker
+﻿using TestMakerTaker.Scripts.Forms;
+
+namespace TestMakerTaker
 {
-    public partial class Form1 : Form
+    public partial class Form_Main : Form
     {
         private List<Test> tests = new();
-        private EditTestForm currentEditTestForm = null;
+        private Form_EditTest currentEditTestForm = null;
 
-        public Form1()
+        public Form_Main()
         {
             InitializeComponent();
 
             createTestForm.ChangeActionButtonMode(TestForm.ActionButtonMode.CreateTest);
-
             createTestForm.OnActionButtonClicked += CreateTest;
 
             testList.OnEditTest += OpenEditTestForm;
@@ -80,13 +81,13 @@
         }
 
         private void OpenSolveTestForm(object? sender, TestList.OnTestInteractionEventArgs e) {
-            SolveTestForm solveTestForm = new SolveTestForm(e.test);
+            Form_SolveTest solveTestForm = new Form_SolveTest(e.test);
 
             solveTestForm.Show();
         }
 
         private void OpenEditTestForm(object? sender, TestList.OnTestInteractionEventArgs e) {
-            EditTestForm editTestForm = new EditTestForm(e.test);
+            Form_EditTest editTestForm = new Form_EditTest(e.test);
 
             currentEditTestForm = editTestForm;
 
@@ -107,6 +108,10 @@
 
             currentEditTestForm.Close();
             currentEditTestForm = null;
+
+            // Show message
+            MessageDialog infoDialog = new MessageDialog(MessageDialog.MessageDialogMode.Info, "Congratulations", "Test successfully has been deleted", "OK", "OK");
+            infoDialog.ShowDialog();
         }
 
         private void SaveTest(object? sender, TestForm.OnActionButtonClickedEventArgs e) {
@@ -126,6 +131,10 @@
 
                 currentEditTestForm.Close();
                 currentEditTestForm = null;
+
+                // Show message
+                MessageDialog infoDialog = new MessageDialog(MessageDialog.MessageDialogMode.Info, "Congratulations", "A test has been saved!", "OK", "OK");
+                infoDialog.ShowDialog();
             }
         }
 
@@ -141,6 +150,10 @@
 
                 // Update element list
                 testList.Update(tests);
+
+                // Show message
+                MessageDialog infoDialog = new MessageDialog(MessageDialog.MessageDialogMode.Info, "Congratulations", "A test has been created!", "OK", "OK");
+                infoDialog.ShowDialog();
             }
         }
     }

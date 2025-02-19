@@ -1,6 +1,6 @@
 ﻿namespace TestMakerTaker
 {
-    partial class Form1
+    partial class Form_Main
     {
         /// <summary>
         ///  Required designer variable.
@@ -67,6 +67,7 @@
             // 
             // testList
             // 
+            testList.BackColor = Color.White;
             testList.Location = new Point(0, 0);
             testList.Name = "testList";
             testList.Size = new Size(576, 523);
@@ -86,6 +87,7 @@
             // 
             // createTestForm
             // 
+            createTestForm.BackColor = Color.White;
             createTestForm.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
             createTestForm.Location = new Point(0, 0);
             createTestForm.Margin = new Padding(4);
@@ -120,6 +122,7 @@
             HelpButton = true;
             Margin = new Padding(4);
             Name = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Test Maker Taker";
             ((System.ComponentModel.ISupportInitialize)errorProvider).EndInit();
             testsTab.ResumeLayout(false);

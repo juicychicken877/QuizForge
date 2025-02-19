@@ -4,24 +4,34 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TestMakerTaker.Scripts.Forms;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace TestMakerTaker
 {
-    public partial class SolveTestForm : Form {
-        private class UserAnswer {
+    public partial class Form_SolveTest : Form {
+        public class UserAnswer {
+            public string question;
             public string answer;
+            public string correctAnswer;
 
-            public UserAnswer(string answer) {
+            public UserAnswer(string question, string answer, string correctAnswer) {
+                this.question = question;
                 this.answer = answer;
+                this.correctAnswer = correctAnswer;
+            }
+            public bool IsCorrect() {
+                return answer == correctAnswer;
             }
         }
 
         private Question[] testQuestions;
         private UserAnswer[] userAnswers;
+        private Test testRef = null;
 
         private int currentQuestionIndex = 0;
         private int questionCount;
@@ -36,9 +46,11 @@ namespace TestMakerTaker
 
         private NextButtonMode nextButtonMode;
 
-        public SolveTestForm(Test test) {
+        public Form_SolveTest(Test test) {
             // form can only be opened if test has questions so question list length > 0
             InitializeComponent();
+
+            testRef = test;
 
             // copy questions to array
             testQuestions = new Question[test.questions.Count];
@@ -172,21 +184,40 @@ namespace TestMakerTaker
 
             // Add user answer 
             if (userAnswers[currentQuestionIndex] == null) 
-                userAnswers[currentQuestionIndex] = new UserAnswer(answer);
+                userAnswers[currentQuestionIndex] = new UserAnswer(testQuestions[currentQuestionIndex].question, answer, currentCorrectAnswer);
         }
 
         private void FinishTest() {
-            this.Close();
+            Form_TestResult testResultForm = new Form_TestResult(testRef, userAnswers);
 
-            // display results in future
+            testResultForm.Show();
+
+            this.Close();
+            // Display results;
         }
 
         private void nextButton_Click(object sender, EventArgs e) {
             if (nextButtonMode == NextButtonMode.NextQuestion) {
                 NextQuestion();
             } else {
-                FinishTest();
+                bool areAllQuestionsAnswered = true;
+                foreach (UserAnswer userAnswer in userAnswers)
+                    if (userAnswer == null) { areAllQuestionsAnswered = false; break; }
+
+                if (areAllQuestionsAnswered) {
+                    FinishTest();
+                } else {
+                    // If some questions are still unanswered, show notification
+                    MessageDialog newMessageDialog = new MessageDialog(MessageDialog.MessageDialogMode.Error, "Notice", "There are still unanswered questions! Are you sure you want to finish the test?", "Yes", "Cancel");
+                    newMessageDialog.OnYesBtnClick += NewMessageDialog_OnYesBtnClick;
+
+                    newMessageDialog.ShowDialog();
+                }
             }
+        }
+
+        private void NewMessageDialog_OnYesBtnClick(object? sender, EventArgs e) {
+            FinishTest();
         }
 
         private void previousQuestionButton_Click(object sender, EventArgs e) {

@@ -1,5 +1,5 @@
 ﻿namespace TestMakerTaker {
-    partial class EditTestForm {
+    partial class Form_EditTest {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -60,6 +60,7 @@
             Controls.Add(testForm);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "EditTestForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Test Maker Taker - Edit Test";
             FormClosed += EditTestForm_FormClosed;
             ResumeLayout(false);

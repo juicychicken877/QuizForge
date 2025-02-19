@@ -1,5 +1,5 @@
 ﻿namespace TestMakerTaker {
-    partial class SolveTestForm {
+    partial class Form_SolveTest {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -127,6 +127,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(4);
             Name = "SolveTestForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Test Maker Taker - Solve Test";
             ResumeLayout(false);
         }

@@ -21,10 +21,10 @@ namespace TestMakerTaker
             AnswerIncorrect,
         }
 
-        private Color defaultBackColor = Color.WhiteSmoke;
-        private Color selectedBackColor = Color.LightBlue;
-        private Color correctBackColor = Color.LightGreen;
-        private Color incorrectBackColor = Color.FromArgb(242, 65, 65);
+        private readonly Color defaultBackColor = Color.WhiteSmoke;
+        private readonly Color selectedBackColor = Color.LightBlue;
+        private readonly Color correctBackColor = Color.LightGreen;
+        private readonly Color incorrectBackColor = Color.FromArgb(242, 65, 65);
 
         public AnswerButton() {
             InitializeComponent();
