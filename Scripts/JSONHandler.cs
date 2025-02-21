@@ -8,12 +8,19 @@ using TestMakerTaker.Scripts.Forms;
 using System.Text.Json.Serialization;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Diagnostics;
+using static TestMakerTaker.Scripts.JSONHandler.TestListJSON;
 
 namespace TestMakerTaker.Scripts
 {
     internal class JSONHandler
     {
         public class TestListJSON {
+            /*
+                Special classes for creating objects for json serialization purposes
+                - public getters & setters
+                - empty constructors
+                - json property name defined
+             */
             public class TestJSON
             {
                 [JsonPropertyName("title")]
@@ -21,81 +28,130 @@ namespace TestMakerTaker.Scripts
                 [JsonPropertyName("description")]
                 public string description { get; set; }
                 [JsonPropertyName("questions")]
-                public List<Question> questions { get; set; }
+                public List<QuestionJSON> questions { get; set; }
 
-                public TestJSON(string title, string description, List<Question> questions)
-                {
+                public TestJSON() { }
+                public void Initialize(string title, string description, List<QuestionJSON> questions) {
                     this.title = title;
                     this.description = description;
                     this.questions = questions;
                 }
             }
 
-            public List<TestJSON> testsJSON = new();
+            public class QuestionJSON {
+                [JsonPropertyName("question")]
+                public string question { get; set; }
+                [JsonPropertyName("answers")]
+                public List<string> answers { get; set; }
+                [JsonPropertyName("correctAnswer")]
+                public string correctAnswer { get; set; }
+
+                public QuestionJSON() { }
+                public void Initialize(string q, List<string> ans, string correct) {
+                    this.question = q;
+                    this.answers = ans;
+                    this.correctAnswer = correct;
+                }
+            }
+
+
+            [JsonPropertyName("tests")]
+            public List<TestJSON> testsJSON { get; set; }
             public TestListJSON() { }
 
-            public void CreateJSONTests(List<Test> tests)
+            public void Initialize(List<Test> tests)
             {
+                testsJSON = new();
+
+                // Generate Test JSON for every test
                 foreach (Test test in tests)
                 {
-                    TestJSON newTest = new TestJSON(test.title, test.description, test.questions);
-
+                    // Initialize Question JSON Object
+                    List<QuestionJSON> newQuestions = new();
+                    foreach (Question question in test.questions) {
+                        QuestionJSON newQuestion = new QuestionJSON();
+                        newQuestion.Initialize(question.question, question.answers, question.correctAnswer);
+                        newQuestions.Add(newQuestion);
+                    }
+                    TestJSON newTest = new TestJSON();
+                    newTest.Initialize(test.title, test.description, newQuestions);
                     testsJSON.Add(newTest);
                 }
             }
         }
 
         private const string SAVED_TESTS_FILE_PATH = "../../../Data/SavedTests.json";
-        public JSONHandler()
-        {
+        private const string EXAMPLE_TESTS_FILE_PATH = "../../../Data/ExampleTests.json";
+        public JSONHandler() { }
 
-        }
-
-        public void SaveTestsToJson(List<Test> tests)
+        public void SaveTestsToJSON(List<Test> tests)
         {
             try
             {
                 TestListJSON testsObject = new TestListJSON();
-                testsObject.CreateJSONTests(tests);
+                testsObject.Initialize(tests);
 
                 string jsonString = JsonSerializer.Serialize(testsObject);
                 File.WriteAllText(SAVED_TESTS_FILE_PATH, jsonString);
             }
             catch (Exception ex)
             {
-                MessageDialog newErrorMessage = new MessageDialog(MessageDialog.MessageDialogMode.Error, "Error saving",ex.Message, "OK", "OK");
-
-                newErrorMessage.ShowDialog();
+                ShowFileError("Saving Failed", ex.Message);
             }
         }
+        private List<Test> ConvertToTestList(TestListJSON testList) {
+            List<Test> tests = new();
 
-        public TestListJSON GetSavedTests()
+            foreach (TestJSON testJSON in testList.testsJSON) {
+                // Get questions and convert from QuestionJSON to Question
+                List<Question> questions = new();
+                foreach (QuestionJSON questionJSON in testJSON.questions) {
+                    Question question = new(questionJSON.question, questionJSON.answers, questionJSON.correctAnswer);
+                    questions.Add(question);
+                }
+                // Instantiate test
+                tests.Add(new Test(testJSON.title, testJSON.description, questions));
+            }
+
+            return tests;
+        }
+        private TestListJSON LoadTestsFromJSON(string path) {
+            string jsonString = File.ReadAllText(path);
+            TestListJSON testList = JsonSerializer.Deserialize<TestListJSON>(jsonString);
+
+            return testList;
+        }
+
+        private void ShowFileError(string title, string description) {
+            MessageDialog newErrorMessage = new MessageDialog(MessageDialog.MessageDialogMode.Error, title, description, "OK", "OK");
+
+            newErrorMessage.ShowDialog();
+        }
+
+        public List<Test> GetSavedTests()
         {
-            TestListJSON savedTests = null;
+            List<Test> loadedTests = new();
             try
             {
                 if (File.Exists(SAVED_TESTS_FILE_PATH))
                 {
-                    string jsonString = File.ReadAllText(SAVED_TESTS_FILE_PATH);
-                    savedTests = JsonSerializer.Deserialize<TestListJSON>(jsonString);
+                    TestListJSON testList = LoadTestsFromJSON(SAVED_TESTS_FILE_PATH);
 
-                    return savedTests;
+                    loadedTests = ConvertToTestList(testList);
+
+                    return loadedTests;
                 }
                 else
                 {
-                    MessageDialog newErrorMessage = new MessageDialog(MessageDialog.MessageDialogMode.Error, "No File Found", "Path to SavedTests.json is incorrect or file doesn't exist.", "OK", "OK");
-
-                    newErrorMessage.ShowDialog();
+                    ShowFileError("No File Found", "SavedTests.json was not found.");
                 }
             }
             catch (Exception ex)
             {
-                MessageDialog newErrorMessage = new MessageDialog(MessageDialog.MessageDialogMode.Error, "No File Found", ex.Message, "OK", "OK");
-
-                newErrorMessage.ShowDialog();
+                ShowFileError("JSON Handler Exception", ex.Message);
             }
 
-            return savedTests;
+            return loadedTests;
         }
     }
 }
