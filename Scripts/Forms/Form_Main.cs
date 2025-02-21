@@ -1,4 +1,6 @@
-﻿using TestMakerTaker.Scripts.Forms;
+﻿using System.Diagnostics;
+using TestMakerTaker.Scripts;
+using TestMakerTaker.Scripts.Forms;
 
 namespace TestMakerTaker
 {
@@ -6,6 +8,7 @@ namespace TestMakerTaker
     {
         private List<Test> tests = new();
         private Form_EditTest currentEditTestForm = null;
+        private JSONHandler jsonHandler = new JSONHandler();
 
         public Form_Main()
         {
@@ -17,11 +20,14 @@ namespace TestMakerTaker
             testList.OnEditTest += OpenEditTestForm;
             testList.OnSolveTest += OpenSolveTestForm;
 
-            CreateExampleTests();
+            List<Test> exampleTests = CreateExampleTests();
+            jsonHandler.SaveTestsToJson(exampleTests);
+
             testList.Update(tests);
         }
 
-        private void CreateExampleTests() {
+        private List<Test> CreateExampleTests() {
+            List<Test> testList = new List<Test>();
             // Create tests
             // Test 1
             List<Question> questions1 = new List<Question>()
@@ -32,7 +38,7 @@ namespace TestMakerTaker
                 new Question("Which river runs through London?", new List<string>{"Seine", "Thames", "Danube", "Rhine"}, "Thames"),
             };
             Test test1 = new Test("Geography Quiz", "Test your geography knowledge", questions1);
-            tests.Add(test1);
+            testList.Add(test1);
 
             // Test 2
             List<Question> questions2 = new List<Question>()
@@ -43,7 +49,7 @@ namespace TestMakerTaker
                 new Question("What is the formula for the area of a circle?", new List<string>{"πr", "2πr", "πr²", "4πr²"}, "πr²"),
             };
             Test test2 = new Test("Math Quiz", "Test your math knowledge", questions2);
-            tests.Add(test2);
+            testList.Add(test2);
 
             // Test 3
             List<Question> questions3 = new List<Question>()
@@ -54,7 +60,7 @@ namespace TestMakerTaker
                 new Question("Who sculpted 'The Thinker'?", new List<string>{"Auguste Rodin", "Michelangelo", "Donatello", "Leonardo da Vinci"}, "Auguste Rodin"),
             };
             Test test3 = new Test("Literature & Art Quiz", "Test your knowledge in Literature and Art", questions3);
-            tests.Add(test3);
+            testList.Add(test3);
 
 
             // Test 4
@@ -66,7 +72,7 @@ namespace TestMakerTaker
                 new Question("How many planets are in our solar system?", new List<string>{"7", "8", "9", "10"}, "8"),
             };
             Test test4 = new Test("Space Quiz", "Test your knowledge about space", questions4);
-            tests.Add(test4);
+            testList.Add(test4);
 
             // Test 5
             List<Question> questions5 = new List<Question>()
@@ -77,7 +83,9 @@ namespace TestMakerTaker
                 new Question("What is the currency of the United Kingdom?", new List<string>{"Euro", "Dollar", "Pound Sterling", "Franc"}, "Pound Sterling")
             };
             Test test5 = new Test("World Capitals and Currencies", "Test your knowledge of world capitals and currencies", questions5);
-            tests.Add(test5);
+            testList.Add(test5);
+
+            return testList;
         }
 
         private void OpenSolveTestForm(object? sender, TestList.OnTestInteractionEventArgs e) {

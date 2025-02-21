@@ -32,12 +32,11 @@ namespace TestMakerTaker
         private Question[] testQuestions;
         private UserAnswer[] userAnswers;
         private Test testRef = null;
+        private AnswerButton currentSelectedAnswerButton = null;
 
         private int currentQuestionIndex = 0;
-        private int questionCount;
         private string currentCorrectAnswer;
-
-        private AnswerButton currentSelectedAnswerButton = null;
+        private int questionCount;
 
         private enum NextButtonMode {
             NextQuestion,

@@ -22,7 +22,8 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {
+        private void InitializeComponent()
+        {
             messageLabel = new Label();
             yesBtn = new Button();
             noBtn = new Button();
@@ -30,16 +31,17 @@
             // 
             // messageLabel
             // 
+            messageLabel.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             messageLabel.Location = new Point(2, 1);
             messageLabel.Name = "messageLabel";
-            messageLabel.Size = new Size(233, 43);
+            messageLabel.Size = new Size(299, 43);
             messageLabel.TabIndex = 0;
             messageLabel.Text = "Message";
             messageLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // yesBtn
             // 
-            yesBtn.Location = new Point(12, 47);
+            yesBtn.Location = new Point(49, 47);
             yesBtn.Name = "yesBtn";
             yesBtn.Size = new Size(95, 34);
             yesBtn.TabIndex = 1;
@@ -49,7 +51,7 @@
             // 
             // noBtn
             // 
-            noBtn.Location = new Point(129, 47);
+            noBtn.Location = new Point(150, 47);
             noBtn.Name = "noBtn";
             noBtn.Size = new Size(95, 34);
             noBtn.TabIndex = 2;
@@ -61,7 +63,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(236, 89);
+            ClientSize = new Size(302, 89);
             Controls.Add(noBtn);
             Controls.Add(yesBtn);
             Controls.Add(messageLabel);

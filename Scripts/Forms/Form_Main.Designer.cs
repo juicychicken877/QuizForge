@@ -26,7 +26,8 @@
         ///  Required method for Designer support - do not modify
         ///  the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {
+        private void InitializeComponent()
+        {
             components = new System.ComponentModel.Container();
             errorProvider = new ErrorProvider(components);
             importTestTab = new TabPage();
@@ -110,7 +111,7 @@
             tabControl1.SizeMode = TabSizeMode.Fixed;
             tabControl1.TabIndex = 0;
             // 
-            // Form1
+            // Form_Main
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -121,7 +122,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             HelpButton = true;
             Margin = new Padding(4);
-            Name = "Form1";
+            Name = "Form_Main";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Test Maker Taker";
             ((System.ComponentModel.ISupportInitialize)errorProvider).EndInit();
