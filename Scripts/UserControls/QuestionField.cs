@@ -24,18 +24,18 @@ namespace TestMakerTaker
             InitializeComponent();
         }
 
-        public bool AllGoodAndCorrect()
+        public bool Correct()
         {
             if (questionInput.Text == "")
             {
-                errorProvider.SetError(questionInput, "Question must not be empty");
+                errorProvider.SetError(questionInput, "Question can't be empty");
                 return false;
             } else {
                 errorProvider.SetError(questionInput, null);
             }
 
             if (answer1Input.Text == "" || answer2Input.Text == "" || answer3Input.Text == "" || answer4Input.Text == "") {
-                errorProvider.SetError(answer1Input, "Answers must not be empty");
+                errorProvider.SetError(answer1Input, "Answers can't be empty");
                 return false;
             } else {
                 errorProvider.SetError(answer1Input, null);
@@ -45,7 +45,7 @@ namespace TestMakerTaker
                 string correcto = GetCorrectAnswer();
 
             if (correcto == "") {
-                errorProvider.SetError(radioButton1, "Input which is correct answer");    
+                errorProvider.SetError(radioButton1, "Select correct answer");    
                 return false; 
             } else {
                 errorProvider.SetError(radioButton1, null);

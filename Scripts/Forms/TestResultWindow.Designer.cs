@@ -1,5 +1,5 @@
 ﻿namespace TestMakerTaker.Scripts.Forms {
-    partial class Form_TestResult {
+    partial class TestResultWindow {
         /// <summary>
         /// Required designer variable.
         /// </summary>

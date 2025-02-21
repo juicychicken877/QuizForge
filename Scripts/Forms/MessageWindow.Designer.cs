@@ -1,5 +1,5 @@
 ﻿namespace TestMakerTaker.Scripts.Forms {
-    partial class MessageDialog {
+    partial class MessageWindow {
         /// <summary>
         /// Required designer variable.
         /// </summary>

@@ -11,8 +11,12 @@ using System.Windows.Forms;
 namespace TestMakerTaker
 {
     public partial class AnswerButton : UserControl {
-        public event EventHandler OnAnswerButtonClicked;
-        public string text { get { return answer.Text; } set { answer.Text = value; } }
+        public SolveTestWindow.AnswerButtonClickedHandler AnswerButtonClickedHandler;
+
+        private readonly Color defaultBackColor = Color.WhiteSmoke;
+        private readonly Color selectedBackColor = Color.LightBlue;
+        private readonly Color correctBackColor = Color.LightGreen;
+        private readonly Color incorrectBackColor = Color.FromArgb(242, 65, 65);
 
         public enum AnswerButtonMode {
             Default,
@@ -21,14 +25,16 @@ namespace TestMakerTaker
             AnswerIncorrect,
         }
 
-        private readonly Color defaultBackColor = Color.WhiteSmoke;
-        private readonly Color selectedBackColor = Color.LightBlue;
-        private readonly Color correctBackColor = Color.LightGreen;
-        private readonly Color incorrectBackColor = Color.FromArgb(242, 65, 65);
-
-        public AnswerButton() {
+        public AnswerButton(string ans) {
             InitializeComponent();
+
+            answer.Text = ans;
         }
+
+        public string GetAnswer() {
+            return answer.Text;
+        }
+
 
         public void ChangeAnswerButtonMode(AnswerButtonMode mode) {
             switch (mode) {
@@ -40,7 +46,7 @@ namespace TestMakerTaker
         }
 
         private void answer_Click(object sender, EventArgs e) {
-            OnAnswerButtonClicked?.Invoke(this, EventArgs.Empty);
+            AnswerButtonClickedHandler?.Invoke(this);
         }
     }
 }

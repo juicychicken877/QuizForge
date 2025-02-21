@@ -1,5 +1,5 @@
 ﻿namespace TestMakerTaker {
-    partial class Form_EditTest {
+    partial class EditTestWindow {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -62,7 +62,6 @@
             Name = "EditTestForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Test Maker Taker - Edit Test";
-            FormClosed += EditTestForm_FormClosed;
             ResumeLayout(false);
         }
 

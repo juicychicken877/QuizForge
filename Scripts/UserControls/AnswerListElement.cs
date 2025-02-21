@@ -15,7 +15,7 @@ namespace TestMakerTaker.Scripts.Forms
         private readonly Color correctBackColor = Color.LightGreen;
         private readonly Color incorrectBackColor = Color.FromArgb(242, 65, 65);
 
-        public AnswerListElement(string question, Form_SolveTest.UserAnswer userAnswer)
+        public AnswerListElement(string question, SolveTestWindow.UserAnswer userAnswer)
         {
             InitializeComponent();
 

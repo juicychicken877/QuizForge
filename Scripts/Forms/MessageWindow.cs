@@ -11,23 +11,23 @@ using System.Windows.Forms;
 
 namespace TestMakerTaker.Scripts.Forms
 {
-    public partial class MessageDialog : Form {
+    public partial class MessageWindow : Form {
         public event EventHandler OnYesBtnClick;
 
-        public static MessageDialog instance { get; private set; }
+        public static MessageWindow Instance { get; private set; }
         private SystemSound popupSound;
 
         public enum MessageDialogMode {
             Error,
             Info
         }
-        public MessageDialog(MessageDialogMode dialogMode, string dialogTitle, string message, string yesBtnText, string noBtnText) {
-            if (instance != null) {
-                instance.Close();
-                instance.Dispose();
-                instance = null;
+        public MessageWindow(MessageDialogMode dialogMode, string dialogTitle, string message, string yesBtnText, string noBtnText) {
+            if (Instance != null) {
+                Instance.Close();
+                Instance.Dispose();
+                Instance = null;
             }
-            instance = this;
+            Instance = this;
 
             InitializeComponent();
 
@@ -48,12 +48,10 @@ namespace TestMakerTaker.Scripts.Forms
         private void yesBtn_Click(object sender, EventArgs e) {
             OnYesBtnClick?.Invoke(this, EventArgs.Empty);
 
-            instance = null;
             this.Close();
         }
 
         private void noBtn_Click(object sender, EventArgs e) {
-            instance = null;
             this.Close();
         }
     }

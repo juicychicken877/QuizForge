@@ -1,5 +1,5 @@
 ﻿namespace TestMakerTaker {
-    partial class Form_SolveTest {
+    partial class SolveTestWindow {
         /// <summary>
         /// Required designer variable.
         /// </summary>

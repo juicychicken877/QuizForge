@@ -13,7 +13,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace TestMakerTaker
 {
-    public partial class Form_SolveTest : Form {
+    public partial class SolveTestWindow : Form {
         public class UserAnswer {
             public string question;
             public string answer;
@@ -32,11 +32,13 @@ namespace TestMakerTaker
         private Question[] testQuestions;
         private UserAnswer[] userAnswers;
         private Test testRef = null;
-        private AnswerButton currentSelectedAnswerButton = null;
+        private AnswerButton currSelectedAnswerBtn = null;
 
-        private int currentQuestionIndex = 0;
-        private string currentCorrectAnswer;
+        private int currQuestionIndex = 0;
+        private string currCorrectAnswer;
         private int questionCount;
+
+        public delegate void AnswerButtonClickedHandler(AnswerButton answerButton);
 
         private enum NextButtonMode {
             NextQuestion,
@@ -45,7 +47,7 @@ namespace TestMakerTaker
 
         private NextButtonMode nextButtonMode;
 
-        public Form_SolveTest(Test test) {
+        public SolveTestWindow(Test test) {
             // form can only be opened if test has questions so question list length > 0
             InitializeComponent();
 
@@ -62,17 +64,17 @@ namespace TestMakerTaker
             testTitleLabel.Text = test.title;
             questionCount = test.questions.Count;
 
-            UpdateUI();
-            DisplayQuestion(testQuestions[currentQuestionIndex]);
+            currCorrectAnswer = testQuestions[currQuestionIndex].correctAnswer;
 
-            currentCorrectAnswer = testQuestions[currentQuestionIndex].correctAnswer;
+            UpdateUI();
+            DisplayQuestion(testQuestions[currQuestionIndex]);
         }
 
         private void UpdateUI() {
-            questionCountLabel.Text = $"Question {currentQuestionIndex + 1} of {questionCount}";
+            questionCountLabel.Text = $"Question {currQuestionIndex + 1} of {questionCount}";
 
             // Update next button
-            if (currentQuestionIndex == questionCount - 1) {
+            if (currQuestionIndex == questionCount - 1) {
                 // last question - button should change its text to "Finish Test"
                 nextButton.Text = "Finish";
                 nextButtonMode = NextButtonMode.FinishTest;
@@ -81,9 +83,9 @@ namespace TestMakerTaker
                 nextButtonMode = NextButtonMode.NextQuestion;
             }
             // Update previous button
-            previousQuestionButton.Enabled = currentQuestionIndex == 0 ? false : true;
+            previousQuestionButton.Enabled = currQuestionIndex == 0 ? false : true;
             // Update check answer button
-            checkAnswerButton.Enabled = currentSelectedAnswerButton != null ? true : false;
+            checkAnswerButton.Enabled = currSelectedAnswerBtn != null ? true : false;
             // Update result label
             resultLabel.Text = "";
         }
@@ -94,86 +96,64 @@ namespace TestMakerTaker
             answerPanel.Controls.Clear();
 
             foreach (string answer in question.answers) {
-                AnswerButton newAnswerButton = new AnswerButton();
+                AnswerButton newAnswerButton = new AnswerButton(answer);
 
-                newAnswerButton.text = answer;
-                newAnswerButton.OnAnswerButtonClicked += NewAnswerButton_OnAnswerButtonClicked;
+                newAnswerButton.AnswerButtonClickedHandler = SelectAnswerButton;
 
                 answerPanel.Controls.Add(newAnswerButton);
             }
         }
 
-        private void NewAnswerButton_OnAnswerButtonClicked(object? sender, EventArgs e) {
-            AnswerButton answerButton = sender as AnswerButton;
-
-            if (currentSelectedAnswerButton != null) {
-                currentSelectedAnswerButton.ChangeAnswerButtonMode(AnswerButton.AnswerButtonMode.Default);
+        private void SelectAnswerButton(AnswerButton answerButton) {
+            if (currSelectedAnswerBtn != null) {
+                currSelectedAnswerBtn.ChangeAnswerButtonMode(AnswerButton.AnswerButtonMode.Default);
             }
 
             answerButton.ChangeAnswerButtonMode(AnswerButton.AnswerButtonMode.Selected);
 
-            currentSelectedAnswerButton = answerButton;
+            currSelectedAnswerBtn = answerButton;
 
             UpdateUI();
         }
 
-        private void NextQuestion() {
-            currentQuestionIndex++;
-            currentCorrectAnswer = testQuestions[currentQuestionIndex].correctAnswer;
-            currentSelectedAnswerButton = null;
+        private void LoadQuestion(int questionIndex) {
+            currCorrectAnswer = testQuestions[questionIndex].correctAnswer;
+            currSelectedAnswerBtn = null;
 
             UpdateUI();
-            DisplayQuestion(testQuestions[currentQuestionIndex]);
-            CheckIfQuestionAnswered(currentQuestionIndex);
+            DisplayQuestion(testQuestions[questionIndex]);
+            IsQuestionAnswered(questionIndex);
         }
 
-        private void CheckIfQuestionAnswered(int questionIndex) {
+        private void IsQuestionAnswered(int questionIndex) {
             UserAnswer userAnswer = userAnswers[questionIndex];
+
             if (userAnswer != null) {
                 // Question answered
                 checkAnswerButton.Enabled = false;
 
-                // Select button with users answer
-                AnswerButton selectedAnswerButton = null;
-                foreach (AnswerButton answerButton in answerPanel.Controls) {
-                    if (answerButton.text == userAnswer.answer) {
-                        selectedAnswerButton = answerButton;
-                    }
-                }
-
-                CheckAnswer(selectedAnswerButton);
+                DisplayAnswerResults(userAnswer.answer);
             }
         }
 
-        private void PreviousQuestion() {
-            currentQuestionIndex--;
-            currentCorrectAnswer = testQuestions[currentQuestionIndex].correctAnswer;
-            currentSelectedAnswerButton = null;
-
-            UpdateUI();
-            DisplayQuestion(testQuestions[currentQuestionIndex]);
-            CheckIfQuestionAnswered(currentQuestionIndex);
-        }
-
-        private void DisplayCorrectAnswers(string correctAnswer) {
+        // Select distinct answer buttons that have specific answer and change their mode
+        private void SelectDistinctAnswerButtons(string answer, AnswerButton.AnswerButtonMode mode) {
             foreach (AnswerButton answerButton in answerPanel.Controls) {
-                if (answerButton.text == correctAnswer) 
-                    answerButton.ChangeAnswerButtonMode(AnswerButton.AnswerButtonMode.AnswerCorrect);
+                if (answerButton.GetAnswer() == answer) 
+                    answerButton.ChangeAnswerButtonMode(mode);
             }
         }
 
-        private void CheckAnswer(AnswerButton answerButton) {
-            string answer = answerButton.text;
-
-            if (answer != currentCorrectAnswer) {
+        private void DisplayAnswerResults(string answer) {
+            if (answer != currCorrectAnswer) {
                 // Incorrect answer
-                answerButton.ChangeAnswerButtonMode(AnswerButton.AnswerButtonMode.AnswerIncorrect);
-                resultLabel.Text = $"Incorrect! Answer is {currentCorrectAnswer}";
+                SelectDistinctAnswerButtons(answer, AnswerButton.AnswerButtonMode.AnswerIncorrect);
+                resultLabel.Text = $"Incorrect! Answer is {currCorrectAnswer}";
             } else {
-                resultLabel.Text = $"Correct! Answer is {currentCorrectAnswer}";
+                resultLabel.Text = $"Correct! Answer is {currCorrectAnswer}";
             }
 
-            DisplayCorrectAnswers(currentCorrectAnswer);
+            SelectDistinctAnswerButtons(currCorrectAnswer, AnswerButton.AnswerButtonMode.AnswerCorrect);
 
             // Disable all answer buttons
             foreach (AnswerButton answerPanelElement in answerPanel.Controls) {
@@ -181,23 +161,23 @@ namespace TestMakerTaker
             }
             checkAnswerButton.Enabled = false;
 
-            // Add user answer 
-            if (userAnswers[currentQuestionIndex] == null) 
-                userAnswers[currentQuestionIndex] = new UserAnswer(testQuestions[currentQuestionIndex].question, answer, currentCorrectAnswer);
+            // Add user answer if doesnt exist
+            if (userAnswers[currQuestionIndex] == null) 
+                userAnswers[currQuestionIndex] = new UserAnswer(testQuestions[currQuestionIndex].question, answer, currCorrectAnswer);
         }
 
         private void FinishTest() {
-            Form_TestResult testResultForm = new Form_TestResult(testRef, userAnswers);
+            TestResultWindow testResultForm = new TestResultWindow(testRef, userAnswers);
 
             testResultForm.Show();
 
             this.Close();
-            // Display results;
         }
 
         private void nextButton_Click(object sender, EventArgs e) {
             if (nextButtonMode == NextButtonMode.NextQuestion) {
-                NextQuestion();
+                currQuestionIndex++;
+                LoadQuestion(currQuestionIndex);
             } else {
                 bool areAllQuestionsAnswered = true;
                 foreach (UserAnswer userAnswer in userAnswers)
@@ -207,27 +187,27 @@ namespace TestMakerTaker
                     FinishTest();
                 } else {
                     // If some questions are still unanswered, show notification
-                    MessageDialog newMessageDialog = new MessageDialog(MessageDialog.MessageDialogMode.Error, "Notice", "There are still unanswered questions! Are you sure you want to finish the test?", "Yes", "Cancel");
-                    newMessageDialog.OnYesBtnClick += NewMessageDialog_OnYesBtnClick;
+                    MessageWindow newMessageDialog = new MessageWindow(MessageWindow.MessageDialogMode.Error, "Notice", "There are still unanswered questions! Are you sure you want to finish the test?", "Yes", "Cancel");
+                    newMessageDialog.OnYesBtnClick += FinishTestConsent;
 
                     newMessageDialog.ShowDialog();
                 }
             }
         }
 
-        private void NewMessageDialog_OnYesBtnClick(object? sender, EventArgs e) {
+        private void FinishTestConsent(object? sender, EventArgs e) {
             FinishTest();
         }
 
         private void previousQuestionButton_Click(object sender, EventArgs e) {
-            if (currentQuestionIndex != 0) {
-                PreviousQuestion();
+            if (currQuestionIndex != 0) {
+                currQuestionIndex--;
+                LoadQuestion(currQuestionIndex);
             }
         }
 
         private void checkAnswerButton_Click(object sender, EventArgs e) {
-            if (currentSelectedAnswerButton != null)
-                CheckAnswer(currentSelectedAnswerButton);
+            DisplayAnswerResults(currSelectedAnswerBtn.GetAnswer());
         }
     }
 }

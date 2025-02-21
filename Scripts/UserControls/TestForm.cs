@@ -11,48 +11,35 @@ using System.Windows.Forms;
 namespace TestMakerTaker
 {
     public partial class TestForm : UserControl {
-        public event EventHandler<OnActionButtonClickedEventArgs> OnActionButtonClicked;
-
-        public class OnActionButtonClickedEventArgs : EventArgs {
-            public TestForm form { get; set; }
-        }
-
+        public MainWindow.ActionButtonHandler ActionButtonClickedHandler;
         private List<QuestionField> questionFields = new();
 
-        public enum ActionButtonMode {
+        private const int TEST_TITLE_MIN_LENGTH = 5;
+        private const int TEST_TITLE_MAX_LENGTH = 50;
+        private const int TEST_DESCRIPTION_MAX_LENGTH = 200;
+
+        public enum ActionButtonMode { 
             CreateTest,
             SaveTest
         }
 
-        // Title limits
-        private const int TEST_TITLE_MIN_LENGTH = 5;
-        private const int TEST_TITLE_MAX_LENGTH = 50;
-        // Description limits
-        private const int TEST_DESCRIPTION_MAX_LENGTH = 200;
-
-        public TextBox titleInputField {
-            get { return titleInput; }
-        }
-        public TextBox descriptionInputField {
-            get { return descriptionInput; }
-        }
 
         public TestForm() {
             InitializeComponent();
 
-            titleInputField.MaxLength = TEST_TITLE_MAX_LENGTH;
-            descriptionInputField.MaxLength = TEST_DESCRIPTION_MAX_LENGTH;
+            titleInput.MaxLength = TEST_TITLE_MAX_LENGTH;
+            descriptionInput.MaxLength = TEST_DESCRIPTION_MAX_LENGTH;
         }
 
-        public void ChangeActionButtonMode(ActionButtonMode mode) {
-            if (mode == ActionButtonMode.CreateTest) {
-                actionButton.Text = "Create Test";
-            } else if (mode == ActionButtonMode.SaveTest) {
-                actionButton.Text = "Save Test";
+        public void Setup(ActionButtonMode mode, MainWindow.ActionButtonHandler ActionButtonFunction) {
+            switch (mode) {
+                case ActionButtonMode.CreateTest: actionButton.Text = "Create Test"; break;
+                case ActionButtonMode.SaveTest: actionButton.Text = "Save Test"; break;
             }
+            ActionButtonClickedHandler = ActionButtonFunction;
         }
 
-        public bool AllGoodAndCorrect() {
+        public bool Correct() {
             // Checks if all information in inputs is correct
             // Check title
             if (titleInput.Text.Length >= TEST_TITLE_MIN_LENGTH) {
@@ -65,7 +52,7 @@ namespace TestMakerTaker
 
             // Check question fields
             foreach (QuestionField questionField in questionFields) {
-                if (!questionField.AllGoodAndCorrect()) {
+                if (!questionField.Correct()) {
                     return false;
                 }
             }
@@ -85,17 +72,16 @@ namespace TestMakerTaker
             return new Test(title, description, questions);
         }
 
-        private QuestionField AddNewQuestionField() {
-            QuestionField newQuestionField = new();
+        private QuestionField AddQuestionField() {
+            QuestionField questionField = new();
 
-            questionPanel.Controls.Add(newQuestionField);
-
-            questionFields.Add(newQuestionField);
+            questionPanel.Controls.Add(questionField);
+            questionFields.Add(questionField);
 
             // Listen to delete event
-            newQuestionField.OnDeleteQuestionButtonClicked += DeleteQuestionField;
+            questionField.OnDeleteQuestionButtonClicked += DeleteQuestionField;
 
-            return newQuestionField;
+            return questionField;
         }
 
         private void DeleteQuestionField(object? sender, QuestionField.OnDeleteQuestionEventArgs e) {
@@ -106,28 +92,26 @@ namespace TestMakerTaker
         }
 
         public void FillInputsWithData(Test test) {
-            titleInputField.Text = test.title;
+            titleInput.Text = test.title;
             descriptionInput.Text = test.description;
 
             foreach (Question question in test.questions) {
-                QuestionField newQuestionField = AddNewQuestionField();
+                QuestionField newQuestionField = AddQuestionField();
 
                 newQuestionField.FillInputsWithData(question);
             }
         }
 
         public void ClearFields() {
-            titleInputField.Text = "";
-            descriptionInputField.Text = "";
+            titleInput.Text = "";
+            descriptionInput.Text = "";
 
             questionFields.Clear();
             questionPanel.Controls.Clear();
         }
 
         private void actionButton_Click(object sender, EventArgs e) {
-            OnActionButtonClicked?.Invoke(this, new OnActionButtonClickedEventArgs() {
-                form = this
-            });
+            ActionButtonClickedHandler?.Invoke(this);
         }
 
         private void clearFieldsButton_Click(object sender, EventArgs e) {
@@ -135,7 +119,7 @@ namespace TestMakerTaker
         }
 
         private void addQuestionButton_Click(object sender, EventArgs e) {
-            AddNewQuestionField();
+            AddQuestionField();
         }
     }
 }

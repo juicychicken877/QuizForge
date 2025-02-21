@@ -10,13 +10,13 @@ using System.Windows.Forms;
 
 namespace TestMakerTaker.Scripts.Forms
 {
-    public partial class Form_TestResult : Form {
-        public Form_TestResult(Test solvedTest, Form_SolveTest.UserAnswer[] userAnswers) {
+    public partial class TestResultWindow : Form {
+        public TestResultWindow(Test solvedTest, SolveTestWindow.UserAnswer[] userAnswers) {
             InitializeComponent();
 
             int correct = 0, incorrect = 0, unanswered = 0;
 
-            foreach (Form_SolveTest.UserAnswer answer in userAnswers) {
+            foreach (SolveTestWindow.UserAnswer answer in userAnswers) {
                 if (answer != null) {
                     if (answer.IsCorrect()) correct++;
                     else incorrect++;

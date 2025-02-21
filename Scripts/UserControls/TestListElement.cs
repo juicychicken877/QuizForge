@@ -11,59 +11,35 @@ using System.Windows.Forms;
 namespace TestMakerTaker
 {
     public partial class TestListElement : UserControl {
-        public event EventHandler<OnInteractionButtonClickedEventArgs> OnEditButtonClicked;
-        public event EventHandler<OnInteractionButtonClickedEventArgs> OnSolveButtonClicked;
 
-        public class OnInteractionButtonClickedEventArgs : EventArgs {
-            public Test test { get; set; }
-        }
+        public MainWindow.TestInteractionButtonHandler SolveButtonClickedHandler;
+        public MainWindow.TestInteractionButtonHandler EditButtonClickedHandler;
 
-        private Test testObject;
-        public string testTitle {
-            get {
-                return this.title.Text;
-            }
-            set {
-                this.title.Text = value;
-            }
-        }
-
-        public string testDescription {
-            get {
-                return this.description.Text;
-            }
-            set {
-                this.description.Text = value;
-            }
-        }
+        private Test testRef;
 
         public TestListElement(Test test) {
             InitializeComponent();
 
-            testObject = test;
+            testRef = test;
+          
+            title.Text = test.title;
+            description.Text = test.description;
+            questionCountLabel.Text = test.questions.Count.ToString();
 
-            testDescription = test.description;
-            testTitle = test.title;
-
-            int questionListLength = test.questions.Count;
-            questionCountLabel.Text = questionListLength == 1 ? "1 question" : $"{questionListLength} questions";
+            questionCountLabel.Text = test.questions.Count == 1 ? "1 question" : $"{test.questions.Count} questions";
 
             // disable solve button if test has 0 questions
-            if (questionListLength == 0) {
+            if (test.questions.Count == 0) {
                 solveButton.Enabled = false;
             }
         }
 
         private void editButton_Click(object sender, EventArgs e) {
-            OnEditButtonClicked?.Invoke(this, new OnInteractionButtonClickedEventArgs() {
-                test = testObject
-            });
+            EditButtonClickedHandler?.Invoke(testRef);
         }
 
         private void solveButton_Click(object sender, EventArgs e) {
-            OnSolveButtonClicked?.Invoke(this, new OnInteractionButtonClickedEventArgs() {
-                test = testObject
-            });
+            SolveButtonClickedHandler?.Invoke(testRef);
         }
     }
 }

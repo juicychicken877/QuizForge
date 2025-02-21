@@ -33,6 +33,16 @@
                         "Sudan"
                     ],
                     "correctAnswer": "Algeria"
+                },
+                {
+                    "question": "Which river runs through London?",
+                    "answers": [
+                        "Seine",
+                        "Thames",
+                        "Danube",
+                        "Rhine"
+                    ],
+                    "correctAnswer": "Thames"
                 }
             ]
         },
@@ -73,12 +83,58 @@
                 {
                     "question": "What is the formula for the area of a circle?",
                     "answers": [
-                        "\u03C0r",
-                        "2\u03C0r",
-                        "\u03C0r\u00B2",
-                        "4\u03C0r\u00B2"
+                        "πr",
+                        "2πr",
+                        "πr²",
+                        "4πr²"
                     ],
-                    "correctAnswer": "\u03C0r\u00B2"
+                    "correctAnswer": "πr²"
+                }
+            ]
+        },
+        {
+            "title": "Literature & Art Quiz",
+            "description": "Test your knowledge in Literature and Art",
+            "questions": [
+                {
+                    "question": "Who wrote Hamlet?",
+                    "answers": [
+                        "Charles Dickens",
+                        "Jane Austen",
+                        "William Shakespeare",
+                        "Mark Twain"
+                    ],
+                    "correctAnswer": "William Shakespeare"
+                },
+                {
+                    "question": "Who painted the Mona Lisa?",
+                    "answers": [
+                        "Michelangelo",
+                        "Leonardo da Vinci",
+                        "Raphael",
+                        "Donatello"
+                    ],
+                    "correctAnswer": "Leonardo da Vinci"
+                },
+                {
+                    "question": "Who wrote 'Pride and Prejudice'?",
+                    "answers": [
+                        "Charlotte Brontë",
+                        "Emily Brontë",
+                        "Jane Austen",
+                        "Virginia Woolf"
+                    ],
+                    "correctAnswer": "Jane Austen"
+                },
+                {
+                    "question": "Who sculpted 'The Thinker'?",
+                    "answers": [
+                        "Auguste Rodin",
+                        "Michelangelo",
+                        "Donatello",
+                        "Leonardo da Vinci"
+                    ],
+                    "correctAnswer": "Auguste Rodin"
                 }
             ]
         },
@@ -87,7 +143,7 @@
             "description": "Test your knowledge about space",
             "questions": [
                 {
-                    "question": "Which planet is known as the \u0027Red Planet\u0027?",
+                    "question": "Which planet is known as the 'Red Planet'?",
                     "answers": [
                         "Jupiter",
                         "Mars",
@@ -171,22 +227,6 @@
                         "Franc"
                     ],
                     "correctAnswer": "Pound Sterling"
-                }
-            ]
-        },
-        {
-            "title": "New Test",
-            "description": "Saving to JSON now works",
-            "questions": [
-                {
-                    "question": "Beer?",
-                    "answers": [
-                        "Yes",
-                        "Yes",
-                        "Yes",
-                        "Yes"
-                    ],
-                    "correctAnswer": "Yes"
                 }
             ]
         }

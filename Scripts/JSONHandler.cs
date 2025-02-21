@@ -8,78 +8,12 @@ using TestMakerTaker.Scripts.Forms;
 using System.Text.Json.Serialization;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Diagnostics;
-using static TestMakerTaker.Scripts.JSONHandler.TestListJSON;
+using static TestMakerTaker.Scripts.TestListJSON;
 
 namespace TestMakerTaker.Scripts
 {
     internal class JSONHandler
     {
-        public class TestListJSON {
-            /*
-                Special classes for creating objects for json serialization purposes
-                - public getters & setters
-                - empty constructors
-                - json property name defined
-             */
-            public class TestJSON
-            {
-                [JsonPropertyName("title")]
-                public string title { get; set; }
-                [JsonPropertyName("description")]
-                public string description { get; set; }
-                [JsonPropertyName("questions")]
-                public List<QuestionJSON> questions { get; set; }
-
-                public TestJSON() { }
-                public void Initialize(string title, string description, List<QuestionJSON> questions) {
-                    this.title = title;
-                    this.description = description;
-                    this.questions = questions;
-                }
-            }
-
-            public class QuestionJSON {
-                [JsonPropertyName("question")]
-                public string question { get; set; }
-                [JsonPropertyName("answers")]
-                public List<string> answers { get; set; }
-                [JsonPropertyName("correctAnswer")]
-                public string correctAnswer { get; set; }
-
-                public QuestionJSON() { }
-                public void Initialize(string q, List<string> ans, string correct) {
-                    this.question = q;
-                    this.answers = ans;
-                    this.correctAnswer = correct;
-                }
-            }
-
-
-            [JsonPropertyName("tests")]
-            public List<TestJSON> testsJSON { get; set; }
-            public TestListJSON() { }
-
-            public void Initialize(List<Test> tests)
-            {
-                testsJSON = new();
-
-                // Generate Test JSON for every test
-                foreach (Test test in tests)
-                {
-                    // Initialize Question JSON Object
-                    List<QuestionJSON> newQuestions = new();
-                    foreach (Question question in test.questions) {
-                        QuestionJSON newQuestion = new QuestionJSON();
-                        newQuestion.Initialize(question.question, question.answers, question.correctAnswer);
-                        newQuestions.Add(newQuestion);
-                    }
-                    TestJSON newTest = new TestJSON();
-                    newTest.Initialize(test.title, test.description, newQuestions);
-                    testsJSON.Add(newTest);
-                }
-            }
-        }
-
         private const string SAVED_TESTS_FILE_PATH = "../../../Data/SavedTests.json";
         private const string EXAMPLE_TESTS_FILE_PATH = "../../../Data/ExampleTests.json";
         public JSONHandler() { }
@@ -123,7 +57,7 @@ namespace TestMakerTaker.Scripts
         }
 
         private void ShowFileError(string title, string description) {
-            MessageDialog newErrorMessage = new MessageDialog(MessageDialog.MessageDialogMode.Error, title, description, "OK", "OK");
+            MessageWindow newErrorMessage = new MessageWindow(MessageWindow.MessageDialogMode.Error, title, description, "OK", "OK");
 
             newErrorMessage.ShowDialog();
         }
@@ -152,6 +86,68 @@ namespace TestMakerTaker.Scripts
             }
 
             return loadedTests;
+        }
+    }
+    public class TestListJSON {
+        /*
+            Special classes for creating objects for json serialization purposes
+            - public getters & setters
+            - empty constructors
+            - json property name defined
+         */
+        public class TestJSON {
+            [JsonPropertyName("title")]
+            public string title { get; set; }
+            [JsonPropertyName("description")]
+            public string description { get; set; }
+            [JsonPropertyName("questions")]
+            public List<QuestionJSON> questions { get; set; }
+
+            public TestJSON() { }
+            public void Initialize(string title, string description, List<QuestionJSON> questions) {
+                this.title = title;
+                this.description = description;
+                this.questions = questions;
+            }
+        }
+
+        public class QuestionJSON {
+            [JsonPropertyName("question")]
+            public string question { get; set; }
+            [JsonPropertyName("answers")]
+            public List<string> answers { get; set; }
+            [JsonPropertyName("correctAnswer")]
+            public string correctAnswer { get; set; }
+
+            public QuestionJSON() { }
+            public void Initialize(string q, List<string> ans, string correct) {
+                this.question = q;
+                this.answers = ans;
+                this.correctAnswer = correct;
+            }
+        }
+
+
+        [JsonPropertyName("tests")]
+        public List<TestJSON> testsJSON { get; set; }
+        public TestListJSON() { }
+
+        public void Initialize(List<Test> tests) {
+            testsJSON = new();
+
+            // Generate Test JSON for every test
+            foreach (Test test in tests) {
+                // Initialize Question JSON Object
+                List<QuestionJSON> newQuestions = new();
+                foreach (Question question in test.questions) {
+                    QuestionJSON newQuestion = new QuestionJSON();
+                    newQuestion.Initialize(question.question, question.answers, question.correctAnswer);
+                    newQuestions.Add(newQuestion);
+                }
+                TestJSON newTest = new TestJSON();
+                newTest.Initialize(test.title, test.description, newQuestions);
+                testsJSON.Add(newTest);
+            }
         }
     }
 }

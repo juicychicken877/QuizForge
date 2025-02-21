@@ -1,6 +1,6 @@
 ﻿namespace TestMakerTaker
 {
-    partial class Form_Main
+    partial class MainWindow
     {
         /// <summary>
         ///  Required designer variable.

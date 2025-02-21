@@ -12,13 +12,8 @@ namespace TestMakerTaker
 {
     public partial class TestList : UserControl
     {
-        public event EventHandler<OnTestInteractionEventArgs> OnEditTest;
-        public event EventHandler<OnTestInteractionEventArgs> OnSolveTest;
-
-        public class OnTestInteractionEventArgs : EventArgs {
-            public Test test { get; set; }
-        }
-
+        public MainWindow.TestInteractionButtonHandler SolveButtonClickedHandler;
+        public MainWindow.TestInteractionButtonHandler EditButtonClickedHandler;
 
         public TestList()
         {
@@ -34,19 +29,11 @@ namespace TestMakerTaker
                 // Create new element for each test
                 TestListElement newElement = new(test);
 
-                newElement.OnEditButtonClicked += NewElement_OnEditButtonClicked;
-                newElement.OnSolveButtonClicked += NewElement_OnSolveButtonClicked;
+                newElement.EditButtonClickedHandler += EditButtonClickedHandler;
+                newElement.SolveButtonClickedHandler += SolveButtonClickedHandler;
 
                 panel.Controls.Add(newElement);
             }
-        }
-
-        private void NewElement_OnSolveButtonClicked(object? sender, TestListElement.OnInteractionButtonClickedEventArgs e) {
-            OnSolveTest?.Invoke(this, new OnTestInteractionEventArgs() { test = e.test });
-        }
-
-        private void NewElement_OnEditButtonClicked(object? sender, TestListElement.OnInteractionButtonClickedEventArgs e) {
-            OnEditTest?.Invoke(this, new OnTestInteractionEventArgs() { test = e.test });
         }
     }
 }
