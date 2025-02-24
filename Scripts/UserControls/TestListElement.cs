@@ -13,6 +13,7 @@ namespace TestMakerTaker
     public partial class TestListElement : UserControl {
 
         public MainWindow.TestInteractionButtonHandler SolveButtonClickedHandler;
+        public MainWindow.TestInteractionButtonHandler ExportButtonClickedHandler;
         public MainWindow.TestInteractionButtonHandler EditButtonClickedHandler;
 
         private Test testRef;
@@ -21,7 +22,7 @@ namespace TestMakerTaker
             InitializeComponent();
 
             testRef = test;
-          
+
             title.Text = test.title;
             description.Text = test.description;
             questionCountLabel.Text = test.questions.Count.ToString();
@@ -40,6 +41,10 @@ namespace TestMakerTaker
 
         private void solveButton_Click(object sender, EventArgs e) {
             SolveButtonClickedHandler?.Invoke(testRef);
+        }
+
+        private void exportButton_Click(object sender, EventArgs e) {
+            ExportButtonClickedHandler?.Invoke(testRef);
         }
     }
 }

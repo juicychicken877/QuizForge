@@ -83,6 +83,7 @@ namespace TestMakerTaker
             exportButton.TabIndex = 4;
             exportButton.Text = "Export";
             exportButton.UseVisualStyleBackColor = true;
+            exportButton.Click += exportButton_Click;
             // 
             // questionCountLabel
             // 

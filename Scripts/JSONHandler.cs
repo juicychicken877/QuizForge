@@ -14,25 +14,26 @@ namespace TestMakerTaker.Scripts
 {
     public static class JSONHandler
     {
-        private const string SAVED_TESTS_FILE_PATH = "../../../Data/SavedTests.json";
-        private const string EXAMPLE_TESTS_FILE_PATH = "../../../Data/ExampleTests.json";
+        public static readonly string SAVED_TESTS_FILE_PATH = "../../../Data/SavedTests.json";
+        public static readonly string EXAMPLE_TESTS_FILE_PATH = "../../../Data/ExampleTests.json";
 
-        public static void SaveTestsToJSON(List<Test> tests)
+        public static void SaveTestsToJSON(List<Test> tests, string path)
         {
             try
             {
-                TestListJSON testsObject = new TestListJSON();
+                TestListJSON testsObject = new();
                 testsObject.Initialize(tests);
 
-                string jsonString = JsonSerializer.Serialize(testsObject);
-                File.WriteAllText(SAVED_TESTS_FILE_PATH, jsonString);
+                string jsonString = JsonSerializer.Serialize(testsObject, new JsonSerializerOptions() { WriteIndented = true });
+                File.WriteAllText(path, jsonString);
             }
             catch (Exception ex)
             {
                 MessageManager.NewErrorWindow("JSON Handler Error", "Failed to save data to JSON.", null);
             }
         }
-        private static List<Test> ConvertToTestList(TestListJSON testList) {
+
+        public static List<Test> ConvertToTestList(TestListJSON testList) {
             List<Test> tests = new();
 
             foreach (TestJSON testJSON in testList.testsJSON) {
@@ -48,37 +49,30 @@ namespace TestMakerTaker.Scripts
 
             return tests;
         }
-        private static TestListJSON LoadTestsFromJSON(string path) {
-            string jsonString = File.ReadAllText(path);
-            TestListJSON testList = JsonSerializer.Deserialize<TestListJSON>(jsonString);
 
-            return testList;
-        }
-
-        public static List<Test> GetSavedTests()
+        public static List<Test> LoadTestsFromJSON(string path)
         {
-            List<Test> loadedTests = new();
             try
             {
                 if (File.Exists(SAVED_TESTS_FILE_PATH))
                 {
-                    TestListJSON testList = LoadTestsFromJSON(SAVED_TESTS_FILE_PATH);
+                    string jsonString = File.ReadAllText(path);
+                    TestListJSON testList = JsonSerializer.Deserialize<TestListJSON>(jsonString);
 
-                    loadedTests = ConvertToTestList(testList);
-
-                    return loadedTests;
+                    return ConvertToTestList(testList);
                 }
                 else
                 {
                     MessageManager.NewErrorWindow("JSON Handler Error", $"{Path.GetFullPath(SAVED_TESTS_FILE_PATH)} not found.", null);
+                    return null;
                 }
             }
             catch (Exception ex)
             {
                 MessageManager.NewErrorWindow("JSON Handler Error", ex.Message, null);
-            }
 
-            return loadedTests;
+                return null;
+            }
         }
     }
     public class TestListJSON {

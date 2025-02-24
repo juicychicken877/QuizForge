@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent() {
             panel = new FlowLayoutPanel();
+            importExampleTests = new Button();
             SuspendLayout();
             // 
             // panel
@@ -36,15 +37,27 @@
             panel.FlowDirection = FlowDirection.TopDown;
             panel.Location = new Point(3, 3);
             panel.Name = "panel";
-            panel.Size = new Size(570, 517);
+            panel.Size = new Size(570, 476);
             panel.TabIndex = 0;
             panel.WrapContents = false;
+            // 
+            // importExampleTests
+            // 
+            importExampleTests.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            importExampleTests.Location = new Point(3, 484);
+            importExampleTests.Name = "importExampleTests";
+            importExampleTests.Size = new Size(169, 36);
+            importExampleTests.TabIndex = 1;
+            importExampleTests.Text = "Import Example Tests";
+            importExampleTests.UseVisualStyleBackColor = true;
+            importExampleTests.Click += importExampleTests_Click;
             // 
             // TestList
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
+            Controls.Add(importExampleTests);
             Controls.Add(panel);
             Name = "TestList";
             Size = new Size(576, 523);
@@ -54,5 +67,6 @@
         #endregion
 
         private FlowLayoutPanel panel;
+        private Button importExampleTests;
     }
 }
