@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Media;
@@ -12,47 +13,63 @@ using System.Windows.Forms;
 namespace TestMakerTaker.Scripts.Forms
 {
     public partial class MessageWindow : Form {
-        public event EventHandler OnYesBtnClick;
+        public MessageManager.MessageWindowBtnClickedHandler OkHandler;
+        public MessageManager.MessageWindowBtnClickedHandler ConfirmationHandler;
+        public MessageManager.MessageWindowBtnClickedHandler CancellationHandler;
 
-        public static MessageWindow Instance { get; private set; }
         private SystemSound popupSound;
 
-        public enum MessageDialogMode {
+        public enum MessageWindowMode {
+            Decision,
             Error,
             Info
         }
-        public MessageWindow(MessageDialogMode dialogMode, string dialogTitle, string message, string yesBtnText, string noBtnText) {
-            if (Instance != null) {
-                Instance.Close();
-                Instance.Dispose();
-                Instance = null;
-            }
-            Instance = this;
-
+        public MessageWindow(MessageWindowMode windowMode, string title, string message) {
             InitializeComponent();
-
+            SetButtons(windowMode);
             // Play different sound depending on the dialogs' motive
-            switch (dialogMode) {
-                case MessageDialogMode.Error: popupSound = SystemSounds.Hand; break;
-                case MessageDialogMode.Info: popupSound = SystemSounds.Asterisk; break;
-                default: popupSound = SystemSounds.Asterisk; break;
+            switch (windowMode) {
+                case MessageWindowMode.Decision: popupSound = SystemSounds.Beep; break;
+                case MessageWindowMode.Error: popupSound = SystemSounds.Hand; break;
+                case MessageWindowMode.Info: popupSound = SystemSounds.Asterisk; break;
             }
             popupSound.Play();
-            // Change labels
-            this.Text = dialogTitle;
+
+            this.Text = title;
             messageLabel.Text = message;
-            yesBtn.Text = yesBtnText;
-            noBtn.Text = noBtnText;
+        }
+        private void SetButtons(MessageWindowMode mode) {
+            if (mode == MessageWindowMode.Decision) {
+                Button confirmBtn = new();
+                Button cancelBtn = new();
+
+                confirmBtn.Text = "Confirm";
+                confirmBtn.Click += ConfirmDecision;
+
+                cancelBtn.Text = "Cancel";
+                cancelBtn.Click += CancelDecision;
+
+                btnPanel.Controls.AddRange([confirmBtn, cancelBtn]);
+            } else {
+                Button okBtn = new();
+
+                okBtn.Text = "OK";
+                okBtn.Click += OkBtn_Click;
+
+                btnPanel.Controls.Add(okBtn);
+            }
         }
 
-        private void yesBtn_Click(object sender, EventArgs e) {
-            OnYesBtnClick?.Invoke(this, EventArgs.Empty);
-
-            this.Close();
+        private void OkBtn_Click(object? sender, EventArgs e) {
+            OkHandler?.Invoke();
         }
 
-        private void noBtn_Click(object sender, EventArgs e) {
-            this.Close();
+        private void ConfirmDecision(object? sender, EventArgs e) {
+            ConfirmationHandler?.Invoke();
+        }
+
+        private void CancelDecision(object? sender, EventArgs e) {
+            CancellationHandler?.Invoke();
         }
     }
 }

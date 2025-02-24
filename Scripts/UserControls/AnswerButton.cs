@@ -13,10 +13,10 @@ namespace TestMakerTaker
     public partial class AnswerButton : UserControl {
         public SolveTestWindow.AnswerButtonClickedHandler AnswerButtonClickedHandler;
 
-        private readonly Color defaultBackColor = Color.WhiteSmoke;
-        private readonly Color selectedBackColor = Color.LightBlue;
-        private readonly Color correctBackColor = Color.LightGreen;
-        private readonly Color incorrectBackColor = Color.FromArgb(242, 65, 65);
+        private readonly Color DEFAULT_COLOR = Color.WhiteSmoke;
+        private readonly Color SELECTED_COLOR = Color.LightBlue;
+        private readonly Color CORRECT_COLOR = Color.LightGreen;
+        private readonly Color INCORRECT_COLOR = Color.FromArgb(242, 65, 65);
 
         public enum AnswerButtonMode {
             Default,
@@ -38,10 +38,10 @@ namespace TestMakerTaker
 
         public void ChangeAnswerButtonMode(AnswerButtonMode mode) {
             switch (mode) {
-                case AnswerButtonMode.Default: this.BackColor = defaultBackColor; break;
-                case AnswerButtonMode.Selected: this.BackColor = selectedBackColor; break;
-                case AnswerButtonMode.AnswerCorrect: this.BackColor = correctBackColor; break;
-                case AnswerButtonMode.AnswerIncorrect: this.BackColor = incorrectBackColor; break;
+                case AnswerButtonMode.Default: this.BackColor = DEFAULT_COLOR; break;
+                case AnswerButtonMode.Selected: this.BackColor = SELECTED_COLOR; break;
+                case AnswerButtonMode.AnswerCorrect: this.BackColor = CORRECT_COLOR; break;
+                case AnswerButtonMode.AnswerIncorrect: this.BackColor = INCORRECT_COLOR; break;
             }
         }
 

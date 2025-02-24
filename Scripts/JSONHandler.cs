@@ -12,13 +12,12 @@ using static TestMakerTaker.Scripts.TestListJSON;
 
 namespace TestMakerTaker.Scripts
 {
-    internal class JSONHandler
+    public static class JSONHandler
     {
         private const string SAVED_TESTS_FILE_PATH = "../../../Data/SavedTests.json";
         private const string EXAMPLE_TESTS_FILE_PATH = "../../../Data/ExampleTests.json";
-        public JSONHandler() { }
 
-        public void SaveTestsToJSON(List<Test> tests)
+        public static void SaveTestsToJSON(List<Test> tests)
         {
             try
             {
@@ -30,10 +29,10 @@ namespace TestMakerTaker.Scripts
             }
             catch (Exception ex)
             {
-                ShowFileError("Saving Failed", ex.Message);
+                MessageManager.NewErrorWindow("JSON Handler Error", "Failed to save data to JSON.", null);
             }
         }
-        private List<Test> ConvertToTestList(TestListJSON testList) {
+        private static List<Test> ConvertToTestList(TestListJSON testList) {
             List<Test> tests = new();
 
             foreach (TestJSON testJSON in testList.testsJSON) {
@@ -49,20 +48,14 @@ namespace TestMakerTaker.Scripts
 
             return tests;
         }
-        private TestListJSON LoadTestsFromJSON(string path) {
+        private static TestListJSON LoadTestsFromJSON(string path) {
             string jsonString = File.ReadAllText(path);
             TestListJSON testList = JsonSerializer.Deserialize<TestListJSON>(jsonString);
 
             return testList;
         }
 
-        private void ShowFileError(string title, string description) {
-            MessageWindow newErrorMessage = new MessageWindow(MessageWindow.MessageDialogMode.Error, title, description, "OK", "OK");
-
-            newErrorMessage.ShowDialog();
-        }
-
-        public List<Test> GetSavedTests()
+        public static List<Test> GetSavedTests()
         {
             List<Test> loadedTests = new();
             try
@@ -77,12 +70,12 @@ namespace TestMakerTaker.Scripts
                 }
                 else
                 {
-                    ShowFileError("No File Found", "SavedTests.json was not found.");
+                    MessageManager.NewErrorWindow("JSON Handler Error", $"{Path.GetFullPath(SAVED_TESTS_FILE_PATH)} not found.", null);
                 }
             }
             catch (Exception ex)
             {
-                ShowFileError("JSON Handler Exception", ex.Message);
+                MessageManager.NewErrorWindow("JSON Handler Error", ex.Message, null);
             }
 
             return loadedTests;

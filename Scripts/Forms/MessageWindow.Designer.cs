@@ -22,11 +22,9 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
-        {
+        private void InitializeComponent() {
             messageLabel = new Label();
-            yesBtn = new Button();
-            noBtn = new Button();
+            btnPanel = new FlowLayoutPanel();
             SuspendLayout();
             // 
             // messageLabel
@@ -39,36 +37,22 @@
             messageLabel.Text = "Message";
             messageLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // yesBtn
+            // btnPanel
             // 
-            yesBtn.Location = new Point(49, 47);
-            yesBtn.Name = "yesBtn";
-            yesBtn.Size = new Size(95, 34);
-            yesBtn.TabIndex = 1;
-            yesBtn.Text = "Yes";
-            yesBtn.UseVisualStyleBackColor = true;
-            yesBtn.Click += yesBtn_Click;
+            btnPanel.Location = new Point(2, 47);
+            btnPanel.Name = "btnPanel";
+            btnPanel.Size = new Size(299, 42);
+            btnPanel.TabIndex = 1;
             // 
-            // noBtn
-            // 
-            noBtn.Location = new Point(150, 47);
-            noBtn.Name = "noBtn";
-            noBtn.Size = new Size(95, 34);
-            noBtn.TabIndex = 2;
-            noBtn.Text = "No";
-            noBtn.UseVisualStyleBackColor = true;
-            noBtn.Click += noBtn_Click;
-            // 
-            // MessageDialog
+            // MessageWindow
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(302, 89);
-            Controls.Add(noBtn);
-            Controls.Add(yesBtn);
+            Controls.Add(btnPanel);
             Controls.Add(messageLabel);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            Name = "MessageDialog";
+            Name = "MessageWindow";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Message Title";
             ResumeLayout(false);
@@ -77,7 +61,6 @@
         #endregion
 
         private Label messageLabel;
-        private Button yesBtn;
-        private Button noBtn;
+        private FlowLayoutPanel btnPanel;
     }
 }

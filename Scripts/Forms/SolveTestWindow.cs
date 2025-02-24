@@ -8,6 +8,7 @@ using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TestMakerTaker.Scripts;
 using TestMakerTaker.Scripts.Forms;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -187,16 +188,9 @@ namespace TestMakerTaker
                     FinishTest();
                 } else {
                     // If some questions are still unanswered, show notification
-                    MessageWindow newMessageDialog = new MessageWindow(MessageWindow.MessageDialogMode.Error, "Notice", "There are still unanswered questions! Are you sure you want to finish the test?", "Yes", "Cancel");
-                    newMessageDialog.OnYesBtnClick += FinishTestConsent;
-
-                    newMessageDialog.ShowDialog();
+                    MessageManager.NewDecisionWindow("Warning", "Some questions are unanswered! Continue?", FinishTest, null);
                 }
             }
-        }
-
-        private void FinishTestConsent(object? sender, EventArgs e) {
-            FinishTest();
         }
 
         private void previousQuestionButton_Click(object sender, EventArgs e) {

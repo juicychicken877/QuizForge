@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TestMakerTaker.Scripts;
 using TestMakerTaker.Scripts.Forms;
 
 namespace TestMakerTaker
@@ -41,14 +43,10 @@ namespace TestMakerTaker
         }
 
         private void deleteButton_Click(object sender, EventArgs e) {
-            MessageWindow infoDialog = new MessageWindow(MessageWindow.MessageDialogMode.Error, "Delete Test", "Are you sure you want to delete this test?", "Yes", "No");
-
-            infoDialog.OnYesBtnClick += ProceedDelete;
-
-            infoDialog.ShowDialog();
+            MessageManager.NewDecisionWindow("Delete Test", "Are you sure you want to delete this test?", ProceedDelete, null);
         }
 
-        private void ProceedDelete(object? sender, EventArgs e) {
+        private void ProceedDelete() {
             DeleteButtonClickedHandler?.Invoke(testRef);
         }
     }

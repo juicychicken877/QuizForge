@@ -6,12 +6,10 @@ namespace TestMakerTaker
 {
     public partial class MainWindow : Form
     {
-        private List<Test> tests = new();
-        private JSONHandler jsonHandler = new JSONHandler();
-
-        // A delegate function handler for every interaction with a test that requires passing down an object
         public delegate void TestInteractionButtonHandler(Test testRef);
         public delegate void ActionButtonHandler(TestForm testForm);
+
+        private List<Test> tests = new();
 
         public MainWindow()
         {
@@ -23,7 +21,7 @@ namespace TestMakerTaker
             testList.EditButtonClickedHandler = OpenEditTestWindow;
 
             // Load tests from SavedTests.json
-            List<Test> loadedTests = jsonHandler.GetSavedTests();
+            List<Test> loadedTests = JSONHandler.GetSavedTests();
 
             if (loadedTests != null) {
                 foreach (Test test in loadedTests) {
@@ -56,19 +54,15 @@ namespace TestMakerTaker
 
             testList.Update(tests);
 
-            EditTestWindow.Instance.Close();
-
             // Show message
-            MessageWindow infoDialog = new MessageWindow(MessageWindow.MessageDialogMode.Info, "Congratulations", "Test successfully has been deleted", "OK", "OK");
-            infoDialog.ShowDialog();
-
+            MessageManager.NewInfoWindow("Info Window", "Test deleted.", null);
             // Save current copy of tests to json
-            jsonHandler.SaveTestsToJSON(tests);
+            JSONHandler.SaveTestsToJSON(tests);
         }
 
-        private void SaveTest(TestForm testForm) {
-            if (testForm.Correct()) {
-                Test editedTest = testForm.GetTestObject();
+        private void SaveTest(TestForm editTestForm) {
+            if (editTestForm.Correct()) {
+                Test editedTest = editTestForm.GetTestObject();
                 Test previousTest = EditTestWindow.Instance.GetTestRef();
 
                 // make changes
@@ -78,14 +72,10 @@ namespace TestMakerTaker
 
                 testList.Update(tests);
 
-                EditTestWindow.Instance.Close();
-
                 // Show message
-                MessageWindow infoDialog = new MessageWindow(MessageWindow.MessageDialogMode.Info, "Congratulations", "A test has been saved!", "OK", "OK");
-                infoDialog.ShowDialog();
-
+                MessageManager.NewInfoWindow("Info Window", "Test saved.", null);
                 // Save current copy of tests to json
-                jsonHandler.SaveTestsToJSON(tests);
+                JSONHandler.SaveTestsToJSON(tests);
             }
         }
 
@@ -97,12 +87,9 @@ namespace TestMakerTaker
 
                 testList.Update(tests);
 
-                // Show message
-                MessageWindow infoDialog = new MessageWindow(MessageWindow.MessageDialogMode.Info, "Congratulations", "A test has been created!", "OK", "OK");
-                infoDialog.ShowDialog();
-
+                MessageManager.NewInfoWindow("Info Window", "Test created.", null);
                 // Save current copy of tests to json
-                jsonHandler.SaveTestsToJSON(tests);
+                JSONHandler.SaveTestsToJSON(tests);
 
                 testForm.ClearFields();
             }
