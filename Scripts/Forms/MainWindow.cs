@@ -47,7 +47,7 @@ namespace TestMakerTaker
             testList.Update(tests);
 
             // Show message
-            MessageManager.NewInfoWindow("Import Export Handler Info", $"{testsToImport.Count} tests imported.", null);
+            MessageManager.NewInfoWindow("Import Export Handler Info", "Tests imported.", null);
 
             JSONHandler.SaveTestsToJSON(tests, JSONHandler.SAVED_TESTS_FILE_PATH);
         }

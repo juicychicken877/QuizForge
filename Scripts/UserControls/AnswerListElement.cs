@@ -12,9 +12,6 @@ namespace TestMakerTaker.Scripts.Forms
 {
     public partial class AnswerListElement: UserControl
     {
-        private readonly Color correctBackColor = Color.LightGreen;
-        private readonly Color incorrectBackColor = Color.FromArgb(242, 65, 65);
-
         public AnswerListElement(string question, SolveTestWindow.UserAnswer userAnswer)
         {
             InitializeComponent();
@@ -24,9 +21,9 @@ namespace TestMakerTaker.Scripts.Forms
             correctAnswerLabel.Text = $"Correct answer: {userAnswer.correctAnswer}";
 
             if (userAnswer.IsCorrect()) {
-                this.BackColor = correctBackColor;
+                this.BackColor = Support.CORRECT_BUTTON_COLOR;
             } else {
-                this.BackColor = incorrectBackColor;
+                this.BackColor = Support.INCORRECT_BUTTON_COLOR;
             }
         }
     }

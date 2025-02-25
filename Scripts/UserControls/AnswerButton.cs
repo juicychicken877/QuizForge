@@ -7,16 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TestMakerTaker.Scripts;
 
 namespace TestMakerTaker
 {
     public partial class AnswerButton : UserControl {
         public SolveTestWindow.AnswerButtonClickedHandler AnswerButtonClickedHandler;
-
-        private readonly Color DEFAULT_COLOR = Color.WhiteSmoke;
-        private readonly Color SELECTED_COLOR = Color.LightBlue;
-        private readonly Color CORRECT_COLOR = Color.LightGreen;
-        private readonly Color INCORRECT_COLOR = Color.FromArgb(242, 65, 65);
 
         public enum AnswerButtonMode {
             Default,
@@ -38,10 +34,10 @@ namespace TestMakerTaker
 
         public void ChangeAnswerButtonMode(AnswerButtonMode mode) {
             switch (mode) {
-                case AnswerButtonMode.Default: this.BackColor = DEFAULT_COLOR; break;
-                case AnswerButtonMode.Selected: this.BackColor = SELECTED_COLOR; break;
-                case AnswerButtonMode.AnswerCorrect: this.BackColor = CORRECT_COLOR; break;
-                case AnswerButtonMode.AnswerIncorrect: this.BackColor = INCORRECT_COLOR; break;
+                case AnswerButtonMode.Default: this.BackColor = Support.DEFAULT_BUTTON_COLOR; break;
+                case AnswerButtonMode.Selected: this.BackColor = Support.SELECTED_BUTTON_COLOR; break;
+                case AnswerButtonMode.AnswerCorrect: this.BackColor = Support.CORRECT_BUTTON_COLOR; break;
+                case AnswerButtonMode.AnswerIncorrect: this.BackColor = Support.INCORRECT_BUTTON_COLOR; break;
             }
         }
 

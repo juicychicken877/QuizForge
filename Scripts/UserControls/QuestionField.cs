@@ -8,12 +8,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.CompilerServices;
+using TestMakerTaker.Scripts.UserControls;
 
 namespace TestMakerTaker
 {
     public partial class QuestionField : UserControl
     {
         public event EventHandler<OnDeleteQuestionEventArgs> OnDeleteQuestionButtonClicked;
+
+        private List<AnswerCreationSet> answerFields = new();
+        private AnswerCreationSet currCorrectAnswerSet = null;
+
+        private const int INITIAL_QUESTION_FIELD_COUNT = 4;
+        private const int MINIMUM_ANSWERS = 2;
 
         public class OnDeleteQuestionEventArgs : EventArgs
         {
@@ -24,70 +31,119 @@ namespace TestMakerTaker
             InitializeComponent();
         }
 
+        public void AddInitialAnswerSets()
+        {
+            for (int i = 0; i < INITIAL_QUESTION_FIELD_COUNT; i++)
+            {
+                AddAnswerSet();
+            }
+        }
+
+        private AnswerCreationSet AddAnswerSet()
+        {
+            AnswerCreationSet newSet = new();
+
+            answerFields.Add(newSet);
+            answerSetPanel.Controls.Add(newSet);
+
+            newSet.OnCorrectAnswerChanged += SelectCorrectAnswer;
+            newSet.OnDeleteAnswerBtnClicked += DeleteAnswerSet;
+
+            return newSet;
+        }
+
+        private void DeleteAnswerSet(object? sender, AnswerCreationSet.OnDeleteAnswerBtnClickedEventArgs e)
+        {
+            AnswerCreationSet answerSet = e.answerSet;
+
+            if (answerSet == currCorrectAnswerSet)
+            {
+                currCorrectAnswerSet = null;
+            }
+            answerSetPanel.Controls.Remove(answerSet);
+            answerFields.Remove(answerSet);
+        }
+
+        private void SelectCorrectAnswer(object? sender, EventArgs e)
+        {
+            AnswerCreationSet answerCreationSet = sender as AnswerCreationSet;
+
+            // Uncheck previous answer set
+            if (currCorrectAnswerSet != null) currCorrectAnswerSet.isCorrect = false;
+
+            currCorrectAnswerSet = answerCreationSet;
+        }
+
         public bool Correct()
         {
             if (questionInput.Text == "")
             {
                 errorProvider.SetError(questionInput, "Question can't be empty");
                 return false;
-            } else {
+            }
+            else
+            {
                 errorProvider.SetError(questionInput, null);
             }
 
-            if (answer1Input.Text == "" || answer2Input.Text == "" || answer3Input.Text == "" || answer4Input.Text == "") {
-                errorProvider.SetError(answer1Input, "Answers can't be empty");
+            if (answerFields.Count < MINIMUM_ANSWERS)
+            {
+                errorProvider.SetError(answerSetPanel, $"There must be atleast {MINIMUM_ANSWERS} answers");
                 return false;
-            } else {
-                errorProvider.SetError(answer1Input, null);
             }
 
-                // if correct answer is "" that means no radio buttons is checked
-                string correcto = GetCorrectAnswer();
+            // Check answer sets
+            foreach (AnswerCreationSet answer in answerFields)
+            {
+                if (answer.Correct() != true)
+                {
+                    errorProvider.SetError(answerSetPanel, "Answer Inputs can't be empty!");
+                    return false;
+                }
+            }
 
-            if (correcto == "") {
-                errorProvider.SetError(radioButton1, "Select correct answer");    
-                return false; 
-            } else {
-                errorProvider.SetError(radioButton1, null);
+            if (currCorrectAnswerSet == null)
+            {
+                errorProvider.SetError(answerSetPanel, "Select correct answer");
+                return false;
+            }
+            else
+            {
+                errorProvider.SetError(answerSetPanel, null);
             }
 
             return true;
         }
 
-        private string GetCorrectAnswer() {
-            string correctAnswer = "";
-
-            if (radioButton1.Checked) correctAnswer = answer1Input.Text;
-            if(radioButton2.Checked) correctAnswer = answer2Input.Text;
-            if(radioButton3.Checked) correctAnswer = answer3Input.Text;
-            if(radioButton4.Checked) correctAnswer = answer4Input.Text;
-
-            return correctAnswer;
-        }
-
         public Question GetQuestionObject()
         {
-            List<string> answerList = new() { answer1Input.Text, answer2Input.Text, answer3Input.Text, answer4Input.Text };
-            return new Question(questionInput.Text, answerList, GetCorrectAnswer());
+            List<string> answerList = new();
+
+            // Create a list of answers
+            foreach (AnswerCreationSet answerSet in answerFields)
+            {
+                answerList.Add(answerSet.answer);
+            }
+
+            return new Question(questionInput.Text, answerList, currCorrectAnswerSet.answer);
         }
 
-        public void FillInputsWithData(Question question) {
-            bool isCorrectAnswerChecked = false;
+        public void FillInputsWithData(Question question)
+        {
             questionInput.Text = question.question;
 
-            // fill answer inputs with answers from question object
-            TextBox[] answerInputArray = new TextBox[4] { answer1Input, answer2Input, answer3Input, answer4Input };
-            RadioButton[] radioButtonArray = new RadioButton[4] { radioButton1, radioButton2, radioButton3, radioButton4 };
+            for (int i = 0; i < question.answers.Count; i++)
+            {
+                AnswerCreationSet newAnswer = AddAnswerSet();
+                newAnswer.answer = question.answers[i];
 
-            for (int i=0; i<4; i++) {
-                answerInputArray[i].Text = question.answers[i];
-
-                // if the answer from an input equals correct answer, check the radio button next to that input
-                if (answerInputArray[i].Text == question.correctAnswer && !isCorrectAnswerChecked) {
-                    radioButtonArray[i].Checked = true;
-                    isCorrectAnswerChecked = true;
+                if (newAnswer.answer == question.correctAnswer)
+                {
+                    newAnswer.isCorrect = true;
+                    currCorrectAnswerSet = newAnswer;
                 }
             }
+
         }
         private void deleteQuestionButton_Click(object sender, EventArgs e)
         {
@@ -96,6 +152,10 @@ namespace TestMakerTaker
                 questionField = this
             });
         }
-   
+
+        private void addAnswerBtn_Click(object sender, EventArgs e)
+        {
+            AddAnswerSet();
+        }
     }
 }

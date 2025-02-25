@@ -30,7 +30,7 @@ namespace TestMakerTaker
             }
         }
 
-        private Question[] testQuestions;
+        private List<Question> testQuestions;
         private UserAnswer[] userAnswers;
         private Test testRef = null;
         private AnswerButton currSelectedAnswerBtn = null;
@@ -54,12 +54,13 @@ namespace TestMakerTaker
 
             testRef = test;
 
-            // copy questions to array
-            testQuestions = new Question[test.questions.Count];
-            for (int i = 0; i < test.questions.Count; i++) {
-                testQuestions[i] = test.questions[i];
+            // Randomize questions and answers
+            testQuestions = Support.ShuffleList(test.questions);
+            foreach (Question question in testQuestions)
+            {
+                question.answers = Support.ShuffleList(question.answers);
             }
-            // make an array for user answers
+
             userAnswers = new UserAnswer[test.questions.Count];
 
             testTitleLabel.Text = test.title;
@@ -93,7 +94,6 @@ namespace TestMakerTaker
 
         private void DisplayQuestion(Question question) {
             questionLabel.Text = question.question;
-
             answerPanel.Controls.Clear();
 
             foreach (string answer in question.answers) {

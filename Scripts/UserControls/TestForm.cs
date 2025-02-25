@@ -119,7 +119,8 @@ namespace TestMakerTaker
         }
 
         private void addQuestionButton_Click(object sender, EventArgs e) {
-            AddQuestionField();
+            QuestionField newQuestionField = AddQuestionField();
+            newQuestionField.AddInitialAnswerSets();
         }
     }
 }

@@ -22,7 +22,8 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {
+        private void InitializeComponent()
+        {
             testTitleLabel = new Label();
             questionCountLabel = new Label();
             questionLabel = new Label();
@@ -109,7 +110,7 @@
             resultLabel.TabIndex = 7;
             resultLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // SolveTestForm
+            // SolveTestWindow
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -126,7 +127,7 @@
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(4);
-            Name = "SolveTestForm";
+            Name = "SolveTestWindow";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Test Maker Taker - Solve Test";
             ResumeLayout(false);
