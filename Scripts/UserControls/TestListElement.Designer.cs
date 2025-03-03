@@ -98,12 +98,12 @@ namespace TestMakerTaker
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
+            Controls.Add(title);
             Controls.Add(questionCountLabel);
             Controls.Add(exportButton);
             Controls.Add(solveButton);
             Controls.Add(editButton);
             Controls.Add(description);
-            Controls.Add(title);
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
             Margin = new Padding(4);
             Name = "TestListElement";

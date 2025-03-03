@@ -8,9 +8,9 @@
           "question": "What is the capital of France?",
           "answers": [
             "Berlin",
+            "Paris",
             "Madrid",
-            "Rome",
-            "Paris"
+            "Rome"
           ],
           "correctAnswer": "Paris"
         },
@@ -227,55 +227,6 @@
             "Franc"
           ],
           "correctAnswer": "Pound Sterling"
-        }
-      ]
-    },
-    {
-      "title": "New Test Niggatron 3000",
-      "description": "ALALALLALALA",
-      "questions": [
-        {
-          "question": "1",
-          "answers": [
-            "2",
-            "2",
-            "2",
-            "1"
-          ],
-          "correctAnswer": "1"
-        }
-      ]
-    },
-    {
-      "title": "Test Title",
-      "description": "",
-      "questions": [
-        {
-          "question": "tete",
-          "answers": [
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7"
-          ],
-          "correctAnswer": "5"
-        }
-      ]
-    },
-    {
-      "title": "msajfnsajifhsauif",
-      "description": "",
-      "questions": [
-        {
-          "question": "nanana",
-          "answers": [
-            "1",
-            "2"
-          ],
-          "correctAnswer": "1"
         }
       ]
     }

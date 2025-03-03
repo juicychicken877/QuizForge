@@ -40,14 +40,19 @@ namespace TestMakerTaker
         }
 
         public bool Correct() {
-            // Checks if all information in inputs is correct
-            // Check title
-            if (titleInput.Text.Length >= TEST_TITLE_MIN_LENGTH) {
-                errorProvider.SetError(titleInput, null);
-            } else {
-                string error = $"Title length must be >= {TEST_TITLE_MIN_LENGTH}";
-                errorProvider.SetError(titleInput, error);
+            // Check if title has minimum length
+            if (titleInput.Text.Length < TEST_TITLE_MIN_LENGTH) {
+                errorProvider.SetError(titleInput, $"Title length must be >= {TEST_TITLE_MIN_LENGTH}");
                 return false;
+                
+            }
+            // Trying to create a test with a title that already exists
+            else if (MainWindow.GetTests().Find(test => test.title == titleInput.Text) != null) {
+                errorProvider.SetError(titleInput, "Test with this name already exists.");
+                return false;
+            }
+            else {
+                errorProvider.SetError(titleInput, null);
             }
 
             // Check question fields
