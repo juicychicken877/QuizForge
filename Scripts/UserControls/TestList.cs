@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TestMakerTaker.Scripts;
+using TestMakerTaker.Scripts.Forms;
+using TestMakerTaker.Scripts.Windows;
 
 namespace TestMakerTaker
 {
@@ -36,7 +38,20 @@ namespace TestMakerTaker
         }
 
         private void importExampleTests_Click(object sender, EventArgs e) {
-            ImportExportHandler.ImportTests(ImportExportHandler.ImportMode.Override, JSONHandler.EXAMPLE_TESTS_FILE_PATH);
+            ImportWindow newImportWindow = new(JSONHandler.EXAMPLE_TESTS_FILE_PATH, true);
+
+            newImportWindow.ShowDialog();
+        }
+
+        private void exportAllTests_Click(object sender, EventArgs e) {
+            if (MainWindow.GetTests().Count > 0) {
+                ExportWindow newExportWindow = new(MainWindow.GetTests(), true);
+
+                newExportWindow.ShowDialog();
+            } else {
+                MessageManager.NewWindow("Export View Error", "No tests found", [new MessageWindow.Button("OK", null)]);
+            }
+            
         }
     }
 }

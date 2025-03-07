@@ -18,6 +18,8 @@ namespace TestMakerTaker
         private const int TEST_TITLE_MAX_LENGTH = 50;
         private const int TEST_DESCRIPTION_MAX_LENGTH = 200;
 
+        private ActionButtonMode actionButtonMode;
+
         public enum ActionButtonMode { 
             CreateTest,
             SaveTest
@@ -36,7 +38,10 @@ namespace TestMakerTaker
                 case ActionButtonMode.CreateTest: actionButton.Text = "Create Test"; break;
                 case ActionButtonMode.SaveTest: actionButton.Text = "Save Test"; break;
             }
+
             ActionButtonClickedHandler = ActionButtonFunction;
+
+            actionButtonMode = mode;
         }
 
         public bool Correct() {
@@ -47,7 +52,7 @@ namespace TestMakerTaker
                 
             }
             // Trying to create a test with a title that already exists
-            else if (MainWindow.GetTests().Find(test => test.title == titleInput.Text) != null) {
+            else if (actionButtonMode == ActionButtonMode.CreateTest && MainWindow.GetTests().Find(test => test.title == titleInput.Text) != null) {
                 errorProvider.SetError(titleInput, "Test with this name already exists.");
                 return false;
             }
@@ -107,7 +112,7 @@ namespace TestMakerTaker
             }
         }
 
-        public void ClearFields() {
+        public void Clear() {
             titleInput.Text = "";
             descriptionInput.Text = "";
 
@@ -120,7 +125,7 @@ namespace TestMakerTaker
         }
 
         private void clearFieldsButton_Click(object sender, EventArgs e) {
-            ClearFields();
+            Clear();
         }
 
         private void addQuestionButton_Click(object sender, EventArgs e) {

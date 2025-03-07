@@ -188,7 +188,7 @@ namespace TestMakerTaker
                     FinishTest();
                 } else {
                     // If some questions are still unanswered, show notification
-                    MessageManager.NewDecisionWindow("Warning", "Some questions are unanswered! Continue?", FinishTest, null);
+                    MessageManager.NewWindow("Warning", "Some questions are unanswered! Continue?", [new MessageWindow.Button("Yes", FinishTest), new MessageWindow.Button("No", null)]);
                 }
             }
         }

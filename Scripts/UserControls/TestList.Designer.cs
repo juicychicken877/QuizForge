@@ -29,6 +29,7 @@
         private void InitializeComponent() {
             panel = new FlowLayoutPanel();
             importExampleTests = new Button();
+            exportAllTests = new Button();
             SuspendLayout();
             // 
             // panel
@@ -52,11 +53,23 @@
             importExampleTests.UseVisualStyleBackColor = true;
             importExampleTests.Click += importExampleTests_Click;
             // 
+            // exportAllTests
+            // 
+            exportAllTests.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            exportAllTests.Location = new Point(178, 484);
+            exportAllTests.Name = "exportAllTests";
+            exportAllTests.Size = new Size(169, 36);
+            exportAllTests.TabIndex = 2;
+            exportAllTests.Text = "Export All Tests";
+            exportAllTests.UseVisualStyleBackColor = true;
+            exportAllTests.Click += exportAllTests_Click;
+            // 
             // TestList
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
+            Controls.Add(exportAllTests);
             Controls.Add(importExampleTests);
             Controls.Add(panel);
             Name = "TestList";
@@ -68,5 +81,6 @@
 
         private FlowLayoutPanel panel;
         private Button importExampleTests;
+        private Button exportAllTests;
     }
 }

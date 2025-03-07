@@ -23,25 +23,38 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            importView1 = new ImportView();
+            importView = new ImportView();
+            cancelButton = new Button();
             SuspendLayout();
             // 
-            // importView1
+            // importView
             // 
-            importView1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            importView1.Location = new Point(0, -1);
-            importView1.Margin = new Padding(0);
-            importView1.Name = "importView1";
-            importView1.Size = new Size(576, 523);
-            importView1.TabIndex = 0;
+            importView.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            importView.Location = new Point(0, -1);
+            importView.Margin = new Padding(0);
+            importView.Name = "importView";
+            importView.Size = new Size(576, 523);
+            importView.TabIndex = 0;
+            // 
+            // cancelButton
+            // 
+            cancelButton.Location = new Point(217, 475);
+            cancelButton.Name = "cancelButton";
+            cancelButton.Size = new Size(165, 33);
+            cancelButton.TabIndex = 1;
+            cancelButton.Text = "Close";
+            cancelButton.UseVisualStyleBackColor = true;
+            cancelButton.Click += cancelButton_Click;
             // 
             // ImportWindow
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(577, 525);
-            Controls.Add(importView1);
+            Controls.Add(cancelButton);
+            Controls.Add(importView);
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(4);
             Name = "ImportWindow";
             StartPosition = FormStartPosition.CenterParent;
@@ -51,6 +64,7 @@
 
         #endregion
 
-        private ImportView importView1;
+        private ImportView importView;
+        private Button cancelButton;
     }
 }

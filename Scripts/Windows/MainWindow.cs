@@ -32,22 +32,15 @@ namespace TestMakerTaker
                 }
 
                 testList.Update(tests);
+                exportView.Update(tests);
             }
         }
 
         private void ImportExportHandler_OnImport(object? sender, ImportExportHandler.OnImportEventArgs e) {
-            List<Test> testsToImport = e.testsToImport;
-
-            if (e.importMode == ImportExportHandler.ImportMode.Add) {
-                foreach (Test test in testsToImport) tests.Add(test);
-            } else if (e.importMode == ImportExportHandler.ImportMode.Override) {
-                tests = testsToImport;
-            }
+            tests = e.newTestList;
 
             testList.Update(tests);
-
-            // Show message
-            MessageManager.NewInfoWindow("Import Export Handler Info", "Tests imported.", null);
+            exportView.Update(tests);
 
             JSONHandler.SaveTestsToJSON(tests, JSONHandler.SAVED_TESTS_FILE_PATH);
         }
@@ -73,9 +66,10 @@ namespace TestMakerTaker
             testRef = null;
 
             testList.Update(tests);
+            exportView.Update(tests);
 
             // Show message
-            MessageManager.NewInfoWindow("Info Window", "Test deleted.", null);
+            MessageManager.NewWindow("Info Window", "Test deleted.", [new MessageWindow.Button("OK", null)]);
             // Save current copy of tests to json
             JSONHandler.SaveTestsToJSON(tests, JSONHandler.SAVED_TESTS_FILE_PATH);
 
@@ -93,9 +87,10 @@ namespace TestMakerTaker
                 previousTest.questions = editedTest.questions;
 
                 testList.Update(tests);
+                exportView.Update(tests);
 
                 // Show message
-                MessageManager.NewInfoWindow("Info Window", "Test saved.", null);
+                MessageManager.NewWindow("Info Window", "Test saved.", [new MessageWindow.Button("OK", null)]);
                 // Save current copy of tests to json
                 JSONHandler.SaveTestsToJSON(tests, JSONHandler.SAVED_TESTS_FILE_PATH);
             }
@@ -108,12 +103,13 @@ namespace TestMakerTaker
                 tests.Add(testForm.GetTestObject());
 
                 testList.Update(tests);
+                exportView.Update(tests);
 
-                MessageManager.NewInfoWindow("Info Window", "Test created.", null);
+                MessageManager.NewWindow("Info Window", "Test created.", [new MessageWindow.Button("OK", null)]);
                 // Save current copy of tests to json
                 JSONHandler.SaveTestsToJSON(tests, JSONHandler.SAVED_TESTS_FILE_PATH);
 
-                testForm.ClearFields();
+                testForm.Clear();
             }
         }
 

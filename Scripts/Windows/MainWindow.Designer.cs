@@ -30,15 +30,20 @@
             components = new System.ComponentModel.Container();
             errorProvider = new ErrorProvider(components);
             importTestTab = new TabPage();
+            importView1 = new TestMakerTaker.Scripts.Forms.ImportView();
             testsTab = new TabPage();
             testList = new TestList();
             createTestTab = new TabPage();
             createTestForm = new TestForm();
             tabControl1 = new TabControl();
+            tabPage1 = new TabPage();
+            exportView = new TestMakerTaker.Scripts.UserControls.ExportView();
             ((System.ComponentModel.ISupportInitialize)errorProvider).BeginInit();
+            importTestTab.SuspendLayout();
             testsTab.SuspendLayout();
             createTestTab.SuspendLayout();
             tabControl1.SuspendLayout();
+            tabPage1.SuspendLayout();
             SuspendLayout();
             // 
             // errorProvider
@@ -47,6 +52,7 @@
             // 
             // importTestTab
             // 
+            importTestTab.Controls.Add(importView1);
             importTestTab.Location = new Point(4, 34);
             importTestTab.Margin = new Padding(4);
             importTestTab.Name = "importTestTab";
@@ -54,6 +60,16 @@
             importTestTab.TabIndex = 2;
             importTestTab.Text = "Import";
             importTestTab.UseVisualStyleBackColor = true;
+            // 
+            // importView1
+            // 
+            importView1.Dock = DockStyle.Fill;
+            importView1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            importView1.Location = new Point(0, 0);
+            importView1.Margin = new Padding(0);
+            importView1.Name = "importView1";
+            importView1.Size = new Size(576, 523);
+            importView1.TabIndex = 0;
             // 
             // testsTab
             // 
@@ -70,7 +86,7 @@
             testList.BackColor = Color.White;
             testList.Location = new Point(0, 3);
             testList.Name = "testList";
-            testList.Size = new Size(576, 520);
+            testList.Size = new Size(576, 519);
             testList.TabIndex = 0;
             // 
             // createTestTab
@@ -100,6 +116,7 @@
             tabControl1.Controls.Add(createTestTab);
             tabControl1.Controls.Add(testsTab);
             tabControl1.Controls.Add(importTestTab);
+            tabControl1.Controls.Add(tabPage1);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.ItemSize = new Size(96, 30);
             tabControl1.Location = new Point(0, 0);
@@ -109,6 +126,26 @@
             tabControl1.Size = new Size(584, 561);
             tabControl1.SizeMode = TabSizeMode.Fixed;
             tabControl1.TabIndex = 0;
+            // 
+            // tabPage1
+            // 
+            tabPage1.Controls.Add(exportView);
+            tabPage1.Location = new Point(4, 34);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Size = new Size(576, 523);
+            tabPage1.TabIndex = 5;
+            tabPage1.Text = "Export";
+            tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // exportView
+            // 
+            exportView.Dock = DockStyle.Fill;
+            exportView.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            exportView.Location = new Point(0, 0);
+            exportView.Margin = new Padding(0);
+            exportView.Name = "exportView";
+            exportView.Size = new Size(576, 523);
+            exportView.TabIndex = 0;
             // 
             // MainWindow
             // 
@@ -125,9 +162,11 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Test Maker Taker";
             ((System.ComponentModel.ISupportInitialize)errorProvider).EndInit();
+            importTestTab.ResumeLayout(false);
             testsTab.ResumeLayout(false);
             createTestTab.ResumeLayout(false);
             tabControl1.ResumeLayout(false);
+            tabPage1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -139,5 +178,8 @@
         private TabPage testsTab;
         private TestList testList;
         private TabPage importTestTab;
+        private Scripts.Forms.ImportView importView1;
+        private TabPage tabPage1;
+        private Scripts.UserControls.ExportView exportView;
     }
 }

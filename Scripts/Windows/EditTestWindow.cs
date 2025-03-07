@@ -43,7 +43,7 @@ namespace TestMakerTaker
         }
 
         private void deleteButton_Click(object sender, EventArgs e) {
-            MessageManager.NewDecisionWindow("Delete Test", "Are you sure you want to delete this test?", ProceedDelete, null);
+            MessageManager.NewWindow("Delete Test", "Are you sure you want to delete this test?", [new MessageWindow.Button("Yes", ProceedDelete), new MessageWindow.Button("No", null)]);
         }
 
         private void ProceedDelete() {

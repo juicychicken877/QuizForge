@@ -28,36 +28,53 @@ namespace TestMakerTaker.Scripts
                 MessageWindowInstance.Close();
         }
 
-        public static void NewInfoWindow(string title, string description, MessageWindowBtnClickedHandler? OkHandler) {
-            MessageWindow infoWindow = new(MessageWindow.MessageWindowMode.Info, title, description);
-            SetMessageWindowInstance(infoWindow);
+        public static void NewWindow(string title, string description, List<MessageWindow.Button> buttons) {
+            // Assign a closing function to delegate
+            foreach (MessageWindow.Button button in buttons) {
+                if (button.ClickHandler == null) {
+                    button.ClickHandler = CloseMessageWindow;
+                } else {
+                    button.ClickHandler += CloseMessageWindow;
+                }
+            }
 
-            OkHandler += CloseMessageWindow;
-            infoWindow.OkHandler = OkHandler ?? CloseMessageWindow;
+            MessageWindow newWindow = new(title, description, buttons);
 
-            infoWindow.ShowDialog();
+            SetMessageWindowInstance(newWindow);
+
+            newWindow.ShowDialog();
         }
 
-        public static void NewErrorWindow(string title, string description, MessageWindowBtnClickedHandler? OkHandler) {
-            MessageWindow errorWindow = new(MessageWindow.MessageWindowMode.Error, title, description);
-            SetMessageWindowInstance(errorWindow);
+        //public static void NewInfoWindow(string title, string description, List<MessageWindow.Button> buttons) {
+        //    foreach (MessageWindow.Button button in buttons) {
+        //        button.ClickHandler += CloseMessageWindow;
+        //    }
+        //    MessageWindow infoWindow = new(title, description, buttons);
+        //    SetMessageWindowInstance(infoWindow);
 
-            OkHandler += CloseMessageWindow;
-            errorWindow.OkHandler = OkHandler ?? CloseMessageWindow;
+        //    infoWindow.ShowDialog();
+        //}
 
-            errorWindow.ShowDialog();
-        }
+        //public static void NewErrorWindow(string title, string description, MessageWindowBtnClickedHandler? OkHandler) {
+        //    MessageWindow errorWindow = new(MessageWindow.MessageWindowMode.Error, title, description);
+        //    SetMessageWindowInstance(errorWindow);
 
-        public static void NewDecisionWindow(string title, string description, MessageWindowBtnClickedHandler? ConfirmationHandler, MessageWindowBtnClickedHandler? CancellationHandler) {
-            MessageWindow decisionWindow = new(MessageWindow.MessageWindowMode.Decision, title, description);
-            SetMessageWindowInstance(decisionWindow);
+        //    OkHandler += CloseMessageWindow;
+        //    errorWindow.OkHandler = OkHandler ?? CloseMessageWindow;
 
-            ConfirmationHandler += CloseMessageWindow;
-            CancellationHandler += CloseMessageWindow;
-            decisionWindow.ConfirmationHandler = ConfirmationHandler ?? CloseMessageWindow;
-            decisionWindow.CancellationHandler = CancellationHandler ?? CloseMessageWindow;
+        //    errorWindow.ShowDialog();
+        //}
 
-            decisionWindow.ShowDialog();
-        }
+        //public static void NewDecisionWindow(string title, string description, MessageWindowBtnClickedHandler? ConfirmationHandler, MessageWindowBtnClickedHandler? CancellationHandler) {
+        //    MessageWindow decisionWindow = new(MessageWindow.MessageWindowMode.Decision, title, description);
+        //    SetMessageWindowInstance(decisionWindow);
+
+        //    ConfirmationHandler += CloseMessageWindow;
+        //    CancellationHandler += CloseMessageWindow;
+        //    decisionWindow.ConfirmationHandler = ConfirmationHandler ?? CloseMessageWindow;
+        //    decisionWindow.CancellationHandler = CancellationHandler ?? CloseMessageWindow;
+
+        //    decisionWindow.ShowDialog();
+        
     }
 }

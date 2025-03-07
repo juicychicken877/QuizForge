@@ -21,15 +21,14 @@ namespace TestMakerTaker.Scripts
         {
             try
             {
-                TestListJSON testsObject = new();
-                testsObject.Initialize(tests);
+                TestListJSON testsObject = new(tests);
 
                 string jsonString = JsonSerializer.Serialize(testsObject, new JsonSerializerOptions() { WriteIndented = true });
                 File.WriteAllText(path, jsonString);
             }
             catch (Exception ex)
             {
-                MessageManager.NewErrorWindow("JSON Handler Error", "Failed to save data to JSON.", null);
+                MessageManager.NewWindow("JSON Handler Error", "Failed to save data to JSON.", [new MessageWindow.Button("OK", null)]);
             }
         }
 
@@ -54,22 +53,26 @@ namespace TestMakerTaker.Scripts
         {
             try
             {
-                if (File.Exists(SAVED_TESTS_FILE_PATH))
+                if (File.Exists(path))
                 {
                     string jsonString = File.ReadAllText(path);
                     TestListJSON testList = JsonSerializer.Deserialize<TestListJSON>(jsonString);
 
-                    return ConvertToTestList(testList);
+                    // If found tests
+                    if (testList != null && testList.testsJSON != null)
+                        return ConvertToTestList(testList);
+                    else
+                        return null;
                 }
                 else
                 {
-                    MessageManager.NewErrorWindow("JSON Handler Error", $"{Path.GetFullPath(SAVED_TESTS_FILE_PATH)} not found.", null);
+                    MessageManager.NewWindow("JSON Handler Error", $"{Path.GetFullPath(path)} not found.", [new MessageWindow.Button("OK", null)]);
                     return null;
                 }
             }
             catch (Exception ex)
             {
-                MessageManager.NewErrorWindow("JSON Handler Error", ex.Message, null);
+                MessageManager.NewWindow("JSON Handler Error", ex.Message, [new MessageWindow.Button("OK", null)]);
 
                 return null;
             }
@@ -91,7 +94,7 @@ namespace TestMakerTaker.Scripts
             public List<QuestionJSON> questions { get; set; }
 
             public TestJSON() { }
-            public void Initialize(string title, string description, List<QuestionJSON> questions) {
+            public TestJSON(string title, string description, List<QuestionJSON> questions) {
                 this.title = title;
                 this.description = description;
                 this.questions = questions;
@@ -107,7 +110,7 @@ namespace TestMakerTaker.Scripts
             public string correctAnswer { get; set; }
 
             public QuestionJSON() { }
-            public void Initialize(string q, List<string> ans, string correct) {
+            public QuestionJSON(string q, List<string> ans, string correct) {
                 this.question = q;
                 this.answers = ans;
                 this.correctAnswer = correct;
@@ -119,7 +122,7 @@ namespace TestMakerTaker.Scripts
         public List<TestJSON> testsJSON { get; set; }
         public TestListJSON() { }
 
-        public void Initialize(List<Test> tests) {
+        public TestListJSON(List<Test> tests) {
             testsJSON = new();
 
             // Generate Test JSON for every test
@@ -127,12 +130,10 @@ namespace TestMakerTaker.Scripts
                 // Initialize Question JSON Object
                 List<QuestionJSON> newQuestions = new();
                 foreach (Question question in test.questions) {
-                    QuestionJSON newQuestion = new QuestionJSON();
-                    newQuestion.Initialize(question.question, question.answers, question.correctAnswer);
+                    QuestionJSON newQuestion = new(question.question, question.answers, question.correctAnswer);
                     newQuestions.Add(newQuestion);
                 }
-                TestJSON newTest = new TestJSON();
-                newTest.Initialize(test.title, test.description, newQuestions);
+                TestJSON newTest = new(test.title, test.description, newQuestions);
                 testsJSON.Add(newTest);
             }
         }
