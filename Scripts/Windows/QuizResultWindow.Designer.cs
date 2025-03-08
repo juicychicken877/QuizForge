@@ -1,5 +1,5 @@
-﻿namespace TestMakerTaker.Scripts.Forms {
-    partial class TestResultWindow {
+﻿namespace QuizForge.Scripts.Forms {
+    partial class QuizResultWindow {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -140,7 +140,7 @@
             closeBtn.UseVisualStyleBackColor = false;
             closeBtn.Click += closeBtn_Click;
             // 
-            // TestResultWindow
+            // QuizResultWindow
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -158,8 +158,8 @@
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
             Margin = new Padding(4);
             MaximizeBox = false;
-            Name = "TestResultWindow";
-            StartPosition = FormStartPosition.CenterParent;
+            Name = "QuizResultWindow";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Quiz Result";
             ResumeLayout(false);
         }

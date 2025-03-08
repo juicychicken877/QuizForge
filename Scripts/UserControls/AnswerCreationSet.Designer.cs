@@ -1,4 +1,4 @@
-﻿namespace TestMakerTaker.Scripts.UserControls
+﻿namespace QuizForge.Scripts.UserControls
 {
     partial class AnswerCreationSet
     {

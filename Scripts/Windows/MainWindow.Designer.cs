@@ -1,4 +1,4 @@
-﻿namespace TestMakerTaker
+﻿namespace QuizForge
 {
     partial class MainWindow
     {
@@ -30,14 +30,14 @@
             components = new System.ComponentModel.Container();
             errorProvider = new ErrorProvider(components);
             tabPage3 = new TabPage();
-            importView = new TestMakerTaker.Scripts.Forms.ImportView();
+            importView = new QuizForge.Scripts.Forms.ImportView();
             tabPage2 = new TabPage();
-            testList = new TestList();
+            quizList = new QuizList();
             tabPage1 = new TabPage();
-            createTestForm = new TestForm();
+            createQuizForm = new QuizForm();
             tabControl = new TabControl();
             tabPage4 = new TabPage();
-            exportView = new TestMakerTaker.Scripts.UserControls.ExportView();
+            exportView = new QuizForge.Scripts.UserControls.ExportView();
             ((System.ComponentModel.ISupportInitialize)errorProvider).BeginInit();
             tabPage3.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -73,7 +73,7 @@
             // 
             // tabPage2
             // 
-            tabPage2.Controls.Add(testList);
+            tabPage2.Controls.Add(quizList);
             tabPage2.Location = new Point(4, 34);
             tabPage2.Margin = new Padding(0);
             tabPage2.Name = "tabPage2";
@@ -84,17 +84,17 @@
             // 
             // testList
             // 
-            testList.BackColor = Color.White;
-            testList.Dock = DockStyle.Fill;
-            testList.Location = new Point(0, 0);
-            testList.Margin = new Padding(0);
-            testList.Name = "testList";
-            testList.Size = new Size(576, 523);
-            testList.TabIndex = 0;
+            quizList.BackColor = Color.White;
+            quizList.Dock = DockStyle.Fill;
+            quizList.Location = new Point(0, 0);
+            quizList.Margin = new Padding(0);
+            quizList.Name = "testList";
+            quizList.Size = new Size(576, 523);
+            quizList.TabIndex = 0;
             // 
             // tabPage1
             // 
-            tabPage1.Controls.Add(createTestForm);
+            tabPage1.Controls.Add(createQuizForm);
             tabPage1.Location = new Point(4, 34);
             tabPage1.Margin = new Padding(0);
             tabPage1.Name = "tabPage1";
@@ -105,14 +105,14 @@
             // 
             // createTestForm
             // 
-            createTestForm.BackColor = Color.White;
-            createTestForm.Dock = DockStyle.Fill;
-            createTestForm.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            createTestForm.Location = new Point(0, 0);
-            createTestForm.Margin = new Padding(0);
-            createTestForm.Name = "createTestForm";
-            createTestForm.Size = new Size(576, 523);
-            createTestForm.TabIndex = 0;
+            createQuizForm.BackColor = Color.White;
+            createQuizForm.Dock = DockStyle.Fill;
+            createQuizForm.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            createQuizForm.Location = new Point(0, 0);
+            createQuizForm.Margin = new Padding(0);
+            createQuizForm.Name = "createTestForm";
+            createQuizForm.Size = new Size(576, 523);
+            createQuizForm.TabIndex = 0;
             // 
             // tabControl
             // 
@@ -181,9 +181,9 @@
         private ErrorProvider errorProvider;
         private TabControl tabControl;
         private TabPage tabPage1;
-        private TestForm createTestForm;
+        private QuizForm createQuizForm;
         private TabPage tabPage2;
-        private TestList testList;
+        private QuizList quizList;
         private TabPage tabPage3;
         private Scripts.Forms.ImportView importView;
         private TabPage tabPage4;

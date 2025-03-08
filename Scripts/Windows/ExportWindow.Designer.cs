@@ -1,4 +1,4 @@
-﻿namespace TestMakerTaker.Scripts.Windows {
+﻿namespace QuizForge.Scripts.Windows {
     partial class ExportWindow {
         /// <summary>
         /// Required designer variable.
@@ -23,7 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            exportView = new TestMakerTaker.Scripts.UserControls.ExportView();
+            exportView = new QuizForge.Scripts.UserControls.ExportView();
             cancelButton = new Button();
             SuspendLayout();
             // 
@@ -61,7 +61,7 @@
             Margin = new Padding(4);
             MaximizeBox = false;
             Name = "ExportWindow";
-            StartPosition = FormStartPosition.CenterParent;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Export Quiz Window";
             ResumeLayout(false);
         }

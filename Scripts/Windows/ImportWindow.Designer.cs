@@ -1,4 +1,4 @@
-﻿namespace TestMakerTaker.Scripts.Forms {
+﻿namespace QuizForge.Scripts.Forms {
     partial class ImportWindow {
         /// <summary>
         /// Required designer variable.
@@ -61,7 +61,7 @@
             Margin = new Padding(4);
             MaximizeBox = false;
             Name = "ImportWindow";
-            StartPosition = FormStartPosition.CenterParent;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Import Quiz Window";
             ResumeLayout(false);
         }

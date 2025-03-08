@@ -8,20 +8,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TestMakerTaker.Scripts.UserControls
+namespace QuizForge.Scripts.UserControls
 {
     public partial class SelectList : UserControl {
         public SelectList() {
-            InitializeComponent();
+            this.InitializeComponent();
         }
-        public void Update(List<Test>? tests) {
-            Clear();
+        public void Update(List<Quiz>? quizzes) {
+            this.Clear();
 
-            if (tests != null) {
+            if (quizzes != null) {
                 selectAllCheckBox.Enabled = true;
 
-                foreach (Test test in tests) {
-                    SelectableListElement newListElement = new(test);
+                foreach (Quiz quiz in quizzes) {
+                    SelectableListElement newListElement = new(quiz);
 
                     panel.Controls.Add(newListElement);
                 }
@@ -29,22 +29,22 @@ namespace TestMakerTaker.Scripts.UserControls
             }
         }
 
-        public List<Test> GetSelectedTests() {
-            List<Test> selectedTests = new();
+        public List<Quiz> GetSelectedQuizzes() {
+            List<Quiz> selectedQuizzes = new();
 
             foreach (SelectableListElement element in panel.Controls) {
                 if (element.IsSelected())
-                    selectedTests.Add(element.testRef);
+                    selectedQuizzes.Add(element.quizRef);
             }
 
-            return selectedTests;
+            return selectedQuizzes;
         }
 
         private void selectAllCheckBox_CheckedChanged(object sender, EventArgs e) {
             if (selectAllCheckBox.Checked == true) {
-                ChangeSelectedAll(true);
+                this.ChangeSelectedAll(true);
             } else {
-                ChangeSelectedAll(false);
+                this.ChangeSelectedAll(false);
             }
         }
 

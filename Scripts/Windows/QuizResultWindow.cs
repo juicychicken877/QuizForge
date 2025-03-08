@@ -8,15 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TestMakerTaker.Scripts.Forms
+namespace QuizForge.Scripts.Forms
 {
-    public partial class TestResultWindow : Form {
-        public TestResultWindow(Test solvedTest, SolveTestWindow.UserAnswer[] userAnswers) {
-            InitializeComponent();
+    public partial class QuizResultWindow : Form {
+        public QuizResultWindow(Quiz solvedQuiz, SolveQuizWindow.UserAnswer[] userAnswers) {
+            this.InitializeComponent();
 
             int correct = 0, incorrect = 0, unanswered = 0;
 
-            foreach (SolveTestWindow.UserAnswer answer in userAnswers) {
+            foreach (SolveQuizWindow.UserAnswer answer in userAnswers) {
                 if (answer != null) {
                     if (answer.IsCorrect()) correct++;
                     else incorrect++;

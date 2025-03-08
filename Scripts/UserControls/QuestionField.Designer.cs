@@ -1,4 +1,4 @@
-﻿namespace TestMakerTaker
+﻿namespace QuizForge
 {
     partial class QuestionField
     {

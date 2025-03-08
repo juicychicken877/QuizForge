@@ -1,5 +1,5 @@
-﻿namespace TestMakerTaker {
-    partial class EditTestWindow {
+﻿namespace QuizForge {
+    partial class EditQuizWindow {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -23,20 +23,20 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            testForm = new TestForm();
+            quizForm = new QuizForm();
             deleteButton = new Button();
             SuspendLayout();
             // 
             // testForm
             // 
-            testForm.BackColor = Color.White;
-            testForm.Dock = DockStyle.Fill;
-            testForm.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            testForm.Location = new Point(0, 0);
-            testForm.Margin = new Padding(0);
-            testForm.Name = "testForm";
-            testForm.Size = new Size(582, 529);
-            testForm.TabIndex = 0;
+            quizForm.BackColor = Color.White;
+            quizForm.Dock = DockStyle.Fill;
+            quizForm.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            quizForm.Location = new Point(0, 0);
+            quizForm.Margin = new Padding(0);
+            quizForm.Name = "testForm";
+            quizForm.Size = new Size(582, 529);
+            quizForm.TabIndex = 0;
             // 
             // deleteButton
             // 
@@ -58,7 +58,7 @@
             BackColor = Color.White;
             ClientSize = new Size(582, 529);
             Controls.Add(deleteButton);
-            Controls.Add(testForm);
+            Controls.Add(quizForm);
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(4);
@@ -71,7 +71,7 @@
 
         #endregion
 
-        private TestForm testForm;
+        private QuizForm quizForm;
         private Button deleteButton;
     }
 }

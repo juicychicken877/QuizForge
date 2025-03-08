@@ -1,5 +1,5 @@
-﻿namespace TestMakerTaker {
-    partial class AnswerButton {
+﻿namespace QuizForge {
+    partial class AnswerBtn {
         /// <summary> 
         /// Required designer variable.
         /// </summary>

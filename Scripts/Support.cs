@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestMakerTaker.Scripts
+namespace QuizForge.Scripts
 {
     public static class Support
     {

@@ -8,13 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TestMakerTaker.Scripts.Forms
+namespace QuizForge.Scripts.Forms
 {
     public partial class ImportWindow: Form
     {
         public ImportWindow(string? path, bool selectAll)
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
             if (path != null) importView.SelectFile(path);
 

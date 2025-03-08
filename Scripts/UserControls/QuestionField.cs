@@ -8,51 +8,51 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.CompilerServices;
-using TestMakerTaker.Scripts.UserControls;
+using QuizForge.Scripts.UserControls;
 
-namespace TestMakerTaker
+namespace QuizForge
 {
     public partial class QuestionField : UserControl
     {
-        public event EventHandler<OnDeleteQuestionEventArgs> OnDeleteQuestionButtonClicked;
+        public event EventHandler<OnDeleteQuestionBtnClickEventArgs> OnDeleteQuestionBtnClick;
 
-        private List<AnswerCreationSet> answerFields = new();
+        private List<AnswerCreationSet> answers = new();
         private AnswerCreationSet currCorrectAnswerSet = null;
 
-        private const int INITIAL_QUESTION_FIELD_COUNT = 4;
+        private const int INITIAL_QUESTION_COUNT = 4;
         private const int MINIMUM_ANSWERS = 2;
 
-        public class OnDeleteQuestionEventArgs : EventArgs
+        public class OnDeleteQuestionBtnClickEventArgs : EventArgs
         {
             public QuestionField questionField { get; set; }
         }
         public QuestionField()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
-        public void AddInitialAnswerSets()
+        public void AddInitialAnswers()
         {
-            for (int i = 0; i < INITIAL_QUESTION_FIELD_COUNT; i++)
+            for (int i = 0; i < INITIAL_QUESTION_COUNT; i++)
             {
-                AddAnswerSet();
+                this.AddAnswer();
             }
         }
 
-        private AnswerCreationSet AddAnswerSet()
+        private AnswerCreationSet AddAnswer()
         {
             AnswerCreationSet newSet = new();
 
-            answerFields.Add(newSet);
+            answers.Add(newSet);
             answerSetPanel.Controls.Add(newSet);
 
-            newSet.OnCorrectAnswerChanged += SelectCorrectAnswer;
-            newSet.OnDeleteAnswerBtnClicked += DeleteAnswerSet;
+            newSet.OnCorrectAnswerChange += SelectCorrectAnswer;
+            newSet.OnDeleteAnswerBtnClick += DeleteAnswer;
 
             return newSet;
         }
 
-        private void DeleteAnswerSet(object? sender, AnswerCreationSet.OnDeleteAnswerBtnClickedEventArgs e)
+        private void DeleteAnswer(object? sender, AnswerCreationSet.OnDeleteAnswerBtnClickEventArgs e)
         {
             AnswerCreationSet answerSet = e.answerSet;
 
@@ -61,7 +61,7 @@ namespace TestMakerTaker
                 currCorrectAnswerSet = null;
             }
             answerSetPanel.Controls.Remove(answerSet);
-            answerFields.Remove(answerSet);
+            answers.Remove(answerSet);
         }
 
         private void SelectCorrectAnswer(object? sender, EventArgs e)
@@ -86,14 +86,14 @@ namespace TestMakerTaker
                 errorProvider.SetError(questionInput, null);
             }
 
-            if (answerFields.Count < MINIMUM_ANSWERS)
+            if (answers.Count < MINIMUM_ANSWERS)
             {
                 errorProvider.SetError(answerSetPanel, $"There must be atleast {MINIMUM_ANSWERS} answers");
                 return false;
             }
 
             // Check answer sets
-            foreach (AnswerCreationSet answer in answerFields)
+            foreach (AnswerCreationSet answer in answers)
             {
                 if (answer.Correct() != true)
                 {
@@ -115,26 +115,28 @@ namespace TestMakerTaker
             return true;
         }
 
-        public Question GetQuestionObject()
+        public Question GetQuestionObj()
         {
             List<string> answerList = new();
 
             // Create a list of answers
-            foreach (AnswerCreationSet answerSet in answerFields)
+            foreach (AnswerCreationSet answer in answers)
             {
-                answerList.Add(answerSet.answer);
+                answerList.Add(answer.answer);
             }
 
             return new Question(questionInput.Text, answerList, currCorrectAnswerSet.answer);
         }
-
-        public void FillInputsWithData(Question question)
+        /// <summary>
+        /// Fills inputs with data from question object
+        /// </summary>
+        public void Fill(Question question)
         {
             questionInput.Text = question.question;
 
             for (int i = 0; i < question.answers.Count; i++)
             {
-                AnswerCreationSet newAnswer = AddAnswerSet();
+                AnswerCreationSet newAnswer = AddAnswer();
                 newAnswer.answer = question.answers[i];
 
                 if (newAnswer.answer == question.correctAnswer)
@@ -147,7 +149,7 @@ namespace TestMakerTaker
         }
         private void deleteQuestionButton_Click(object sender, EventArgs e)
         {
-            OnDeleteQuestionButtonClicked?.Invoke(this, new OnDeleteQuestionEventArgs()
+            OnDeleteQuestionBtnClick?.Invoke(this, new OnDeleteQuestionBtnClickEventArgs()
             {
                 questionField = this
             });
@@ -155,7 +157,7 @@ namespace TestMakerTaker
 
         private void addAnswerBtn_Click(object sender, EventArgs e)
         {
-            AddAnswerSet();
+            AddAnswer();
         }
     }
 }

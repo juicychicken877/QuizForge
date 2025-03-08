@@ -8,20 +8,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TestMakerTaker.Scripts.UserControls
+namespace QuizForge.Scripts.UserControls
 {
     public partial class SelectableListElement: UserControl
     {
-        public Test testRef { get; private set; }
+        public Quiz quizRef { get; private set; }
 
-        public SelectableListElement(Test test)
+        public SelectableListElement(Quiz quiz)
         {
             InitializeComponent();
 
-            titleLabel.Text = test.title;
-            descriptionLabel.Text = test.description;
+            titleLabel.Text = quiz.title;
+            descriptionLabel.Text = quiz.description;
 
-            testRef = test;
+            quizRef = quiz;
         }
 
         public void ChangeSelected(bool selected) {

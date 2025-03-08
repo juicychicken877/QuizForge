@@ -8,13 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TestMakerTaker.Scripts.Forms
+namespace QuizForge.Scripts.Forms
 {
     public partial class AnswerListElement: UserControl
     {
-        public AnswerListElement(string question, SolveTestWindow.UserAnswer userAnswer)
+        public AnswerListElement(string question, SolveQuizWindow.UserAnswer userAnswer)
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
             questionLabel.Text = question;
             userAnswerLabel.Text = $"Your answer: {userAnswer.answer}";

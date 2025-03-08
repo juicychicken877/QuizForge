@@ -1,5 +1,5 @@
-﻿namespace TestMakerTaker {
-    partial class SolveTestWindow {
+﻿namespace QuizForge {
+    partial class SolveQuizWindow {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -23,24 +23,24 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            testTitleLabel = new Label();
+            quizTitleLabel = new Label();
             questionCountLabel = new Label();
             questionLabel = new Label();
             answerPanel = new FlowLayoutPanel();
-            previousQuestionButton = new Button();
+            previousQuestionBtn = new Button();
             resultLabel = new Label();
-            checkAnswerButton = new Button();
-            nextButton = new Button();
+            checkAnswerBtn = new Button();
+            nextBtn = new Button();
             SuspendLayout();
             // 
             // testTitleLabel
             // 
-            testTitleLabel.Location = new Point(0, 0);
-            testTitleLabel.Margin = new Padding(0);
-            testTitleLabel.Name = "testTitleLabel";
-            testTitleLabel.Size = new Size(263, 36);
-            testTitleLabel.TabIndex = 0;
-            testTitleLabel.Text = "Test Title";
+            quizTitleLabel.Location = new Point(0, 0);
+            quizTitleLabel.Margin = new Padding(0);
+            quizTitleLabel.Name = "testTitleLabel";
+            quizTitleLabel.Size = new Size(263, 36);
+            quizTitleLabel.TabIndex = 0;
+            quizTitleLabel.Text = "Test Title";
             // 
             // questionCountLabel
             // 
@@ -77,14 +77,14 @@
             // 
             // previousQuestionButton
             // 
-            previousQuestionButton.BackColor = Color.WhiteSmoke;
-            previousQuestionButton.Location = new Point(5, 375);
-            previousQuestionButton.Name = "previousQuestionButton";
-            previousQuestionButton.Size = new Size(128, 35);
-            previousQuestionButton.TabIndex = 6;
-            previousQuestionButton.Text = "Previous";
-            previousQuestionButton.UseVisualStyleBackColor = false;
-            previousQuestionButton.Click += previousQuestionButton_Click;
+            previousQuestionBtn.BackColor = Color.WhiteSmoke;
+            previousQuestionBtn.Location = new Point(5, 375);
+            previousQuestionBtn.Name = "previousQuestionButton";
+            previousQuestionBtn.Size = new Size(128, 35);
+            previousQuestionBtn.TabIndex = 6;
+            previousQuestionBtn.Text = "Previous";
+            previousQuestionBtn.UseVisualStyleBackColor = false;
+            previousQuestionBtn.Click += previousQuestionButton_Click;
             // 
             // resultLabel
             // 
@@ -97,25 +97,25 @@
             // 
             // checkAnswerButton
             // 
-            checkAnswerButton.BackColor = Color.WhiteSmoke;
-            checkAnswerButton.Location = new Point(260, 375);
-            checkAnswerButton.Name = "checkAnswerButton";
-            checkAnswerButton.Size = new Size(128, 35);
-            checkAnswerButton.TabIndex = 8;
-            checkAnswerButton.Text = "Check Answer";
-            checkAnswerButton.UseVisualStyleBackColor = false;
-            checkAnswerButton.Click += checkAnswerButton_Click;
+            checkAnswerBtn.BackColor = Color.WhiteSmoke;
+            checkAnswerBtn.Location = new Point(260, 375);
+            checkAnswerBtn.Name = "checkAnswerButton";
+            checkAnswerBtn.Size = new Size(128, 35);
+            checkAnswerBtn.TabIndex = 8;
+            checkAnswerBtn.Text = "Check Answer";
+            checkAnswerBtn.UseVisualStyleBackColor = false;
+            checkAnswerBtn.Click += checkAnswerButton_Click;
             // 
             // nextButton
             // 
-            nextButton.BackColor = Color.WhiteSmoke;
-            nextButton.Location = new Point(394, 375);
-            nextButton.Name = "nextButton";
-            nextButton.Size = new Size(128, 35);
-            nextButton.TabIndex = 9;
-            nextButton.Text = "NextBtn";
-            nextButton.UseVisualStyleBackColor = false;
-            nextButton.Click += nextButton_Click;
+            nextBtn.BackColor = Color.WhiteSmoke;
+            nextBtn.Location = new Point(394, 375);
+            nextBtn.Name = "nextButton";
+            nextBtn.Size = new Size(128, 35);
+            nextBtn.TabIndex = 9;
+            nextBtn.Text = "NextBtn";
+            nextBtn.UseVisualStyleBackColor = false;
+            nextBtn.Click += nextButton_Click;
             // 
             // SolveTestWindow
             // 
@@ -123,14 +123,14 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(525, 415);
-            Controls.Add(nextButton);
-            Controls.Add(checkAnswerButton);
+            Controls.Add(nextBtn);
+            Controls.Add(checkAnswerBtn);
             Controls.Add(resultLabel);
-            Controls.Add(previousQuestionButton);
+            Controls.Add(previousQuestionBtn);
             Controls.Add(answerPanel);
             Controls.Add(questionLabel);
             Controls.Add(questionCountLabel);
-            Controls.Add(testTitleLabel);
+            Controls.Add(quizTitleLabel);
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(4);
@@ -143,13 +143,13 @@
 
         #endregion
 
-        private Label testTitleLabel;
+        private Label quizTitleLabel;
         private Label questionCountLabel;
         private Label questionLabel;
         private FlowLayoutPanel answerPanel;
-        private Button previousQuestionButton;
+        private Button previousQuestionBtn;
         private Label resultLabel;
-        private Button checkAnswerButton;
-        private Button nextButton;
+        private Button checkAnswerBtn;
+        private Button nextBtn;
     }
 }

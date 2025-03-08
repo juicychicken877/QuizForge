@@ -1,4 +1,4 @@
-﻿namespace TestMakerTaker.Scripts.Forms {
+﻿namespace QuizForge.Scripts.Forms {
     partial class ImportView {
         /// <summary> 
         /// Required designer variable.
@@ -29,7 +29,7 @@
             label2 = new Label();
             label5 = new Label();
             importButton = new Button();
-            selectList = new TestMakerTaker.Scripts.UserControls.SelectList();
+            selectList = new QuizForge.Scripts.UserControls.SelectList();
             SuspendLayout();
             // 
             // label1

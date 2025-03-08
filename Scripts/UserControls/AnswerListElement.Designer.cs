@@ -1,4 +1,4 @@
-﻿namespace TestMakerTaker.Scripts.Forms {
+﻿namespace QuizForge.Scripts.Forms {
     partial class AnswerListElement {
         /// <summary> 
         /// Required designer variable.

@@ -1,4 +1,4 @@
-namespace TestMakerTaker
+namespace QuizForge
 {
     internal static class Program
     {

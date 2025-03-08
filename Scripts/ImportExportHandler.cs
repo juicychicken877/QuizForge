@@ -5,9 +5,9 @@ using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TestMakerTaker.Scripts.Forms;
+using QuizForge.Scripts.Forms;
 
-namespace TestMakerTaker.Scripts
+namespace QuizForge.Scripts
 {
     public static class ImportExportHandler
     {
@@ -15,64 +15,48 @@ namespace TestMakerTaker.Scripts
         public static event EventHandler OnExport;
 
         public enum ImportMode { 
-            /// <summary>
-            /// Importing with Add Import Mode returns a list of tests to add to current test list
-            /// </summary>
             Add,
-            /// <summary>
-            /// Importing with Override Import mode returns a list of tests
-            /// </summary>
             Override
         }
 
         public class OnImportEventArgs : EventArgs {
-            public List<Test> newTestList;
+            public List<Quiz> newQuizzes;
         }
 
-        public static void ExportTests(List<Test> testsToExport) {
+        /// <summary>
+        /// Adds quizzes from uniqueQuizzes to baseQuizzes if they are not in baseQuizzes
+        /// </summary>
+        private static List<Quiz> AddUnique(List<Quiz> baseQuizzes, List<Quiz> uniqueQuizzes) {
+            List<Quiz> returnedQuizzes = baseQuizzes;
+
+            foreach (Quiz uniqueQuiz in uniqueQuizzes) {
+                // If uniqueQuiz not found in baseQuizzes, it is unique and it is added to baseQuizzes
+                if (baseQuizzes.Find(baseQuiz => baseQuiz.title == uniqueQuiz.title) == null) {
+                    returnedQuizzes.Add(uniqueQuiz);
+                }
+            }
+
+            return returnedQuizzes;
+        }
+
+        public static void ExportQuizzes(List<Quiz> quizzesToExport) {
             SaveFileDialog saveFileDialog = new();
             saveFileDialog.Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*";
             saveFileDialog.DefaultExt = "json";
-            saveFileDialog.FileName = "testsExport.json"; // Default filename
+            saveFileDialog.FileName = $"quiz_export_{DateTime.Today.ToShortDateString()}.json";
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK) {
-                JSONHandler.SaveTestsToJSON(testsToExport, saveFileDialog.FileName);
+                JSONHandler.SaveQuizzes(quizzesToExport, saveFileDialog.FileName);
 
-                MessageManager.NewWindow("Import Export Handler Info", "Tests exported.", [new MessageWindow.Button("OK", null)]);
+                MessageManager.NewWindow("Import Export Handler Info", "Quizzes exported.", [new("OK", null)]);
 
                 OnExport.Invoke(null, EventArgs.Empty);
             }
         }
 
-        private static List<Test> Override(List<Test> currTests, List<Test> newTests) {
-            List<Test> tests = newTests;
-            // If newTest collides with currTest then currTest is overriden
-            foreach (Test test in currTests) {
-                // If test not found in newTests then add otherwise do not
-                if (newTests.Find(newTest => newTest.title == test.title) == null) {
-                    tests.Add(test);
-                }
-            }
-
-            return tests;
-        }
-
-        private static List<Test> Add(List<Test> currTests, List<Test> newTests) {
-            List<Test> tests = currTests;
-
-            foreach (Test test in newTests) {
-                // If test not found in currTests then add otherwise do not
-                if (currTests.Find(currTest => currTest.title == test.title) == null) {
-                    tests.Add(test);
-                }
-            }
-
-            return tests;
-        }
-
-        public static bool Collides(List<Test> list1, List<Test> list2) {
-            foreach (Test test1 in list1) {
-                if (list2.Find(test2 => test2.title == test1.title) != null) {
+        public static bool Collides(List<Quiz> list1, List<Quiz> list2) {
+            foreach (Quiz quiz1 in list1) {
+                if (list2.Find(quiz2 => quiz2.title == quiz1.title) != null) {
                     return true;
                 }
             }
@@ -80,59 +64,27 @@ namespace TestMakerTaker.Scripts
             return false;
         }
 
-        public static void ExportTest(Test testRef) {
-            ExportTests([testRef]);
+        public static void ExportQuiz(Quiz quizRef) {
+            ExportQuizzes([quizRef]);
         }
 
-        /// <summary>
-        /// Imports tests and returns a new list for MainWindow to override current
-        /// </summary>
-        /// <param name="mode"></param>
-        /// <param name="path"></param>
-        public static void ImportTests(ImportMode mode, List<Test> newTests) {
+        public static void ImportQuizzes(ImportMode mode, List<Quiz> newQuizzes) {
             try {
                 switch (mode) {
                     case ImportMode.Override: {
-                        newTests = Override(MainWindow.GetTests(), newTests);
-                    } break;
+                            newQuizzes = AddUnique(newQuizzes, MainWindow.GetQuizzes());
+                        }
+                        break;
                     case ImportMode.Add: {
-                        newTests = Add(MainWindow.GetTests(), newTests);
-                    } break;
+                            newQuizzes = AddUnique(MainWindow.GetQuizzes(), newQuizzes);
+                        }
+                        break;
                 }
 
-                MessageManager.NewWindow("Import Export Handler Info", "Tests imported.", [new MessageWindow.Button("OK", null)]);
+                MessageManager.NewWindow("Import Export Handler Info", "Quizzes imported.", [new MessageWindow.Button("OK", null)]);
 
                 OnImport?.Invoke(null, new OnImportEventArgs() {
-                    newTestList = newTests,
-                });
-
-            } catch (Exception ex) {
-                MessageManager.NewWindow("Import Export Handler Error", ex.Message, [new MessageWindow.Button("OK", null)]);
-            }
-        }
-
-        /// <summary>
-        /// Imports tests and returns a new list for MainWindow to override current
-        /// </summary>
-        /// <param name="mode"></param>
-        /// <param name="path"></param>
-        public static void ImportTests(ImportMode mode, string path) {
-            try {
-                List<Test> newTests = new();
-               
-                switch (mode) {
-                    case ImportMode.Override: {
-                        newTests = Override(MainWindow.GetTests(), JSONHandler.LoadTestsFromJSON(path));
-                    } break;
-                    case ImportMode.Add: {
-                        newTests = Add(MainWindow.GetTests(), JSONHandler.LoadTestsFromJSON(path));
-                    } break;
-                }
-
-                MessageManager.NewWindow("Import Export Handler Info", "Tests imported.", [new MessageWindow.Button("OK", null)]);
-
-                OnImport?.Invoke(null, new OnImportEventArgs() {
-                    newTestList = newTests,
+                    newQuizzes = newQuizzes,
                 });
 
             } catch (Exception ex) {

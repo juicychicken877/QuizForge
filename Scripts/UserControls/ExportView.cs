@@ -7,13 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TestMakerTaker.Scripts.Forms;
+using QuizForge.Scripts.Forms;
 
-namespace TestMakerTaker.Scripts.UserControls
+namespace QuizForge.Scripts.UserControls
 {
     public partial class ExportView : UserControl {
         public ExportView() {
-            InitializeComponent();
+            this.InitializeComponent();
 
             ImportExportHandler.OnExport += ImportExportHandler_OnExport;
         }
@@ -22,13 +22,13 @@ namespace TestMakerTaker.Scripts.UserControls
             selectList.ChangeSelectedAll(false);
         }
 
-        public void Update(List<Test> tests) {
-            if (tests.Count == 0) {
+        public void Update(List<Quiz> quizzes) {
+            if (quizzes.Count == 0) {
                 exportButton.Enabled = false;
             } else {
                 exportButton.Enabled = true;
             }
-            selectList.Update(tests);
+            selectList.Update(quizzes);
         }
 
         public void SelectAll() {
@@ -36,12 +36,12 @@ namespace TestMakerTaker.Scripts.UserControls
         }
 
         private void exportButton_Click(object sender, EventArgs e) {
-            List<Test> selectedTests = selectList.GetSelectedTests();
+            List<Quiz> selectedQuizzes = selectList.GetSelectedQuizzes();
 
-            if (selectedTests.Count == 0) {
-                MessageManager.NewWindow("Export View Error", "No tests selected", [new MessageWindow.Button("OK", null)]);
+            if (selectedQuizzes.Count == 0) {
+                MessageManager.NewWindow("Export View Error", "No quizzes selected", [new MessageWindow.Button("OK", null)]);
             } else {
-                ImportExportHandler.ExportTests(selectedTests);
+                ImportExportHandler.ExportQuizzes(selectedQuizzes);
             }
         }
     }

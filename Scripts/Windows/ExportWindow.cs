@@ -7,16 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TestMakerTaker.Scripts.Forms;
-using TestMakerTaker.Scripts.UserControls;
+using QuizForge.Scripts.Forms;
+using QuizForge.Scripts.UserControls;
 
-namespace TestMakerTaker.Scripts.Windows
+namespace QuizForge.Scripts.Windows
 {
     public partial class ExportWindow : Form {
-        public ExportWindow(List<Test> tests, bool selectAll) {
-            InitializeComponent();
+        public ExportWindow(List<Quiz> quizzes, bool selectAll) {
+            this.InitializeComponent();
 
-            exportView.Update(tests);
+            exportView.Update(quizzes);
 
             if (selectAll) exportView.SelectAll();
 

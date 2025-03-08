@@ -1,6 +1,6 @@
-﻿namespace TestMakerTaker
+﻿namespace QuizForge
 {
-    partial class TestForm
+    partial class QuizForm
     {
         /// <summary> 
         /// Required designer variable.
@@ -56,7 +56,7 @@
             titleInput.Margin = new Padding(5, 6, 5, 6);
             titleInput.MaxLength = 50;
             titleInput.Name = "titleInput";
-            titleInput.PlaceholderText = "Quiz title e.g \"New Quiz\"";
+            titleInput.PlaceholderText = "Quiz title e.g \"Pancake Quiz\"";
             titleInput.Size = new Size(428, 29);
             titleInput.TabIndex = 4;
             // 
@@ -123,7 +123,7 @@
             label1.Text = "Quiz Questions";
             label1.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // TestForm
+            // QuizForm
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -137,7 +137,7 @@
             Controls.Add(titleInput);
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
             Margin = new Padding(0);
-            Name = "TestForm";
+            Name = "QuizForm";
             Size = new Size(576, 523);
             ((System.ComponentModel.ISupportInitialize)errorProvider).EndInit();
             ResumeLayout(false);

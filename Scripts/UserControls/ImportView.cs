@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TestMakerTaker.Scripts.Forms
+namespace QuizForge.Scripts.Forms
 {
     public partial class ImportView : UserControl {
         public ImportView() {
-            InitializeComponent();
+            this.InitializeComponent();
 
             ImportExportHandler.OnImport += ImportExportHandler_OnImport;
         }
@@ -23,16 +23,16 @@ namespace TestMakerTaker.Scripts.Forms
             importButton.Enabled = false;
         }
 
-        private void Update(List<Test>? detectedTests, string fileName) {
-            if (detectedTests != null) {
+        private void Update(List<Quiz>? detectedQuizzes, string selectedFileName) {
+            if (detectedQuizzes != null) {
                 importButton.Enabled = true;
             } else {
-                MessageManager.NewWindow("Import View Error", "No tests found in selected file", [new MessageWindow.Button("OK", null)]);
+                MessageManager.NewWindow("Import View Error", "No quizzes found in selected file", [new MessageWindow.Button("OK", null)]);
                 importButton.Enabled = false;
             }
 
-            selectedFileNameLabel.Text = fileName;
-            selectList.Update(detectedTests);
+            selectedFileNameLabel.Text = selectedFileName;
+            selectList.Update(detectedQuizzes);
         }
 
         public void SelectAll() {
@@ -40,9 +40,9 @@ namespace TestMakerTaker.Scripts.Forms
         }
 
         public void SelectFile(string path) {
-            List<Test> detectedTests = JSONHandler.LoadTestsFromJSON(path);
+            List<Quiz> detectedQuizzes = JSONHandler.LoadQuizzes(path);
 
-            Update(detectedTests, Path.GetFileName(path));
+            this.Update(detectedQuizzes, Path.GetFileName(path));
         }
 
         private void selectFileBtn_Click(object sender, EventArgs e) {
@@ -56,7 +56,7 @@ namespace TestMakerTaker.Scripts.Forms
                 try {
                     string selectedFilePath = openFileDialog.FileName;
 
-                    SelectFile(selectedFilePath);
+                    this.SelectFile(selectedFilePath);
                 } catch (Exception ex) {
                     MessageManager.NewWindow("Import View Error", ex.Message, [new MessageWindow.Button("OK", null)]);
                 }
@@ -64,22 +64,22 @@ namespace TestMakerTaker.Scripts.Forms
         }
 
         private void importButton_Click(object sender, EventArgs e) {
-            List<Test> selectedTests = selectList.GetSelectedTests();
+            List<Quiz> selectedQuizzes = selectList.GetSelectedQuizzes();
 
-            if (selectedTests.Count == 0) {
-                MessageManager.NewWindow("Import View Error", "No tests selected", [new MessageWindow.Button("OK", null)]);
+            if (selectedQuizzes.Count == 0) {
+                MessageManager.NewWindow("Import View Error", "No quizzes selected", [new MessageWindow.Button("OK", null)]);
             } else {
-                if (ImportExportHandler.Collides(MainWindow.GetTests(), selectedTests)) {
+                if (ImportExportHandler.Collides(MainWindow.GetQuizzes(), selectedQuizzes)) {
 
                     List<MessageWindow.Button> buttons = [
-                        new MessageWindow.Button("Add", () => { ImportExportHandler.ImportTests(ImportExportHandler.ImportMode.Add, selectedTests); }), 
-                        new MessageWindow.Button("Override", () => { ImportExportHandler.ImportTests(ImportExportHandler.ImportMode.Override, selectedTests); })
+                        new MessageWindow.Button("Add", () => { ImportExportHandler.ImportQuizzes(ImportExportHandler.ImportMode.Add, selectedQuizzes); }), 
+                        new MessageWindow.Button("Override", () => { ImportExportHandler.ImportQuizzes(ImportExportHandler.ImportMode.Override, selectedQuizzes); })
                     ];
 
-                    MessageManager.NewWindow("Import View Decision", "Found collisions with current tests. Choose import mode", buttons);
+                    MessageManager.NewWindow("Import View Decision", "Found collisions with current quizzes. Choose import mode", buttons);
                 } else {
                     // All good
-                    ImportExportHandler.ImportTests(ImportExportHandler.ImportMode.Add, selectedTests);
+                    ImportExportHandler.ImportQuizzes(ImportExportHandler.ImportMode.Add, selectedQuizzes);
                 }
             }
         }

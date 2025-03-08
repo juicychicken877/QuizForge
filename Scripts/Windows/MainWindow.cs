@@ -1,133 +1,152 @@
 ﻿using System.Diagnostics;
-using TestMakerTaker.Scripts;
-using TestMakerTaker.Scripts.Forms;
+using System.Text.Json.Serialization;
+using QuizForge.Scripts;
+using QuizForge.Scripts.Forms;
 
-namespace TestMakerTaker
+namespace QuizForge
 {
     public partial class MainWindow : Form
     {
-        public delegate void TestInteractionButtonHandler(Test testRef);
-        public delegate void ActionButtonHandler(TestForm testForm);
+        public delegate void QuizInteractionBtnHandler(Quiz quizRef);
+        public delegate void ActionBtnHandler(QuizForm quizForm);
 
-        private static List<Test> tests = new();
+        private static List<Quiz> quizzes = new();
 
         public MainWindow()
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
-            createTestForm.Setup(TestForm.ActionButtonMode.CreateTest, CreateTest);
+            createQuizForm.Setup(QuizForm.ActionBtnMode.CreateQuiz, CreateQuiz);
 
-            testList.SolveButtonClickedHandler = OpenSolveTestWindow;
-            testList.EditButtonClickedHandler = OpenEditTestWindow;
-            testList.ExportButtonClickedHandler = ImportExportHandler.ExportTest;
+            quizList.SolveBtnClickHandler = OpenSolveQuizWindow;
+            quizList.EditBtnClickHandler = OpenEditQuizWindow;
+            quizList.ExportBtnClickHandler = ImportExportHandler.ExportQuiz;
 
             ImportExportHandler.OnImport += ImportExportHandler_OnImport;
 
-            // Load tests from SavedTests.json
-            List<Test> loadedTests = JSONHandler.LoadTestsFromJSON(JSONHandler.SAVED_TESTS_FILE_PATH);
+            // Load quizzes from SavedQuizzes.json
+            List<Quiz> loadedQuizzes = JSONHandler.LoadQuizzes(JSONHandler.SAVED_QUIZZES_FILE_PATH);
 
-            if (loadedTests != null) {
-                foreach (Test test in loadedTests) {
-                    tests.Add(test);
+            if (loadedQuizzes != null) {
+                foreach (Quiz quiz in loadedQuizzes) {
+                    quizzes.Add(quiz);
                 }
 
-                testList.Update(tests);
-                exportView.Update(tests);
+                quizList.Update(quizzes);
+                exportView.Update(quizzes);
             }
         }
 
         private void ImportExportHandler_OnImport(object? sender, ImportExportHandler.OnImportEventArgs e) {
-            tests = e.newTestList;
+            quizzes = e.newQuizzes;
 
-            testList.Update(tests);
-            exportView.Update(tests);
+            quizList.Update(quizzes);
+            exportView.Update(quizzes);
 
-            JSONHandler.SaveTestsToJSON(tests, JSONHandler.SAVED_TESTS_FILE_PATH);
+            JSONHandler.SaveQuizzes(quizzes, JSONHandler.SAVED_QUIZZES_FILE_PATH);
         }
 
-        private void OpenSolveTestWindow(Test testRef) {
-            SolveTestWindow solveTestWindow = new SolveTestWindow(testRef);
+        private void OpenSolveQuizWindow(Quiz quizRef) {
+            SolveQuizWindow solveQuizWindow = new SolveQuizWindow(quizRef);
 
-            solveTestWindow.Show(); 
+            solveQuizWindow.Show(); 
         }
 
-        private void OpenEditTestWindow(Test testRef) {
-            EditTestWindow editTestWindow = new EditTestWindow(testRef);
+        private void OpenEditQuizWindow(Quiz quizRef) {
+            EditQuizWindow editQuizWindow = new EditQuizWindow(quizRef);
 
-            editTestWindow.GetTestForm().Setup(TestForm.ActionButtonMode.SaveTest, SaveTest);
-            editTestWindow.DeleteButtonClickedHandler = DeleteTest;
+            editQuizWindow.GetQuizForm().Setup(QuizForm.ActionBtnMode.SaveQuiz, SaveQuiz);
+            editQuizWindow.DeleteButtonClickedHandler = DeleteQuiz;
 
-            editTestWindow.Show();
+            editQuizWindow.Show();
         }
 
-        private void DeleteTest(Test testRef) {
-            tests.Remove(testRef);
+        private void DeleteQuiz(Quiz quizRef) {
+            quizzes.Remove(quizRef);
 
-            testRef = null;
+            quizRef = null;
 
-            testList.Update(tests);
-            exportView.Update(tests);
+            quizList.Update(quizzes);
+            exportView.Update(quizzes);
 
-            // Show message
-            MessageManager.NewWindow("Info Window", "Test deleted.", [new MessageWindow.Button("OK", null)]);
-            // Save current copy of tests to json
-            JSONHandler.SaveTestsToJSON(tests, JSONHandler.SAVED_TESTS_FILE_PATH);
+            MessageManager.NewWindow("Main Window Info", "Quiz deleted", [new MessageWindow.Button("OK", null)]);
 
-            EditTestWindow.Instance.Close();
+            JSONHandler.SaveQuizzes(quizzes, JSONHandler.SAVED_QUIZZES_FILE_PATH);
+
+            EditQuizWindow.Instance.Close();
         }
 
-        private void SaveTest(TestForm editTestForm) {
-            if (editTestForm.Correct()) {
-                Test editedTest = editTestForm.GetTestObject();
-                Test previousTest = EditTestWindow.Instance.GetTestRef();
+        private void SaveQuiz(QuizForm editQuizForm) {
+            if (editQuizForm.Correct()) {
+                Quiz editedQuiz = editQuizForm.GetQuizObj();
+                Quiz previousQuiz = EditQuizWindow.Instance.GetQuizRef();
 
-                // make changes
-                previousTest.title = editedTest.title;
-                previousTest.description = editedTest.description;
-                previousTest.questions = editedTest.questions;
+                // Make changes
+                previousQuiz.title = editedQuiz.title;
+                previousQuiz.description = editedQuiz.description;
+                previousQuiz.questions = editedQuiz.questions;
 
-                testList.Update(tests);
-                exportView.Update(tests);
+                quizList.Update(quizzes);
+                exportView.Update(quizzes);
 
-                // Show message
-                MessageManager.NewWindow("Info Window", "Test saved.", [new MessageWindow.Button("OK", null)]);
-                // Save current copy of tests to json
-                JSONHandler.SaveTestsToJSON(tests, JSONHandler.SAVED_TESTS_FILE_PATH);
+                MessageManager.NewWindow("Main Window Info", "Quiz saved", [new MessageWindow.Button("OK", null)]);
+
+                JSONHandler.SaveQuizzes(quizzes, JSONHandler.SAVED_QUIZZES_FILE_PATH);
             }
         }
 
-        private void CreateTest(TestForm testForm)
+        private void CreateQuiz(QuizForm createQuizForm)
         {
-            if (testForm.Correct())
+            if (createQuizForm.Correct())
             {
-                tests.Add(testForm.GetTestObject());
+                quizzes.Add(createQuizForm.GetQuizObj());
 
-                testList.Update(tests);
-                exportView.Update(tests);
+                createQuizForm.Clear();
 
-                MessageManager.NewWindow("Info Window", "Test created.", [new MessageWindow.Button("OK", null)]);
-                // Save current copy of tests to json
-                JSONHandler.SaveTestsToJSON(tests, JSONHandler.SAVED_TESTS_FILE_PATH);
+                quizList.Update(quizzes);
+                exportView.Update(quizzes);
 
-                testForm.Clear();
+                MessageManager.NewWindow("Main Window Info", "Quiz created", [new MessageWindow.Button("OK", null)]);
+
+                JSONHandler.SaveQuizzes(quizzes, JSONHandler.SAVED_QUIZZES_FILE_PATH);
             }
         }
 
-        public static List<Test> GetTests() {
-            return tests;
+        public static List<Quiz> GetQuizzes() {
+            return quizzes;
         }
     }
-    public class Question(string q, List<string> ans, string correct)
-    { 
-        public string question = q;
-        public List<string> answers = ans;
-        public string correctAnswer = correct;
+    public class Question {
+        [JsonPropertyName("Question")]
+        public string question { get; set; }
+        [JsonPropertyName("Answers")]
+        public List<string> answers { get; set; }
+        [JsonPropertyName("Correct Answer")]
+        public string correctAnswer { get; set; }
+
+        public Question() { }
+
+        public Question(string question, List<string> answers, string correctAnswer) {
+            this.question = question;
+            this.answers = answers;
+            this.correctAnswer = correctAnswer;
+        }
     }
 
-    public class Test(string title, string description, List<Question> questions)
-    {
-        public string title = title;
-        public string description = description;
-        public List<Question> questions = questions;
+    public class Quiz {
+        [JsonPropertyName("Title")]
+        public string title { get; set; }
+        [JsonPropertyName("Description")]
+        public string description { get; set; }
+        [JsonPropertyName("Questions")]
+        public List<Question> questions { get; set; }
+
+        public Quiz() { }
+
+        public Quiz(string title, string description, List<Question> questions) {
+            this.title = title;
+            this.description = description;
+            this.questions = questions;
+        }
     }
 }

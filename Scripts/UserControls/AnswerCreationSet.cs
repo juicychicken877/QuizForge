@@ -8,14 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TestMakerTaker.Scripts.UserControls
+namespace QuizForge.Scripts.UserControls
 {
     public partial class AnswerCreationSet : UserControl
     {
-        public event EventHandler OnCorrectAnswerChanged;
-        public event EventHandler<OnDeleteAnswerBtnClickedEventArgs> OnDeleteAnswerBtnClicked;
+        public event EventHandler OnCorrectAnswerChange;
+        public event EventHandler<OnDeleteAnswerBtnClickEventArgs> OnDeleteAnswerBtnClick;
 
-        public class OnDeleteAnswerBtnClickedEventArgs : EventArgs
+        public class OnDeleteAnswerBtnClickEventArgs : EventArgs
         {
             public AnswerCreationSet answerSet;
         }
@@ -24,7 +24,7 @@ namespace TestMakerTaker.Scripts.UserControls
 
         public AnswerCreationSet()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
         public bool Correct()
         {
@@ -33,15 +33,12 @@ namespace TestMakerTaker.Scripts.UserControls
 
         private void correctAnswerInput_CheckedChanged(object sender, EventArgs e)
         {
-            OnCorrectAnswerChanged?.Invoke(this, EventArgs.Empty);
+            OnCorrectAnswerChange?.Invoke(this, EventArgs.Empty);
         }
 
         private void deleteAnswerSetBtn_Click(object sender, EventArgs e)
         {
-            OnDeleteAnswerBtnClicked?.Invoke(this, new OnDeleteAnswerBtnClickedEventArgs()
-            {
-                answerSet = this
-            }); ;
+            OnDeleteAnswerBtnClick?.Invoke(this, new OnDeleteAnswerBtnClickEventArgs() { answerSet = this }); ;
         }
     }
 }
