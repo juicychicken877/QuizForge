@@ -29,113 +29,119 @@
         private void InitializeComponent() {
             components = new System.ComponentModel.Container();
             errorProvider = new ErrorProvider(components);
-            importTestTab = new TabPage();
-            importView1 = new TestMakerTaker.Scripts.Forms.ImportView();
-            testsTab = new TabPage();
+            tabPage3 = new TabPage();
+            importView = new TestMakerTaker.Scripts.Forms.ImportView();
+            tabPage2 = new TabPage();
             testList = new TestList();
-            createTestTab = new TabPage();
-            createTestForm = new TestForm();
-            tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            createTestForm = new TestForm();
+            tabControl = new TabControl();
+            tabPage4 = new TabPage();
             exportView = new TestMakerTaker.Scripts.UserControls.ExportView();
             ((System.ComponentModel.ISupportInitialize)errorProvider).BeginInit();
-            importTestTab.SuspendLayout();
-            testsTab.SuspendLayout();
-            createTestTab.SuspendLayout();
-            tabControl1.SuspendLayout();
+            tabPage3.SuspendLayout();
+            tabPage2.SuspendLayout();
             tabPage1.SuspendLayout();
+            tabControl.SuspendLayout();
+            tabPage4.SuspendLayout();
             SuspendLayout();
             // 
             // errorProvider
             // 
             errorProvider.ContainerControl = this;
             // 
-            // importTestTab
+            // tabPage3
             // 
-            importTestTab.Controls.Add(importView1);
-            importTestTab.Location = new Point(4, 34);
-            importTestTab.Margin = new Padding(4);
-            importTestTab.Name = "importTestTab";
-            importTestTab.Size = new Size(576, 523);
-            importTestTab.TabIndex = 2;
-            importTestTab.Text = "Import";
-            importTestTab.UseVisualStyleBackColor = true;
+            tabPage3.Controls.Add(importView);
+            tabPage3.Location = new Point(4, 34);
+            tabPage3.Margin = new Padding(0);
+            tabPage3.Name = "tabPage3";
+            tabPage3.Size = new Size(576, 523);
+            tabPage3.TabIndex = 2;
+            tabPage3.Text = "Import";
+            tabPage3.UseVisualStyleBackColor = true;
             // 
-            // importView1
+            // importView
             // 
-            importView1.Dock = DockStyle.Fill;
-            importView1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            importView1.Location = new Point(0, 0);
-            importView1.Margin = new Padding(0);
-            importView1.Name = "importView1";
-            importView1.Size = new Size(576, 523);
-            importView1.TabIndex = 0;
+            importView.Dock = DockStyle.Fill;
+            importView.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            importView.Location = new Point(0, 0);
+            importView.Margin = new Padding(0);
+            importView.Name = "importView";
+            importView.Size = new Size(576, 523);
+            importView.TabIndex = 0;
             // 
-            // testsTab
+            // tabPage2
             // 
-            testsTab.Controls.Add(testList);
-            testsTab.Location = new Point(4, 34);
-            testsTab.Name = "testsTab";
-            testsTab.Size = new Size(576, 523);
-            testsTab.TabIndex = 4;
-            testsTab.Text = "Tests";
-            testsTab.UseVisualStyleBackColor = true;
+            tabPage2.Controls.Add(testList);
+            tabPage2.Location = new Point(4, 34);
+            tabPage2.Margin = new Padding(0);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Size = new Size(576, 523);
+            tabPage2.TabIndex = 4;
+            tabPage2.Text = "Quizzes";
+            tabPage2.UseVisualStyleBackColor = true;
             // 
             // testList
             // 
             testList.BackColor = Color.White;
-            testList.Location = new Point(0, 3);
+            testList.Dock = DockStyle.Fill;
+            testList.Location = new Point(0, 0);
+            testList.Margin = new Padding(0);
             testList.Name = "testList";
-            testList.Size = new Size(576, 519);
+            testList.Size = new Size(576, 523);
             testList.TabIndex = 0;
             // 
-            // createTestTab
+            // tabPage1
             // 
-            createTestTab.Controls.Add(createTestForm);
-            createTestTab.Location = new Point(4, 34);
-            createTestTab.Margin = new Padding(4);
-            createTestTab.Name = "createTestTab";
-            createTestTab.Padding = new Padding(4);
-            createTestTab.Size = new Size(576, 523);
-            createTestTab.TabIndex = 0;
-            createTestTab.Text = "Create";
-            createTestTab.UseVisualStyleBackColor = true;
+            tabPage1.Controls.Add(createTestForm);
+            tabPage1.Location = new Point(4, 34);
+            tabPage1.Margin = new Padding(0);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Size = new Size(576, 523);
+            tabPage1.TabIndex = 0;
+            tabPage1.Text = "Create";
+            tabPage1.UseVisualStyleBackColor = true;
             // 
             // createTestForm
             // 
             createTestForm.BackColor = Color.White;
+            createTestForm.Dock = DockStyle.Fill;
             createTestForm.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
             createTestForm.Location = new Point(0, 0);
-            createTestForm.Margin = new Padding(4);
+            createTestForm.Margin = new Padding(0);
             createTestForm.Name = "createTestForm";
             createTestForm.Size = new Size(576, 523);
             createTestForm.TabIndex = 0;
             // 
-            // tabControl1
+            // tabControl
             // 
-            tabControl1.Controls.Add(createTestTab);
-            tabControl1.Controls.Add(testsTab);
-            tabControl1.Controls.Add(importTestTab);
-            tabControl1.Controls.Add(tabPage1);
-            tabControl1.Dock = DockStyle.Fill;
-            tabControl1.ItemSize = new Size(96, 30);
-            tabControl1.Location = new Point(0, 0);
-            tabControl1.Margin = new Padding(4);
-            tabControl1.Name = "tabControl1";
-            tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(584, 561);
-            tabControl1.SizeMode = TabSizeMode.Fixed;
-            tabControl1.TabIndex = 0;
+            tabControl.Controls.Add(tabPage1);
+            tabControl.Controls.Add(tabPage2);
+            tabControl.Controls.Add(tabPage3);
+            tabControl.Controls.Add(tabPage4);
+            tabControl.Dock = DockStyle.Fill;
+            tabControl.ItemSize = new Size(96, 30);
+            tabControl.Location = new Point(0, 0);
+            tabControl.Margin = new Padding(0);
+            tabControl.Multiline = true;
+            tabControl.Name = "tabControl";
+            tabControl.Padding = new Point(20, 3);
+            tabControl.SelectedIndex = 0;
+            tabControl.Size = new Size(584, 561);
+            tabControl.SizeMode = TabSizeMode.Fixed;
+            tabControl.TabIndex = 0;
             // 
-            // tabPage1
+            // tabPage4
             // 
-            tabPage1.Controls.Add(exportView);
-            tabPage1.Location = new Point(4, 34);
-            tabPage1.Name = "tabPage1";
-            tabPage1.Size = new Size(576, 523);
-            tabPage1.TabIndex = 5;
-            tabPage1.Text = "Export";
-            tabPage1.UseVisualStyleBackColor = true;
+            tabPage4.Controls.Add(exportView);
+            tabPage4.Location = new Point(4, 34);
+            tabPage4.Margin = new Padding(0);
+            tabPage4.Name = "tabPage4";
+            tabPage4.Size = new Size(576, 523);
+            tabPage4.TabIndex = 5;
+            tabPage4.Text = "Export";
+            tabPage4.UseVisualStyleBackColor = true;
             // 
             // exportView
             // 
@@ -153,33 +159,34 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(584, 561);
-            Controls.Add(tabControl1);
+            Controls.Add(tabControl);
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             HelpButton = true;
             Margin = new Padding(4);
+            MaximizeBox = false;
             Name = "MainWindow";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Test Maker Taker";
+            Text = "Quiz Forge";
             ((System.ComponentModel.ISupportInitialize)errorProvider).EndInit();
-            importTestTab.ResumeLayout(false);
-            testsTab.ResumeLayout(false);
-            createTestTab.ResumeLayout(false);
-            tabControl1.ResumeLayout(false);
+            tabPage3.ResumeLayout(false);
+            tabPage2.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
+            tabControl.ResumeLayout(false);
+            tabPage4.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
         private ErrorProvider errorProvider;
-        private TabControl tabControl1;
-        private TabPage createTestTab;
-        private TestForm createTestForm;
-        private TabPage testsTab;
-        private TestList testList;
-        private TabPage importTestTab;
-        private Scripts.Forms.ImportView importView1;
+        private TabControl tabControl;
         private TabPage tabPage1;
+        private TestForm createTestForm;
+        private TabPage tabPage2;
+        private TestList testList;
+        private TabPage tabPage3;
+        private Scripts.Forms.ImportView importView;
+        private TabPage tabPage4;
         private Scripts.UserControls.ExportView exportView;
     }
 }

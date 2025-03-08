@@ -29,29 +29,36 @@
             // 
             // messageLabel
             // 
-            messageLabel.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            messageLabel.Location = new Point(2, 1);
+            messageLabel.Dock = DockStyle.Top;
+            messageLabel.Font = new Font("Segoe UI", 9F);
+            messageLabel.Location = new Point(0, 0);
+            messageLabel.Margin = new Padding(0);
             messageLabel.Name = "messageLabel";
-            messageLabel.Size = new Size(299, 43);
+            messageLabel.Size = new Size(308, 61);
             messageLabel.TabIndex = 0;
             messageLabel.Text = "Message";
             messageLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // btnPanel
             // 
-            btnPanel.Location = new Point(2, 47);
+            btnPanel.Dock = DockStyle.Bottom;
+            btnPanel.Location = new Point(0, 64);
+            btnPanel.Margin = new Padding(0);
             btnPanel.Name = "btnPanel";
-            btnPanel.Size = new Size(299, 42);
+            btnPanel.Size = new Size(308, 38);
             btnPanel.TabIndex = 1;
             // 
             // MessageWindow
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(302, 89);
+            AutoSize = true;
+            BackColor = Color.WhiteSmoke;
+            ClientSize = new Size(308, 102);
             Controls.Add(btnPanel);
             Controls.Add(messageLabel);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "MessageWindow";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Message Title";

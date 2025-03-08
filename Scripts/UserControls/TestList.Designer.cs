@@ -30,50 +30,72 @@
             panel = new FlowLayoutPanel();
             importExampleTests = new Button();
             exportAllTests = new Button();
+            btnPanel = new FlowLayoutPanel();
+            btnPanel.SuspendLayout();
             SuspendLayout();
             // 
             // panel
             // 
             panel.AutoScroll = true;
+            panel.Dock = DockStyle.Top;
             panel.FlowDirection = FlowDirection.TopDown;
-            panel.Location = new Point(3, 3);
+            panel.Location = new Point(0, 0);
+            panel.Margin = new Padding(0);
             panel.Name = "panel";
-            panel.Size = new Size(570, 476);
+            panel.Size = new Size(576, 471);
             panel.TabIndex = 0;
             panel.WrapContents = false;
             // 
             // importExampleTests
             // 
+            importExampleTests.AutoSize = true;
+            importExampleTests.BackColor = Color.WhiteSmoke;
             importExampleTests.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            importExampleTests.Location = new Point(3, 484);
+            importExampleTests.Location = new Point(3, 8);
             importExampleTests.Name = "importExampleTests";
-            importExampleTests.Size = new Size(169, 36);
+            importExampleTests.Size = new Size(200, 35);
             importExampleTests.TabIndex = 1;
-            importExampleTests.Text = "Import Example Tests";
-            importExampleTests.UseVisualStyleBackColor = true;
+            importExampleTests.Text = "Import Example Quizzes";
+            importExampleTests.UseVisualStyleBackColor = false;
             importExampleTests.Click += importExampleTests_Click;
             // 
             // exportAllTests
             // 
+            exportAllTests.AutoSize = true;
+            exportAllTests.BackColor = Color.WhiteSmoke;
             exportAllTests.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            exportAllTests.Location = new Point(178, 484);
+            exportAllTests.Location = new Point(209, 8);
             exportAllTests.Name = "exportAllTests";
-            exportAllTests.Size = new Size(169, 36);
+            exportAllTests.Size = new Size(200, 35);
             exportAllTests.TabIndex = 2;
-            exportAllTests.Text = "Export All Tests";
-            exportAllTests.UseVisualStyleBackColor = true;
+            exportAllTests.Text = "Export All Quizzes";
+            exportAllTests.UseVisualStyleBackColor = false;
             exportAllTests.Click += exportAllTests_Click;
+            // 
+            // btnPanel
+            // 
+            btnPanel.Controls.Add(importExampleTests);
+            btnPanel.Controls.Add(exportAllTests);
+            btnPanel.Dock = DockStyle.Bottom;
+            btnPanel.Location = new Point(0, 471);
+            btnPanel.Margin = new Padding(0);
+            btnPanel.Name = "btnPanel";
+            btnPanel.Padding = new Padding(0, 5, 0, 5);
+            btnPanel.Size = new Size(576, 52);
+            btnPanel.TabIndex = 1;
             // 
             // TestList
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            Controls.Add(exportAllTests);
-            Controls.Add(importExampleTests);
+            Controls.Add(btnPanel);
             Controls.Add(panel);
+            Margin = new Padding(0);
             Name = "TestList";
             Size = new Size(576, 523);
+            btnPanel.ResumeLayout(false);
+            btnPanel.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -82,5 +104,6 @@
         private FlowLayoutPanel panel;
         private Button importExampleTests;
         private Button exportAllTests;
+        private FlowLayoutPanel btnPanel;
     }
 }

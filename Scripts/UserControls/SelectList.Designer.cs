@@ -53,10 +53,10 @@
             // 
             // label1
             // 
-            label1.Location = new Point(41, 0);
+            label1.Location = new Point(35, 0);
             label1.Margin = new Padding(0);
             label1.Name = "label1";
-            label1.Size = new Size(205, 37);
+            label1.Size = new Size(129, 37);
             label1.TabIndex = 2;
             label1.Text = "Select all";
             label1.TextAlign = ContentAlignment.MiddleLeft;
@@ -66,6 +66,7 @@
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
+            BackColor = Color.WhiteSmoke;
             Controls.Add(label1);
             Controls.Add(selectAllCheckBox);
             Controls.Add(panel);

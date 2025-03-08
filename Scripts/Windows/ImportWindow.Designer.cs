@@ -29,21 +29,24 @@
             // 
             // importView
             // 
+            importView.BackColor = Color.White;
+            importView.Dock = DockStyle.Fill;
             importView.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            importView.Location = new Point(0, -1);
+            importView.Location = new Point(0, 0);
             importView.Margin = new Padding(0);
             importView.Name = "importView";
-            importView.Size = new Size(576, 523);
+            importView.Size = new Size(577, 525);
             importView.TabIndex = 0;
             // 
             // cancelButton
             // 
-            cancelButton.Location = new Point(217, 475);
+            cancelButton.BackColor = Color.WhiteSmoke;
+            cancelButton.Location = new Point(309, 467);
             cancelButton.Name = "cancelButton";
-            cancelButton.Size = new Size(165, 33);
-            cancelButton.TabIndex = 1;
+            cancelButton.Size = new Size(128, 35);
+            cancelButton.TabIndex = 3;
             cancelButton.Text = "Close";
-            cancelButton.UseVisualStyleBackColor = true;
+            cancelButton.UseVisualStyleBackColor = false;
             cancelButton.Click += cancelButton_Click;
             // 
             // ImportWindow
@@ -56,9 +59,10 @@
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(4);
+            MaximizeBox = false;
             Name = "ImportWindow";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "ImportWindow";
+            Text = "Import Quiz Window";
             ResumeLayout(false);
         }
 

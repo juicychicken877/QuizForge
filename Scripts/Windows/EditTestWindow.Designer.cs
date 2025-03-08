@@ -30,38 +30,42 @@
             // testForm
             // 
             testForm.BackColor = Color.White;
+            testForm.Dock = DockStyle.Fill;
             testForm.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            testForm.Location = new Point(3, 3);
-            testForm.Margin = new Padding(4);
+            testForm.Location = new Point(0, 0);
+            testForm.Margin = new Padding(0);
             testForm.Name = "testForm";
-            testForm.Size = new Size(576, 523);
+            testForm.Size = new Size(582, 529);
             testForm.TabIndex = 0;
             // 
             // deleteButton
             // 
-            deleteButton.BackColor = Color.White;
-            deleteButton.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            deleteButton.ForeColor = Color.Black;
-            deleteButton.Location = new Point(460, 374);
+            deleteButton.BackColor = Color.WhiteSmoke;
+            deleteButton.Cursor = Cursors.Hand;
+            deleteButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            deleteButton.Location = new Point(445, 377);
             deleteButton.Name = "deleteButton";
-            deleteButton.Size = new Size(119, 35);
-            deleteButton.TabIndex = 13;
-            deleteButton.Text = "Delete Test";
+            deleteButton.Size = new Size(128, 35);
+            deleteButton.TabIndex = 12;
+            deleteButton.Text = "Delete Quiz";
             deleteButton.UseVisualStyleBackColor = false;
             deleteButton.Click += deleteButton_Click;
             // 
-            // EditTestForm
+            // EditTestWindow
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(582, 529);
             Controls.Add(deleteButton);
             Controls.Add(testForm);
+            Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            Name = "EditTestForm";
+            Margin = new Padding(4);
+            MaximizeBox = false;
+            Name = "EditTestWindow";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Test Maker Taker - Edit Test";
+            Text = "Edit Quiz Window";
             ResumeLayout(false);
         }
 

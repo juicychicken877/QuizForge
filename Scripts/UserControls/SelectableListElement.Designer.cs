@@ -42,7 +42,8 @@
             // 
             // titleLabel
             // 
-            titleLabel.Location = new Point(41, 0);
+            titleLabel.Dock = DockStyle.Left;
+            titleLabel.Location = new Point(35, 0);
             titleLabel.Margin = new Padding(0);
             titleLabel.Name = "titleLabel";
             titleLabel.Size = new Size(213, 50);
@@ -52,10 +53,12 @@
             // 
             // descriptionLabel
             // 
-            descriptionLabel.Location = new Point(260, 0);
+            descriptionLabel.Dock = DockStyle.Left;
+            descriptionLabel.Location = new Point(248, 0);
             descriptionLabel.Margin = new Padding(0);
             descriptionLabel.Name = "descriptionLabel";
-            descriptionLabel.Size = new Size(266, 50);
+            descriptionLabel.Padding = new Padding(5, 0, 0, 0);
+            descriptionLabel.Size = new Size(278, 50);
             descriptionLabel.TabIndex = 2;
             descriptionLabel.Text = "Test Description";
             descriptionLabel.TextAlign = ContentAlignment.MiddleLeft;
@@ -64,6 +67,7 @@
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             Controls.Add(descriptionLabel);
             Controls.Add(titleLabel);
             Controls.Add(selectCheckBox);

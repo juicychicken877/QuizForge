@@ -37,74 +37,82 @@
             // 
             // testFinishedLabel
             // 
-            testFinishedLabel.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            testFinishedLabel.Location = new Point(1, -1);
-            testFinishedLabel.Margin = new Padding(4, 0, 4, 0);
+            testFinishedLabel.Dock = DockStyle.Top;
+            testFinishedLabel.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            testFinishedLabel.Location = new Point(0, 0);
+            testFinishedLabel.Margin = new Padding(0);
             testFinishedLabel.Name = "testFinishedLabel";
-            testFinishedLabel.Size = new Size(521, 41);
+            testFinishedLabel.Size = new Size(525, 41);
             testFinishedLabel.TabIndex = 0;
             testFinishedLabel.Text = "TEST FINISHED!";
             testFinishedLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label1
             // 
-            label1.Location = new Point(1, 40);
+            label1.Location = new Point(0, 40);
+            label1.Margin = new Padding(0);
             label1.Name = "label1";
-            label1.Size = new Size(167, 36);
+            label1.Size = new Size(175, 31);
             label1.TabIndex = 1;
-            label1.Text = "Incorrect";
+            label1.Text = "Incorrect Answers";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label2
             // 
-            label2.Location = new Point(174, 40);
+            label2.Location = new Point(175, 40);
+            label2.Margin = new Padding(0);
             label2.Name = "label2";
-            label2.Size = new Size(177, 31);
+            label2.Size = new Size(175, 31);
             label2.TabIndex = 2;
-            label2.Text = "Correct";
+            label2.Text = "Correct Answers";
             label2.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label3
             // 
-            label3.Location = new Point(357, 37);
+            label3.Location = new Point(350, 40);
+            label3.Margin = new Padding(0);
             label3.Name = "label3";
-            label3.Size = new Size(165, 36);
+            label3.Size = new Size(175, 31);
             label3.TabIndex = 3;
             label3.Text = "Unanswered";
             label3.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // incorrectCount
             // 
-            incorrectCount.Location = new Point(1, 76);
+            incorrectCount.Location = new Point(0, 73);
+            incorrectCount.Margin = new Padding(0);
             incorrectCount.Name = "incorrectCount";
-            incorrectCount.Size = new Size(167, 36);
+            incorrectCount.Size = new Size(175, 26);
             incorrectCount.TabIndex = 4;
-            incorrectCount.Text = "-";
+            incorrectCount.Text = "0";
             incorrectCount.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // correctCount
             // 
-            correctCount.Location = new Point(174, 71);
+            correctCount.Location = new Point(175, 73);
+            correctCount.Margin = new Padding(0);
             correctCount.Name = "correctCount";
-            correctCount.Size = new Size(177, 36);
+            correctCount.Size = new Size(175, 26);
             correctCount.TabIndex = 5;
-            correctCount.Text = "-";
+            correctCount.Text = "0";
             correctCount.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // unansweredCount
             // 
-            unansweredCount.Location = new Point(357, 73);
+            unansweredCount.Location = new Point(350, 73);
+            unansweredCount.Margin = new Padding(0);
             unansweredCount.Name = "unansweredCount";
-            unansweredCount.Size = new Size(165, 36);
+            unansweredCount.Size = new Size(175, 26);
             unansweredCount.TabIndex = 6;
-            unansweredCount.Text = "-";
+            unansweredCount.Text = "0";
             unansweredCount.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label4
             // 
             label4.Location = new Point(12, 112);
+            label4.Margin = new Padding(0);
             label4.Name = "label4";
-            label4.Size = new Size(156, 27);
+            label4.Size = new Size(501, 27);
             label4.TabIndex = 7;
             label4.Text = "Your answers";
             label4.TextAlign = ContentAlignment.MiddleLeft;
@@ -121,15 +129,18 @@
             // 
             // closeBtn
             // 
-            closeBtn.Location = new Point(403, 372);
+            closeBtn.BackColor = Color.WhiteSmoke;
+            closeBtn.Cursor = Cursors.Hand;
+            closeBtn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            closeBtn.Location = new Point(385, 372);
             closeBtn.Name = "closeBtn";
-            closeBtn.Size = new Size(110, 39);
-            closeBtn.TabIndex = 10;
+            closeBtn.Size = new Size(128, 35);
+            closeBtn.TabIndex = 13;
             closeBtn.Text = "Close";
-            closeBtn.UseVisualStyleBackColor = true;
+            closeBtn.UseVisualStyleBackColor = false;
             closeBtn.Click += closeBtn_Click;
             // 
-            // Form_TestResult
+            // TestResultWindow
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -146,9 +157,10 @@
             Controls.Add(testFinishedLabel);
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
             Margin = new Padding(4);
-            Name = "Form_TestResult";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "Form_Result";
+            MaximizeBox = false;
+            Name = "TestResultWindow";
+            StartPosition = FormStartPosition.CenterParent;
+            Text = "Quiz Result";
             ResumeLayout(false);
         }
 

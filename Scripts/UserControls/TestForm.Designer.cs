@@ -41,51 +41,57 @@
             // 
             // descriptionInput
             // 
-            descriptionInput.Location = new Point(5, 47);
+            descriptionInput.Location = new Point(5, 45);
             descriptionInput.Margin = new Padding(5, 6, 5, 6);
             descriptionInput.MaxLength = 200;
             descriptionInput.Multiline = true;
             descriptionInput.Name = "descriptionInput";
-            descriptionInput.PlaceholderText = "Description";
-            descriptionInput.Size = new Size(442, 147);
+            descriptionInput.PlaceholderText = "Quiz description e.g \"Test your knowledge about pancakes\"";
+            descriptionInput.Size = new Size(428, 147);
             descriptionInput.TabIndex = 7;
             // 
             // titleInput
             // 
-            titleInput.Location = new Point(5, 6);
+            titleInput.Location = new Point(5, 5);
             titleInput.Margin = new Padding(5, 6, 5, 6);
             titleInput.MaxLength = 50;
             titleInput.Name = "titleInput";
-            titleInput.PlaceholderText = "Title";
-            titleInput.Size = new Size(442, 29);
+            titleInput.PlaceholderText = "Quiz title e.g \"New Quiz\"";
+            titleInput.Size = new Size(428, 29);
             titleInput.TabIndex = 4;
             // 
             // addQuestionButton
             // 
-            addQuestionButton.Location = new Point(266, 211);
+            addQuestionButton.BackColor = Color.WhiteSmoke;
+            addQuestionButton.BackgroundImageLayout = ImageLayout.None;
+            addQuestionButton.Cursor = Cursors.Hand;
+            addQuestionButton.Location = new Point(211, 203);
             addQuestionButton.Name = "addQuestionButton";
-            addQuestionButton.Size = new Size(181, 29);
+            addQuestionButton.Size = new Size(222, 37);
             addQuestionButton.TabIndex = 9;
             addQuestionButton.Text = "+ Add New Question";
-            addQuestionButton.UseVisualStyleBackColor = true;
+            addQuestionButton.UseVisualStyleBackColor = false;
             addQuestionButton.Click += addQuestionButton_Click;
             // 
             // questionPanel
             // 
             questionPanel.AutoScroll = true;
+            questionPanel.BackColor = Color.WhiteSmoke;
             questionPanel.FlowDirection = FlowDirection.TopDown;
             questionPanel.Location = new Point(5, 246);
+            questionPanel.Margin = new Padding(0);
             questionPanel.Name = "questionPanel";
-            questionPanel.Size = new Size(442, 256);
+            questionPanel.Size = new Size(428, 256);
             questionPanel.TabIndex = 10;
             questionPanel.WrapContents = false;
             // 
             // actionButton
             // 
-            actionButton.BackColor = Color.White;
-            actionButton.Location = new Point(457, 467);
+            actionButton.BackColor = Color.WhiteSmoke;
+            actionButton.Cursor = Cursors.Hand;
+            actionButton.Location = new Point(445, 467);
             actionButton.Name = "actionButton";
-            actionButton.Size = new Size(116, 35);
+            actionButton.Size = new Size(128, 35);
             actionButton.TabIndex = 11;
             actionButton.Text = "ActionButton";
             actionButton.UseVisualStyleBackColor = false;
@@ -93,12 +99,13 @@
             // 
             // clearFieldsButton
             // 
-            clearFieldsButton.BackColor = Color.White;
-            clearFieldsButton.Location = new Point(457, 426);
+            clearFieldsButton.BackColor = Color.WhiteSmoke;
+            clearFieldsButton.Cursor = Cursors.Hand;
+            clearFieldsButton.Location = new Point(445, 426);
             clearFieldsButton.Name = "clearFieldsButton";
-            clearFieldsButton.Size = new Size(116, 35);
+            clearFieldsButton.Size = new Size(128, 35);
             clearFieldsButton.TabIndex = 12;
-            clearFieldsButton.Text = "Clear";
+            clearFieldsButton.Text = "Clear All";
             clearFieldsButton.UseVisualStyleBackColor = false;
             clearFieldsButton.Click += clearFieldsButton_Click;
             // 
@@ -108,12 +115,13 @@
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(5, 215);
+            label1.Location = new Point(5, 203);
+            label1.Margin = new Padding(0);
             label1.Name = "label1";
-            label1.Size = new Size(80, 21);
+            label1.Size = new Size(190, 37);
             label1.TabIndex = 13;
-            label1.Text = "Questions";
+            label1.Text = "Quiz Questions";
+            label1.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // TestForm
             // 
@@ -128,7 +136,7 @@
             Controls.Add(descriptionInput);
             Controls.Add(titleInput);
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            Margin = new Padding(4);
+            Margin = new Padding(0);
             Name = "TestForm";
             Size = new Size(576, 523);
             ((System.ComponentModel.ISupportInitialize)errorProvider).EndInit();

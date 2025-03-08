@@ -29,6 +29,7 @@
             // 
             // exportView
             // 
+            exportView.BackColor = Color.White;
             exportView.Dock = DockStyle.Fill;
             exportView.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
             exportView.Location = new Point(0, 0);
@@ -39,12 +40,13 @@
             // 
             // cancelButton
             // 
-            cancelButton.Location = new Point(217, 475);
+            cancelButton.BackColor = Color.WhiteSmoke;
+            cancelButton.Location = new Point(309, 467);
             cancelButton.Name = "cancelButton";
-            cancelButton.Size = new Size(165, 33);
+            cancelButton.Size = new Size(128, 35);
             cancelButton.TabIndex = 2;
             cancelButton.Text = "Close";
-            cancelButton.UseVisualStyleBackColor = true;
+            cancelButton.UseVisualStyleBackColor = false;
             cancelButton.Click += cancelButton_Click;
             // 
             // ExportWindow
@@ -57,9 +59,10 @@
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(4);
+            MaximizeBox = false;
             Name = "ExportWindow";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "ExportWindow";
+            Text = "Export Quiz Window";
             ResumeLayout(false);
         }
 

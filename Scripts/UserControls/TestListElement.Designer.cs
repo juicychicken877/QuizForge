@@ -39,27 +39,28 @@ namespace TestMakerTaker
             // 
             // title
             // 
+            title.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
             title.Location = new Point(0, 0);
-            title.MaximumSize = new Size(380, 0);
             title.Name = "title";
-            title.Size = new Size(380, 23);
+            title.Size = new Size(405, 23);
             title.TabIndex = 0;
             title.Text = "Test Title";
             // 
             // description
             // 
             description.Location = new Point(0, 23);
-            description.MaximumSize = new Size(380, 0);
             description.Name = "description";
-            description.Size = new Size(380, 66);
+            description.Padding = new Padding(0, 3, 0, 3);
+            description.Size = new Size(405, 66);
             description.TabIndex = 1;
             description.Text = "Test Description";
+            description.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // editButton
             // 
-            editButton.Location = new Point(425, 3);
+            editButton.Location = new Point(411, 3);
             editButton.Name = "editButton";
-            editButton.Size = new Size(104, 31);
+            editButton.Size = new Size(118, 31);
             editButton.TabIndex = 2;
             editButton.Text = "Edit";
             editButton.UseVisualStyleBackColor = true;
@@ -67,9 +68,9 @@ namespace TestMakerTaker
             // 
             // solveButton
             // 
-            solveButton.Location = new Point(425, 40);
+            solveButton.Location = new Point(411, 40);
             solveButton.Name = "solveButton";
-            solveButton.Size = new Size(104, 31);
+            solveButton.Size = new Size(118, 31);
             solveButton.TabIndex = 3;
             solveButton.Text = "Solve";
             solveButton.UseVisualStyleBackColor = true;
@@ -77,9 +78,9 @@ namespace TestMakerTaker
             // 
             // exportButton
             // 
-            exportButton.Location = new Point(425, 77);
+            exportButton.Location = new Point(411, 77);
             exportButton.Name = "exportButton";
-            exportButton.Size = new Size(104, 31);
+            exportButton.Size = new Size(118, 31);
             exportButton.TabIndex = 4;
             exportButton.Text = "Export";
             exportButton.UseVisualStyleBackColor = true;
@@ -87,9 +88,10 @@ namespace TestMakerTaker
             // 
             // questionCountLabel
             // 
+            questionCountLabel.Font = new Font("Segoe UI Light", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
             questionCountLabel.Location = new Point(0, 89);
             questionCountLabel.Name = "questionCountLabel";
-            questionCountLabel.Size = new Size(380, 23);
+            questionCountLabel.Size = new Size(405, 23);
             questionCountLabel.TabIndex = 5;
             questionCountLabel.Text = "Question Count";
             // 
@@ -105,7 +107,7 @@ namespace TestMakerTaker
             Controls.Add(editButton);
             Controls.Add(description);
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            Margin = new Padding(4);
+            Margin = new Padding(0, 5, 0, 5);
             Name = "TestListElement";
             Size = new Size(532, 112);
             ResumeLayout(false);

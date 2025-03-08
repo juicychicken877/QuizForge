@@ -26,8 +26,7 @@
         /// Required method for Designer support - do not modify 
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
-        {
+        private void InitializeComponent() {
             components = new System.ComponentModel.Container();
             questionInput = new TextBox();
             deleteQuestionButton = new Label();
@@ -50,9 +49,10 @@
             deleteQuestionButton.Cursor = Cursors.Hand;
             deleteQuestionButton.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
             deleteQuestionButton.ForeColor = Color.Red;
-            deleteQuestionButton.Location = new Point(378, -1);
+            deleteQuestionButton.Location = new Point(375, 0);
+            deleteQuestionButton.Margin = new Padding(0);
             deleteQuestionButton.Name = "deleteQuestionButton";
-            deleteQuestionButton.Size = new Size(29, 29);
+            deleteQuestionButton.Size = new Size(35, 32);
             deleteQuestionButton.TabIndex = 5;
             deleteQuestionButton.Text = "X";
             deleteQuestionButton.TextAlign = ContentAlignment.MiddleCenter;
@@ -68,7 +68,7 @@
             answerSetPanel.FlowDirection = FlowDirection.TopDown;
             answerSetPanel.Location = new Point(3, 38);
             answerSetPanel.Name = "answerSetPanel";
-            answerSetPanel.Size = new Size(369, 138);
+            answerSetPanel.Size = new Size(369, 141);
             answerSetPanel.TabIndex = 6;
             answerSetPanel.WrapContents = false;
             // 
@@ -77,9 +77,10 @@
             addAnswerBtn.Cursor = Cursors.Hand;
             addAnswerBtn.Font = new Font("Wide Latin", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
             addAnswerBtn.ForeColor = Color.Lime;
-            addAnswerBtn.Location = new Point(378, 38);
+            addAnswerBtn.Location = new Point(375, 38);
+            addAnswerBtn.Margin = new Padding(0);
             addAnswerBtn.Name = "addAnswerBtn";
-            addAnswerBtn.Size = new Size(29, 29);
+            addAnswerBtn.Size = new Size(35, 32);
             addAnswerBtn.TabIndex = 7;
             addAnswerBtn.Text = "+";
             addAnswerBtn.TextAlign = ContentAlignment.MiddleCenter;
@@ -96,7 +97,7 @@
             Controls.Add(deleteQuestionButton);
             Controls.Add(questionInput);
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            Margin = new Padding(4, 8, 4, 8);
+            Margin = new Padding(0, 5, 0, 5);
             Name = "QuestionField";
             Size = new Size(410, 179);
             ((System.ComponentModel.ISupportInitialize)errorProvider).EndInit();
