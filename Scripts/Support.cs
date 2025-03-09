@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuizForge.Scripts.Forms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,8 @@ namespace QuizForge.Scripts
         public static readonly Color SELECTED_BUTTON_COLOR = Color.FromArgb(130, 183, 209);
         public static readonly Color CORRECT_BUTTON_COLOR = Color.FromArgb(108, 212, 83);
         public static readonly Color INCORRECT_BUTTON_COLOR = Color.FromArgb(209, 67, 67);
+
+        private static readonly string BASE_AI_PROMPT_PATH = "../../../Data/BaseAIPrompt.txt";
 
         public static List<T> ShuffleList<T>(List<T> list)
         {
@@ -30,6 +33,40 @@ namespace QuizForge.Scripts
             }
 
             return randomizedList;
+        }
+
+        public static string GenerateAIPrompt(int quizCount, int questionCount, bool noDuplicates, string moreInfo) {
+            try {
+                string basePrompt = File.ReadAllText(BASE_AI_PROMPT_PATH);
+
+                string noDuplicatesPartialPrompt = "";
+                if (noDuplicates) {
+                    List<Quiz> quizzes = MainWindow.GetQuizzes();
+
+                    foreach (Quiz quiz in quizzes) {
+                        noDuplicatesPartialPrompt += quiz.title + ", ";
+                    }
+                }
+
+                string[] settingsInstructions = [
+                    $"Number of questions per quiz: [{Settings.AI_PROMPT_FORM_MIN_QUESTION_COUNT}, {Settings.AI_PROMPT_FORM_MAX_QUESTION_COUNT}]. ",
+                    $"Number of answers per question: [{Settings.QUIZ_FORM_MIN_ANSWER_COUNT}, {Settings.QUIZ_FORM_MAX_ANSWER_COUNT}]. ",
+                    $"Number of quizzes: [{Settings.AI_PROMPT_FORM_MIN_QUIZ_COUNT}, {Settings.AI_PROMPT_FORM_MAX_QUIZ_COUNT}]. "
+                ];
+
+                string settingsPartialPrompt = "";
+
+                foreach (string setting in settingsInstructions) {
+                    settingsPartialPrompt += setting;
+                }
+
+                string prompt = $"{basePrompt} Settings: {settingsPartialPrompt}. No quizzes that are named: [{noDuplicatesPartialPrompt}]. Instructions set by a user (MOST IMPORTANT): Number of quizzes in a list: {quizCount}. Number of questions in a quiz: {questionCount}. More information about the quizzes: {moreInfo}.";
+
+                return prompt;
+            } catch (Exception ex) {
+                MessageManager.NewWindow("AI Prompt Generator Error", ex.Message, [new MessageWindow.Button("OK", null)]);
+                return "";
+            }
         }
 
     }

@@ -23,7 +23,7 @@ namespace QuizForge.Scripts.Forms
             }
         }
 
-        private SystemSound popupSound = SystemSounds.Beep;
+        private SystemSound popupSound = SystemSounds.Hand;
 
         public MessageWindow(string title, string message, List<MessageWindow.Button> buttons) {
             this.InitializeComponent();

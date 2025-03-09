@@ -1,143 +1,5 @@
 [
   {
-    "Title": "Geography Quiz",
-    "Description": "Test your geography knowledge",
-    "Questions": [
-      {
-        "Question": "What is the capital of France?",
-        "Answers": [
-          "Berlin",
-          "Paris",
-          "Madrid",
-          "Rome"
-        ],
-        "Correct Answer": "Paris"
-      },
-      {
-        "Question": "What is the highest mountain in the world?",
-        "Answers": [
-          "K2",
-          "Kangchenjunga",
-          "Mount Everest",
-          "Lhotse"
-        ],
-        "Correct Answer": "Mount Everest"
-      },
-      {
-        "Question": "What is the largest country in Africa?",
-        "Answers": [
-          "Nigeria",
-          "Algeria",
-          "Democratic Republic of the Congo",
-          "Sudan"
-        ],
-        "Correct Answer": "Algeria"
-      },
-      {
-        "Question": "Which river runs through London?",
-        "Answers": [
-          "Seine",
-          "Thames",
-          "Danube",
-          "Rhine"
-        ],
-        "Correct Answer": "Thames"
-      }
-    ]
-  },
-  {
-    "Title": "Math Quiz",
-    "Description": "Test your math knowledge",
-    "Questions": [
-      {
-        "Question": "What is the value of pi?",
-        "Answers": [
-          "3.14",
-          "3.15",
-          "3.16",
-          "3.17"
-        ],
-        "Correct Answer": "3.14"
-      },
-      {
-        "Question": "What is the speed of light?",
-        "Answers": [
-          "299,792,458 m/s",
-          "300,000 km/s",
-          "100,000 km/s",
-          "500,000 km/s"
-        ],
-        "Correct Answer": "299,792,458 m/s"
-      },
-      {
-        "Question": "What is the square root of 144?",
-        "Answers": [
-          "10",
-          "12",
-          "14",
-          "16"
-        ],
-        "Correct Answer": "12"
-      },
-      {
-        "Question": "What is the formula for the area of a circle?",
-        "Answers": [
-          "\u03C0r",
-          "2\u03C0r",
-          "\u03C0r\u00B2",
-          "4\u03C0r\u00B2"
-        ],
-        "Correct Answer": "\u03C0r\u00B2"
-      }
-    ]
-  },
-  {
-    "Title": "Literature \u0026 Art Quiz",
-    "Description": "Test your knowledge in Literature and Art",
-    "Questions": [
-      {
-        "Question": "Who wrote Hamlet?",
-        "Answers": [
-          "Charles Dickens",
-          "Jane Austen",
-          "William Shakespeare",
-          "Mark Twain"
-        ],
-        "Correct Answer": "William Shakespeare"
-      },
-      {
-        "Question": "Who painted the Mona Lisa?",
-        "Answers": [
-          "Michelangelo",
-          "Leonardo da Vinci",
-          "Raphael",
-          "Donatello"
-        ],
-        "Correct Answer": "Leonardo da Vinci"
-      },
-      {
-        "Question": "Who wrote \u0027Pride and Prejudice\u0027?",
-        "Answers": [
-          "Charlotte Bront\u00EB",
-          "Emily Bront\u00EB",
-          "Jane Austen",
-          "Virginia Woolf"
-        ],
-        "Correct Answer": "Jane Austen"
-      },
-      {
-        "Question": "Who sculpted \u0027The Thinker\u0027?",
-        "Answers": [
-          "Auguste Rodin",
-          "Michelangelo",
-          "Donatello",
-          "Leonardo da Vinci"
-        ],
-        "Correct Answer": "Auguste Rodin"
-      }
-    ]
-  },
-  {
     "Title": "Space Quiz",
     "Description": "Test your knowledge about space",
     "Questions": [
@@ -184,62 +46,307 @@
     ]
   },
   {
-    "Title": "World Capitals and Currencies",
-    "Description": "Test your knowledge of world capitals and currencies",
+    "Title": "Quantum Physics Quiz",
+    "Description": "Test your knowledge of quantum physics concepts.",
     "Questions": [
       {
-        "Question": "What is the capital of Italy?",
+        "Question": "What is the principle of superposition?",
         "Answers": [
-          "Paris",
-          "Rome",
-          "Madrid",
-          "London"
+          "Particles exist in a single, defined state.",
+          "Particles exist in multiple states simultaneously.",
+          "Particles are always in a ground state.",
+          "Particles only exist when observed.",
+          "Particles obey classical physics at all scales."
         ],
-        "Correct Answer": "Rome"
+        "Correct Answer": "Particles exist in multiple states simultaneously."
       },
       {
-        "Question": "What is the currency of Japan?",
+        "Question": "What does the Heisenberg Uncertainty Principle state?",
         "Answers": [
-          "Yuan",
-          "Won",
-          "Yen",
-          "Rupee"
+          "Position and momentum can be precisely known simultaneously.",
+          "Energy and time can be precisely known simultaneously.",
+          "The position and momentum of a particle cannot be precisely known simultaneously.",
+          "All particles have a definite trajectory.",
+          "Quantum effects are negligible at macroscopic scales."
         ],
-        "Correct Answer": "Yen"
+        "Correct Answer": "The position and momentum of a particle cannot be precisely known simultaneously."
       },
       {
-        "Question": "What is the capital of Brazil?",
+        "Question": "What is quantum entanglement?",
         "Answers": [
-          "Buenos Aires",
-          "Rio de Janeiro",
-          "Brasilia",
-          "Sao Paulo"
+          "Independent particles with no correlation.",
+          "Particles linked such that measuring one instantly affects the other.",
+          "Particles that only interact through gravity.",
+          "Particles that can only exist in a vacuum.",
+          "Particles that are always in the same quantum state."
         ],
-        "Correct Answer": "Brasilia"
+        "Correct Answer": "Particles linked such that measuring one instantly affects the other."
       },
       {
-        "Question": "What is the currency of the United Kingdom?",
+        "Question": "What is a qubit?",
         "Answers": [
-          "Euro",
-          "Dollar",
-          "Pound Sterling",
-          "Franc"
+          "A classical bit.",
+          "A quantum bit that can exist in superposition.",
+          "A unit of energy.",
+          "A fundamental particle.",
+          "A type of wave."
         ],
-        "Correct Answer": "Pound Sterling"
+        "Correct Answer": "A quantum bit that can exist in superposition."
+      },
+      {
+        "Question": "What is quantum tunneling?",
+        "Answers": [
+          "Particles moving through a physical barrier.",
+          "Particles oscillating between two energy levels.",
+          "Particles emitting light.",
+          "Particles absorbing light.",
+          "Particles decaying into other particles."
+        ],
+        "Correct Answer": "Particles moving through a physical barrier."
       }
     ]
   },
   {
-    "Title": "Pancake Quiz",
-    "Description": "Test your knowledge about pancakes",
+    "Title": "Culinary Techniques Quiz",
+    "Description": "Test your culinary skills and knowledge.",
     "Questions": [
       {
-        "Question": "How would you describe a pancake?",
+        "Question": "What is the Maillard reaction?",
         "Answers": [
-          "Hell",
-          "Heaven"
+          "The process of freezing food.",
+          "The chemical reaction between amino acids and reducing sugars that gives browned food its distinctive flavor.",
+          "The process of fermenting food.",
+          "The process of dehydrating food.",
+          "The process of pickling food."
         ],
-        "Correct Answer": "Heaven"
+        "Correct Answer": "The chemical reaction between amino acids and reducing sugars that gives browned food its distinctive flavor."
+      },
+      {
+        "Question": "What is sous vide cooking?",
+        "Answers": [
+          "Cooking food in a vacuum-sealed bag in a water bath at a precise temperature.",
+          "Cooking food over an open flame.",
+          "Cooking food by deep-frying.",
+          "Cooking food by steaming.",
+          "Cooking food by baking at high temperatures."
+        ],
+        "Correct Answer": "Cooking food in a vacuum-sealed bag in a water bath at a precise temperature."
+      },
+      {
+        "Question": "What is the purpose of brining?",
+        "Answers": [
+          "To add moisture and flavor to meat.",
+          "To remove moisture from meat.",
+          "To tenderize vegetables.",
+          "To thicken sauces.",
+          "To make bread rise."
+        ],
+        "Correct Answer": "To add moisture and flavor to meat."
+      },
+      {
+        "Question": "What is tempering chocolate?",
+        "Answers": [
+          "Melting chocolate at high temperatures.",
+          "Cooling chocolate rapidly.",
+          "Heating and cooling chocolate to stabilize the cocoa butter crystals.",
+          "Adding sugar to chocolate.",
+          "Adding milk to chocolate."
+        ],
+        "Correct Answer": "Heating and cooling chocolate to stabilize the cocoa butter crystals."
+      },
+      {
+        "Question": "What is the difference between braising and stewing?",
+        "Answers": [
+          "Braising is done in a pot, stewing in a pan.",
+          "Braising uses large cuts of meat, stewing uses small cuts.",
+          "Braising uses a small amount of liquid, stewing uses more.",
+          "Braising is done at high heat, stewing at low heat.",
+          "Braising is only for vegetables, stewing for meat."
+        ],
+        "Correct Answer": "Braising uses a small amount of liquid, stewing uses more."
+      }
+    ]
+  },
+  {
+    "Title": "Modern Architecture Quiz",
+    "Description": "Test your knowledge of modern architectural styles.",
+    "Questions": [
+      {
+        "Question": "What is the Bauhaus style known for?",
+        "Answers": [
+          "Ornate decorations.",
+          "Functional designs and simple forms.",
+          "Use of classical columns.",
+          "Gothic arches.",
+          "Excessive use of color."
+        ],
+        "Correct Answer": "Functional designs and simple forms."
+      },
+      {
+        "Question": "Who designed the Guggenheim Museum in Bilbao?",
+        "Answers": [
+          "Frank Lloyd Wright.",
+          "Le Corbusier.",
+          "Frank Gehry.",
+          "Mies van der Rohe.",
+          "Zaha Hadid."
+        ],
+        "Correct Answer": "Frank Gehry."
+      },
+      {
+        "Question": "What is the primary material used in the Seagram Building?",
+        "Answers": [
+          "Wood.",
+          "Brick.",
+          "Steel and glass.",
+          "Concrete.",
+          "Marble."
+        ],
+        "Correct Answer": "Steel and glass."
+      },
+      {
+        "Question": "What characterizes Brutalist architecture?",
+        "Answers": [
+          "Light and airy designs.",
+          "Use of exposed concrete and geometric shapes.",
+          "Intricate carvings.",
+          "Use of traditional materials.",
+          "Rounded, organic forms."
+        ],
+        "Correct Answer": "Use of exposed concrete and geometric shapes."
+      },
+      {
+        "Question": "What is sustainable architecture?",
+        "Answers": [
+          "Architecture that only uses steel.",
+          "Architecture that minimizes environmental impact.",
+          "Architecture that is only for commercial buildings.",
+          "Architecture that uses only glass.",
+          "Architecture that is only built in urban areas."
+        ],
+        "Correct Answer": "Architecture that minimizes environmental impact."
+      }
+    ]
+  },
+  {
+    "Title": "Artificial Intelligence Quiz",
+    "Description": "Test your understanding of AI concepts.",
+    "Questions": [
+      {
+        "Question": "What is machine learning?",
+        "Answers": [
+          "Programming computers with explicit instructions.",
+          "Enabling computers to learn from data without explicit programming.",
+          "Creating robots that mimic human behavior.",
+          "Developing software for data storage.",
+          "Building hardware for data processing."
+        ],
+        "Correct Answer": "Enabling computers to learn from data without explicit programming."
+      },
+      {
+        "Question": "What is deep learning?",
+        "Answers": [
+          "A type of machine learning using neural networks with many layers.",
+          "A type of machine learning using decision trees.",
+          "A type of machine learning using linear regression.",
+          "A type of machine learning using clustering algorithms.",
+          "A type of machine learning with no learning."
+        ],
+        "Correct Answer": "A type of machine learning using neural networks with many layers."
+      },
+      {
+        "Question": "What is natural language processing (NLP)?",
+        "Answers": [
+          "Processing numerical data.",
+          "Enabling computers to understand and process human language.",
+          "Creating computer graphics.",
+          "Developing operating systems.",
+          "Building databases."
+        ],
+        "Correct Answer": "Enabling computers to understand and process human language."
+      },
+      {
+        "Question": "What is reinforcement learning?",
+        "Answers": [
+          "Learning from labeled data.",
+          "Learning from unlabeled data.",
+          "Learning through trial and error with rewards and penalties.",
+          "Learning through memorization.",
+          "Learning through random guessing."
+        ],
+        "Correct Answer": "Learning through trial and error with rewards and penalties."
+      },
+      {
+        "Question": "What is an AI chatbot?",
+        "Answers": [
+          "A program that generates random text.",
+          "A program that simulates human conversation.",
+          "A program that only displays images.",
+          "A program that controls hardware devices.",
+          "A program that creates spreadsheets."
+        ],
+        "Correct Answer": "A program that simulates human conversation."
+      }
+    ]
+  },
+  {
+    "Title": "Global Cuisine Quiz",
+    "Description": "Test your knowledge of international dishes and culinary traditions.",
+    "Questions": [
+      {
+        "Question": "What is the main ingredient in Italian risotto?",
+        "Answers": [
+          "Pasta.",
+          "Rice.",
+          "Potatoes.",
+          "Couscous.",
+          "Quinoa."
+        ],
+        "Correct Answer": "Rice."
+      },
+      {
+        "Question": "What is the key spice in Indian garam masala?",
+        "Answers": [
+          "Turmeric.",
+          "Cumin.",
+          "Coriander.",
+          "A blend of spices.",
+          "Paprika."
+        ],
+        "Correct Answer": "A blend of spices."
+      },
+      {
+        "Question": "What is the national dish of Spain?",
+        "Answers": [
+          "Paella.",
+          "Tacos.",
+          "Sushi.",
+          "Pho.",
+          "Moussaka."
+        ],
+        "Correct Answer": "Paella."
+      },
+      {
+        "Question": "What is the primary ingredient in Japanese miso soup?",
+        "Answers": [
+          "Tofu.",
+          "Seaweed.",
+          "Fermented soybean paste.",
+          "Mushrooms.",
+          "Fish broth."
+        ],
+        "Correct Answer": "Fermented soybean paste."
+      },
+      {
+        "Question": "What is the base of French bouillabaisse?",
+        "Answers": [
+          "Chicken broth.",
+          "Beef broth.",
+          "Fish broth.",
+          "Vegetable broth.",
+          "Lamb broth."
+        ],
+        "Correct Answer": "Fish broth."
       }
     ]
   }

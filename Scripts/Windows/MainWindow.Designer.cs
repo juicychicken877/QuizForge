@@ -38,12 +38,15 @@
             tabControl = new TabControl();
             tabPage4 = new TabPage();
             exportView = new QuizForge.Scripts.UserControls.ExportView();
+            tabPage5 = new TabPage();
+            aiPromptForm = new QuizForge.Scripts.UserControls.AIPromptForm();
             ((System.ComponentModel.ISupportInitialize)errorProvider).BeginInit();
             tabPage3.SuspendLayout();
             tabPage2.SuspendLayout();
             tabPage1.SuspendLayout();
             tabControl.SuspendLayout();
             tabPage4.SuspendLayout();
+            tabPage5.SuspendLayout();
             SuspendLayout();
             // 
             // errorProvider
@@ -63,6 +66,7 @@
             // 
             // importView
             // 
+            importView.BackColor = Color.White;
             importView.Dock = DockStyle.Fill;
             importView.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
             importView.Location = new Point(0, 0);
@@ -82,13 +86,13 @@
             tabPage2.Text = "Quizzes";
             tabPage2.UseVisualStyleBackColor = true;
             // 
-            // testList
+            // quizList
             // 
             quizList.BackColor = Color.White;
             quizList.Dock = DockStyle.Fill;
             quizList.Location = new Point(0, 0);
             quizList.Margin = new Padding(0);
-            quizList.Name = "testList";
+            quizList.Name = "quizList";
             quizList.Size = new Size(576, 523);
             quizList.TabIndex = 0;
             // 
@@ -103,14 +107,14 @@
             tabPage1.Text = "Create";
             tabPage1.UseVisualStyleBackColor = true;
             // 
-            // createTestForm
+            // createQuizForm
             // 
             createQuizForm.BackColor = Color.White;
             createQuizForm.Dock = DockStyle.Fill;
             createQuizForm.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
             createQuizForm.Location = new Point(0, 0);
             createQuizForm.Margin = new Padding(0);
-            createQuizForm.Name = "createTestForm";
+            createQuizForm.Name = "createQuizForm";
             createQuizForm.Size = new Size(576, 523);
             createQuizForm.TabIndex = 0;
             // 
@@ -120,6 +124,7 @@
             tabControl.Controls.Add(tabPage2);
             tabControl.Controls.Add(tabPage3);
             tabControl.Controls.Add(tabPage4);
+            tabControl.Controls.Add(tabPage5);
             tabControl.Dock = DockStyle.Fill;
             tabControl.ItemSize = new Size(96, 30);
             tabControl.Location = new Point(0, 0);
@@ -145,6 +150,7 @@
             // 
             // exportView
             // 
+            exportView.BackColor = Color.White;
             exportView.Dock = DockStyle.Fill;
             exportView.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
             exportView.Location = new Point(0, 0);
@@ -152,6 +158,27 @@
             exportView.Name = "exportView";
             exportView.Size = new Size(576, 523);
             exportView.TabIndex = 0;
+            // 
+            // tabPage5
+            // 
+            tabPage5.Controls.Add(aiPromptForm);
+            tabPage5.Location = new Point(4, 34);
+            tabPage5.Margin = new Padding(0);
+            tabPage5.Name = "tabPage5";
+            tabPage5.Size = new Size(576, 523);
+            tabPage5.TabIndex = 6;
+            tabPage5.Text = "AI Prompt";
+            tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // aiPromptForm
+            // 
+            aiPromptForm.Dock = DockStyle.Fill;
+            aiPromptForm.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            aiPromptForm.Location = new Point(0, 0);
+            aiPromptForm.Margin = new Padding(0);
+            aiPromptForm.Name = "aiPromptForm";
+            aiPromptForm.Size = new Size(576, 523);
+            aiPromptForm.TabIndex = 0;
             // 
             // MainWindow
             // 
@@ -174,6 +201,7 @@
             tabPage1.ResumeLayout(false);
             tabControl.ResumeLayout(false);
             tabPage4.ResumeLayout(false);
+            tabPage5.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -188,5 +216,7 @@
         private Scripts.Forms.ImportView importView;
         private TabPage tabPage4;
         private Scripts.UserControls.ExportView exportView;
+        private TabPage tabPage5;
+        private Scripts.UserControls.AIPromptForm aiPromptForm;
     }
 }
