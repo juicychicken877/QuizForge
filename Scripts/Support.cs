@@ -60,7 +60,7 @@ namespace QuizForge.Scripts
                     settingsPartialPrompt += setting;
                 }
 
-                string prompt = $"{basePrompt} Settings: {settingsPartialPrompt}. No quizzes that are named: [{noDuplicatesPartialPrompt}]. Instructions set by a user (MOST IMPORTANT): Number of quizzes in a list: {quizCount}. Number of questions in a quiz: {questionCount}. More information about the quizzes: {moreInfo}.";
+                string prompt = $"{basePrompt}.Settings: {settingsPartialPrompt}.No quizzes that are named:[{noDuplicatesPartialPrompt}].Instructions set by a user (MOST IMPORTANT): Number of quizzes in a list: {quizCount}.Number of questions in a quiz: {questionCount}. More information about the quizzes: {moreInfo}.";
 
                 return prompt;
             } catch (Exception ex) {
