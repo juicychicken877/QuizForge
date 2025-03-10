@@ -34,10 +34,10 @@ namespace QuizForge
 
         public void ChangeAnswerBtnMode(AnswerBtnMode mode) {
             switch (mode) {
-                case AnswerBtnMode.Default: this.BackColor = Support.DEFAULT_BUTTON_COLOR; break;
-                case AnswerBtnMode.Selected: this.BackColor = Support.SELECTED_BUTTON_COLOR; break;
-                case AnswerBtnMode.Correct: this.BackColor = Support.CORRECT_BUTTON_COLOR; break;
-                case AnswerBtnMode.Incorrect: this.BackColor = Support.INCORRECT_BUTTON_COLOR; break;
+                case AnswerBtnMode.Default: this.BackColor = Settings.DEFAULT_BUTTON_COLOR; break;
+                case AnswerBtnMode.Selected: this.BackColor = Settings.SELECTED_BUTTON_COLOR; break;
+                case AnswerBtnMode.Correct: this.BackColor = Settings.CORRECT_BUTTON_COLOR; break;
+                case AnswerBtnMode.Incorrect: this.BackColor = Settings.INCORRECT_BUTTON_COLOR; break;
             }
         }
 

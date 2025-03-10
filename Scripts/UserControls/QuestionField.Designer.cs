@@ -27,13 +27,10 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            components = new System.ComponentModel.Container();
             questionInput = new TextBox();
             deleteQuestionButton = new Label();
-            errorProvider = new ErrorProvider(components);
             answerSetPanel = new FlowLayoutPanel();
             addAnswerBtn = new Label();
-            ((System.ComponentModel.ISupportInitialize)errorProvider).BeginInit();
             SuspendLayout();
             // 
             // questionInput
@@ -57,10 +54,6 @@
             deleteQuestionButton.Text = "X";
             deleteQuestionButton.TextAlign = ContentAlignment.MiddleCenter;
             deleteQuestionButton.Click += deleteQuestionButton_Click;
-            // 
-            // errorProvider
-            // 
-            errorProvider.ContainerControl = this;
             // 
             // answerSetPanel
             // 
@@ -100,7 +93,6 @@
             Margin = new Padding(0, 5, 0, 5);
             Name = "QuestionField";
             Size = new Size(410, 179);
-            ((System.ComponentModel.ISupportInitialize)errorProvider).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -109,7 +101,6 @@
 
         private TextBox questionInput;
         private Label deleteQuestionButton;
-        private ErrorProvider errorProvider;
         private FlowLayoutPanel answerSetPanel;
         private Label addAnswerBtn;
     }

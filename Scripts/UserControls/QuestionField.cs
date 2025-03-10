@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.CompilerServices;
 using QuizForge.Scripts.UserControls;
+using QuizForge.Scripts;
 
 namespace QuizForge
 {
@@ -19,8 +20,10 @@ namespace QuizForge
         private List<AnswerCreationSet> answers = new();
         private AnswerCreationSet currCorrectAnswerSet = null;
 
-        private const int INITIAL_QUESTION_COUNT = 4;
-        private const int MINIMUM_ANSWERS = 2;
+        private readonly int INITIAL_QUESTION_COUNT = Settings.QUESTION_FIELD_INITIAL_QUESTION_COUNT;
+        private readonly int MINIMUM_ANSWERS = Settings.QUIZ_FORM_MIN_ANSWER_COUNT;
+        private readonly int QUESTION_MIN_LENGTH = Settings.QUESTION_FIELD_QUESTION_MIN_LENGTH;
+        private readonly int QUESTION_MAX_LENGTH = Settings.QUESTION_FIELD_QUESTION_MAX_LENGTH;
 
         public class OnDeleteQuestionBtnClickEventArgs : EventArgs
         {
@@ -29,6 +32,8 @@ namespace QuizForge
         public QuestionField()
         {
             this.InitializeComponent();
+
+            questionInput.MaxLength = QUESTION_MAX_LENGTH;
         }
 
         public void AddInitialAnswers()
@@ -76,40 +81,36 @@ namespace QuizForge
 
         public bool Correct()
         {
+            // Question empty
             if (questionInput.Text == "")
             {
-                errorProvider.SetError(questionInput, "Question can't be empty");
+                MessageManager.NewWindow("Question Field Error", "Question is empty", [new("OK", null)]);
                 return false;
             }
-            else
-            {
-                errorProvider.SetError(questionInput, null);
-            }
-
-            if (answers.Count < MINIMUM_ANSWERS)
-            {
-                errorProvider.SetError(answerSetPanel, $"There must be atleast {MINIMUM_ANSWERS} answers");
+            else if (questionInput.Text.Length < QUESTION_MIN_LENGTH || questionInput.Text.Length > QUESTION_MAX_LENGTH) {
+                MessageManager.NewWindow("Question Field Error", $"Required question length: [{QUESTION_MIN_LENGTH}, {QUESTION_MAX_LENGTH}] characters", [new("OK", null)]);
                 return false;
             }
-
-            // Check answer sets
+            // Not enough answers
+            if (answers.Count < MINIMUM_ANSWERS) {
+                MessageManager.NewWindow("Question Field Error", $"Required answer count in a question: [{MINIMUM_ANSWERS}, any]", [new("OK", null)]);
+                return false;
+            }
+            // Check answer fields in a question
             foreach (AnswerCreationSet answer in answers)
             {
+                // Answers empty
                 if (answer.Correct() != true)
                 {
-                    errorProvider.SetError(answerSetPanel, "Answer Inputs can't be empty!");
+                    MessageManager.NewWindow("Question Field Error", $"Answer is empty", [new("OK", null)]);
                     return false;
                 }
             }
-
+            // No correct answer
             if (currCorrectAnswerSet == null)
             {
-                errorProvider.SetError(answerSetPanel, "Select correct answer");
+                MessageManager.NewWindow("Question Field Error", $"Correct answer is not defined", [new("OK", null)]);
                 return false;
-            }
-            else
-            {
-                errorProvider.SetError(answerSetPanel, null);
             }
 
             return true;

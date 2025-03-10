@@ -27,16 +27,13 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            components = new System.ComponentModel.Container();
             descriptionInput = new TextBox();
             titleInput = new TextBox();
             addQuestionButton = new Button();
             questionPanel = new FlowLayoutPanel();
             actionButton = new Button();
             clearFieldsButton = new Button();
-            errorProvider = new ErrorProvider(components);
             label1 = new Label();
-            ((System.ComponentModel.ISupportInitialize)errorProvider).BeginInit();
             SuspendLayout();
             // 
             // descriptionInput
@@ -109,10 +106,6 @@
             clearFieldsButton.UseVisualStyleBackColor = false;
             clearFieldsButton.Click += clearFieldsButton_Click;
             // 
-            // errorProvider
-            // 
-            errorProvider.ContainerControl = this;
-            // 
             // label1
             // 
             label1.Location = new Point(5, 203);
@@ -139,7 +132,6 @@
             Margin = new Padding(0);
             Name = "QuizForm";
             Size = new Size(576, 523);
-            ((System.ComponentModel.ISupportInitialize)errorProvider).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -152,7 +144,6 @@
         private FlowLayoutPanel questionPanel;
         private Button actionButton;
         private Button clearFieldsButton;
-        private ErrorProvider errorProvider;
         private Label label1;
     }
 }

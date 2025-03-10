@@ -25,7 +25,7 @@ namespace QuizForge
             ImportExportHandler.OnImport += ImportExportHandler_OnImport;
 
             // Load quizzes from SavedQuizzes.json
-            List<Quiz> loadedQuizzes = JSONHandler.LoadQuizzes(JSONHandler.SAVED_QUIZZES_FILE_PATH);
+            List<Quiz> loadedQuizzes = JSONHandler.LoadQuizzes(Settings.SAVED_QUIZZES_FILE_PATH);
 
             if (loadedQuizzes != null) {
                 foreach (Quiz quiz in loadedQuizzes) {
@@ -43,7 +43,7 @@ namespace QuizForge
             quizList.Update(quizzes);
             exportView.Update(quizzes);
 
-            JSONHandler.SaveQuizzes(quizzes, JSONHandler.SAVED_QUIZZES_FILE_PATH);
+            JSONHandler.SaveQuizzes(quizzes, Settings.SAVED_QUIZZES_FILE_PATH);
         }
 
         private void OpenSolveQuizWindow(Quiz quizRef) {
@@ -71,7 +71,7 @@ namespace QuizForge
 
             MessageManager.NewWindow("Main Window Info", "Quiz deleted", [new MessageWindow.Button("OK", null)]);
 
-            JSONHandler.SaveQuizzes(quizzes, JSONHandler.SAVED_QUIZZES_FILE_PATH);
+            JSONHandler.SaveQuizzes(quizzes, Settings.SAVED_QUIZZES_FILE_PATH);
 
             EditQuizWindow.Instance.Close();
         }
@@ -91,7 +91,7 @@ namespace QuizForge
 
                 MessageManager.NewWindow("Main Window Info", "Quiz saved", [new MessageWindow.Button("OK", null)]);
 
-                JSONHandler.SaveQuizzes(quizzes, JSONHandler.SAVED_QUIZZES_FILE_PATH);
+                JSONHandler.SaveQuizzes(quizzes, Settings.SAVED_QUIZZES_FILE_PATH);
             }
         }
 
@@ -108,7 +108,7 @@ namespace QuizForge
 
                 MessageManager.NewWindow("Main Window Info", "Quiz created", [new MessageWindow.Button("OK", null)]);
 
-                JSONHandler.SaveQuizzes(quizzes, JSONHandler.SAVED_QUIZZES_FILE_PATH);
+                JSONHandler.SaveQuizzes(quizzes, Settings.SAVED_QUIZZES_FILE_PATH);
             }
         }
 

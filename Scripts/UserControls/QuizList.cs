@@ -38,7 +38,7 @@ namespace QuizForge
         }
 
         private void importExampleQuizzes_Click(object sender, EventArgs e) {
-            ImportWindow newImportWindow = new(JSONHandler.EXAMPLE_QUIZZES_FILE_PATH, true);
+            ImportWindow newImportWindow = new(Settings.EXAMPLE_QUIZZES_FILE_PATH, true);
 
             newImportWindow.ShowDialog();
         }

@@ -21,9 +21,9 @@ namespace QuizForge.Scripts.Forms
             correctAnswerLabel.Text = $"Correct answer: {userAnswer.correctAnswer}";
 
             if (userAnswer.IsCorrect()) {
-                this.BackColor = Support.CORRECT_BUTTON_COLOR;
+                this.BackColor = Settings.CORRECT_BUTTON_COLOR;
             } else {
-                this.BackColor = Support.INCORRECT_BUTTON_COLOR;
+                this.BackColor = Settings.INCORRECT_BUTTON_COLOR;
             }
         }
     }

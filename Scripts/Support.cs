@@ -9,13 +9,6 @@ namespace QuizForge.Scripts
 {
     public static class Support
     {
-        public static readonly Color DEFAULT_BUTTON_COLOR = Color.WhiteSmoke;
-        public static readonly Color SELECTED_BUTTON_COLOR = Color.FromArgb(130, 183, 209);
-        public static readonly Color CORRECT_BUTTON_COLOR = Color.FromArgb(108, 212, 83);
-        public static readonly Color INCORRECT_BUTTON_COLOR = Color.FromArgb(209, 67, 67);
-
-        private static readonly string BASE_AI_PROMPT_PATH = "../../../Data/BaseAIPrompt.txt";
-
         public static List<T> ShuffleList<T>(List<T> list)
         {
             List<T> randomizedList = list;
@@ -37,7 +30,7 @@ namespace QuizForge.Scripts
 
         public static string GenerateAIPrompt(int quizCount, int questionCount, bool noDuplicates, string moreInfo) {
             try {
-                string basePrompt = File.ReadAllText(BASE_AI_PROMPT_PATH);
+                string basePrompt = File.ReadAllText(Settings.BASE_AI_PROMPT_PATH);
 
                 string noDuplicatesPartialPrompt = "";
                 if (noDuplicates) {
@@ -50,7 +43,7 @@ namespace QuizForge.Scripts
 
                 string[] settingsInstructions = [
                     $"Number of questions per quiz: [{Settings.AI_PROMPT_FORM_MIN_QUESTION_COUNT}, {Settings.AI_PROMPT_FORM_MAX_QUESTION_COUNT}]. ",
-                    $"Number of answers per question: [{Settings.QUIZ_FORM_MIN_ANSWER_COUNT}, {Settings.QUIZ_FORM_MAX_ANSWER_COUNT}]. ",
+                    $"Number of answers per question: [{Settings.QUIZ_FORM_MIN_ANSWER_COUNT}, {Settings.AI_PROMPT_MAX_ANSWER_COUNT}]. ",
                     $"Number of quizzes: [{Settings.AI_PROMPT_FORM_MIN_QUIZ_COUNT}, {Settings.AI_PROMPT_FORM_MAX_QUIZ_COUNT}]. "
                 ];
 

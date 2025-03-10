@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using QuizForge.Scripts;
+using QuizForge.Scripts.Forms;
 
 namespace QuizForge
 {
@@ -14,9 +16,10 @@ namespace QuizForge
         public MainWindow.ActionBtnHandler ActionBtnClickHandler;
         private List<QuestionField> questionFields = new();
 
-        private const int QUIZ_TITLE_MIN_LENGTH = 5;
-        private const int QUIZ_TITLE_MAX_LENGTH = 50;
-        private const int QUIZ_DESCRIPTION_MAX_LENGTH = 200;
+        private readonly int TITLE_MIN_LENGTH = Settings.QUIZ_FORM_TITLE_MIN_LENGTH;
+        private readonly int TITLE_MAX_LENGTH = Settings.QUIZ_FORM_TITLE_MAX_LENGTH;
+        private readonly int DESCRIPTION_MIN_LENGTH = Settings.QUIZ_FORM_DESCRIPTION_MIN_LENGTH;
+        private readonly int DESCRIPTION_MAX_LENGTH = Settings.QUIZ_FORM_DESCRIPTION_MAX_LENGTH;
 
         private ActionBtnMode actionBtnMode;
 
@@ -28,8 +31,8 @@ namespace QuizForge
         public QuizForm() {
             this.InitializeComponent();
 
-            titleInput.MaxLength = QUIZ_TITLE_MAX_LENGTH;
-            descriptionInput.MaxLength = QUIZ_DESCRIPTION_MAX_LENGTH;
+            titleInput.MaxLength = TITLE_MAX_LENGTH;
+            descriptionInput.MaxLength = DESCRIPTION_MAX_LENGTH;
         }
 
         public void Setup(ActionBtnMode mode, MainWindow.ActionBtnHandler ActionBtnFunction) {
@@ -44,19 +47,22 @@ namespace QuizForge
         }
 
         public bool Correct() {
-            // Check if title has minimum length
-            if (titleInput.Text.Length < QUIZ_TITLE_MIN_LENGTH) {
-                errorProvider.SetError(titleInput, $"Title length must be >= {QUIZ_TITLE_MIN_LENGTH}");
+            // Title is too short
+            if (titleInput.Text.Length < TITLE_MIN_LENGTH) {
+                MessageManager.NewWindow("Quiz Form Error", $"Required title length: [{TITLE_MIN_LENGTH}, {TITLE_MAX_LENGTH}] characters", [new("OK", null)]);
                 return false;
                 
             }
             // Trying to create a quiz with a title that already exists
             else if (actionBtnMode == ActionBtnMode.CreateQuiz && MainWindow.GetQuizzes().Find(quiz => quiz.title == titleInput.Text) != null) {
-                errorProvider.SetError(titleInput, "Quiz with this name already exists.");
+                MessageManager.NewWindow("Quiz Form Error", $"Quiz with this name already exists", [new("OK", null)]);
                 return false;
             }
-            else {
-                errorProvider.SetError(titleInput, null);
+
+            // Description is too short
+            if (descriptionInput.Text.Length < DESCRIPTION_MIN_LENGTH) {
+                MessageManager.NewWindow("Quiz Form Error", $"Required description length: [{DESCRIPTION_MIN_LENGTH}, {DESCRIPTION_MAX_LENGTH}] characters", [new("OK", null)]);
+                return false;
             }
 
             // Check question fields

@@ -13,9 +13,6 @@ namespace QuizForge.Scripts
 {
     public static class JSONHandler
     {
-        public static readonly string SAVED_QUIZZES_FILE_PATH = "../../../Data/SavedQuizzes.json";
-        public static readonly string EXAMPLE_QUIZZES_FILE_PATH = "../../../Data/ExampleQuizzes.json";
-
         public static void SaveQuizzes(List<Quiz> quizzes, string path)
         {
             try
