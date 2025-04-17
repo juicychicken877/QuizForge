@@ -1,0 +1,186 @@
+[
+  {
+    "Title": "Math Quiz",
+    "Description": "Test your math knowledge",
+    "Questions": [
+      {
+        "Question": "What is the value of pi?",
+        "Answers": [
+          "3.14",
+          "3.15",
+          "3.16",
+          "3.17"
+        ],
+        "Correct Answer": "3.14"
+      },
+      {
+        "Question": "What is the speed of light?",
+        "Answers": [
+          "299,792,458 m/s",
+          "300,000 km/s",
+          "100,000 km/s",
+          "500,000 km/s"
+        ],
+        "Correct Answer": "299,792,458 m/s"
+      },
+      {
+        "Question": "What is the square root of 144?",
+        "Answers": [
+          "10",
+          "12",
+          "14",
+          "16"
+        ],
+        "Correct Answer": "12"
+      },
+      {
+        "Question": "What is the formula for the area of a circle?",
+        "Answers": [
+          "\u03C0r",
+          "2\u03C0r",
+          "\u03C0r\u00B2",
+          "4\u03C0r\u00B2"
+        ],
+        "Correct Answer": "\u03C0r\u00B2"
+      }
+    ]
+  },
+  {
+    "Title": "Literature \u0026 Art Quiz",
+    "Description": "Test your knowledge in Literature and Art",
+    "Questions": [
+      {
+        "Question": "Who wrote Hamlet?",
+        "Answers": [
+          "Charles Dickens",
+          "Jane Austen",
+          "William Shakespeare",
+          "Mark Twain"
+        ],
+        "Correct Answer": "William Shakespeare"
+      },
+      {
+        "Question": "Who painted the Mona Lisa?",
+        "Answers": [
+          "Michelangelo",
+          "Leonardo da Vinci",
+          "Raphael",
+          "Donatello"
+        ],
+        "Correct Answer": "Leonardo da Vinci"
+      },
+      {
+        "Question": "Who wrote \u0027Pride and Prejudice\u0027?",
+        "Answers": [
+          "Charlotte Bront\u00EB",
+          "Emily Bront\u00EB",
+          "Jane Austen",
+          "Virginia Woolf"
+        ],
+        "Correct Answer": "Jane Austen"
+      },
+      {
+        "Question": "Who sculpted \u0027The Thinker\u0027?",
+        "Answers": [
+          "Auguste Rodin",
+          "Michelangelo",
+          "Donatello",
+          "Leonardo da Vinci"
+        ],
+        "Correct Answer": "Auguste Rodin"
+      }
+    ]
+  },
+  {
+    "Title": "Space Quiz",
+    "Description": "Test your knowledge about space",
+    "Questions": [
+      {
+        "Question": "Which planet is known as the \u0027Red Planet\u0027?",
+        "Answers": [
+          "Jupiter",
+          "Mars",
+          "Venus",
+          "Saturn"
+        ],
+        "Correct Answer": "Mars"
+      },
+      {
+        "Question": "What is the largest planet in our solar system?",
+        "Answers": [
+          "Earth",
+          "Mars",
+          "Jupiter",
+          "Saturn"
+        ],
+        "Correct Answer": "Jupiter"
+      },
+      {
+        "Question": "What is the name of the closest star to Earth?",
+        "Answers": [
+          "Sirius",
+          "Proxima Centauri",
+          "Alpha Centauri A",
+          "The Sun"
+        ],
+        "Correct Answer": "The Sun"
+      },
+      {
+        "Question": "How many planets are in our solar system?",
+        "Answers": [
+          "7",
+          "8",
+          "9",
+          "10"
+        ],
+        "Correct Answer": "8"
+      }
+    ]
+  },
+  {
+    "Title": "World Capitals and Currencies",
+    "Description": "Test your knowledge of world capitals and currencies",
+    "Questions": [
+      {
+        "Question": "What is the capital of Italy?",
+        "Answers": [
+          "Paris",
+          "Rome",
+          "Madrid",
+          "London"
+        ],
+        "Correct Answer": "Rome"
+      },
+      {
+        "Question": "What is the currency of Japan?",
+        "Answers": [
+          "Yuan",
+          "Won",
+          "Yen",
+          "Rupee"
+        ],
+        "Correct Answer": "Yen"
+      },
+      {
+        "Question": "What is the capital of Brazil?",
+        "Answers": [
+          "Buenos Aires",
+          "Rio de Janeiro",
+          "Brasilia",
+          "Sao Paulo"
+        ],
+        "Correct Answer": "Brasilia"
+      },
+      {
+        "Question": "What is the currency of the United Kingdom?",
+        "Answers": [
+          "Euro",
+          "Dollar",
+          "Pound Sterling",
+          "Franc"
+        ],
+        "Correct Answer": "Pound Sterling"
+      }
+    ]
+  }
+]
