@@ -33,53 +33,64 @@
             nextBtn = new Button();
             SuspendLayout();
             // 
-            // testTitleLabel
+            // quizTitleLabel
             // 
+            quizTitleLabel.Dock = DockStyle.Top;
             quizTitleLabel.Location = new Point(0, 0);
             quizTitleLabel.Margin = new Padding(0);
-            quizTitleLabel.Name = "testTitleLabel";
-            quizTitleLabel.Size = new Size(263, 36);
+            quizTitleLabel.MaximumSize = new Size(263, 36);
+            quizTitleLabel.MinimumSize = new Size(263, 21);
+            quizTitleLabel.Name = "quizTitleLabel";
+            quizTitleLabel.Size = new Size(263, 21);
             quizTitleLabel.TabIndex = 0;
             quizTitleLabel.Text = "Test Title";
             // 
             // questionCountLabel
             // 
-            questionCountLabel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            questionCountLabel.AutoSize = true;
             questionCountLabel.Location = new Point(260, 0);
             questionCountLabel.Margin = new Padding(0);
+            questionCountLabel.MaximumSize = new Size(263, 0);
+            questionCountLabel.MinimumSize = new Size(263, 21);
             questionCountLabel.Name = "questionCountLabel";
-            questionCountLabel.Size = new Size(263, 36);
+            questionCountLabel.Size = new Size(263, 21);
             questionCountLabel.TabIndex = 1;
             questionCountLabel.Text = "Question 0 of 0";
             questionCountLabel.TextAlign = ContentAlignment.TopRight;
             // 
             // questionLabel
             // 
+            questionLabel.AutoSize = true;
+            questionLabel.Dock = DockStyle.Top;
             questionLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            questionLabel.Location = new Point(0, 36);
+            questionLabel.Location = new Point(0, 21);
             questionLabel.Margin = new Padding(0);
+            questionLabel.MaximumSize = new Size(523, 0);
+            questionLabel.MinimumSize = new Size(523, 21);
             questionLabel.Name = "questionLabel";
-            questionLabel.Size = new Size(526, 37);
+            questionLabel.Padding = new Padding(0, 10, 0, 10);
+            questionLabel.Size = new Size(523, 62);
             questionLabel.TabIndex = 2;
-            questionLabel.Text = "Question?";
+            questionLabel.Text = "dasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdas";
             questionLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // answerPanel
             // 
             answerPanel.AutoScroll = true;
+            answerPanel.Dock = DockStyle.Top;
             answerPanel.FlowDirection = FlowDirection.TopDown;
-            answerPanel.Location = new Point(0, 76);
+            answerPanel.Location = new Point(0, 83);
             answerPanel.Margin = new Padding(0);
             answerPanel.Name = "answerPanel";
-            answerPanel.Size = new Size(526, 244);
+            answerPanel.Size = new Size(525, 244);
             answerPanel.TabIndex = 3;
             answerPanel.WrapContents = false;
             // 
-            // previousQuestionButton
+            // previousQuestionBtn
             // 
             previousQuestionBtn.BackColor = Color.WhiteSmoke;
             previousQuestionBtn.Location = new Point(5, 375);
-            previousQuestionBtn.Name = "previousQuestionButton";
+            previousQuestionBtn.Name = "previousQuestionBtn";
             previousQuestionBtn.Size = new Size(128, 35);
             previousQuestionBtn.TabIndex = 6;
             previousQuestionBtn.Text = "Previous";
@@ -88,39 +99,45 @@
             // 
             // resultLabel
             // 
-            resultLabel.Location = new Point(0, 323);
+            resultLabel.AutoSize = true;
+            resultLabel.Dock = DockStyle.Top;
+            resultLabel.Location = new Point(0, 327);
             resultLabel.Margin = new Padding(0);
+            resultLabel.MaximumSize = new Size(525, 21);
+            resultLabel.MinimumSize = new Size(525, 21);
             resultLabel.Name = "resultLabel";
-            resultLabel.Size = new Size(526, 44);
+            resultLabel.Size = new Size(525, 21);
             resultLabel.TabIndex = 7;
             resultLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // checkAnswerButton
+            // checkAnswerBtn
             // 
             checkAnswerBtn.BackColor = Color.WhiteSmoke;
             checkAnswerBtn.Location = new Point(260, 375);
-            checkAnswerBtn.Name = "checkAnswerButton";
+            checkAnswerBtn.Name = "checkAnswerBtn";
             checkAnswerBtn.Size = new Size(128, 35);
             checkAnswerBtn.TabIndex = 8;
             checkAnswerBtn.Text = "Check Answer";
             checkAnswerBtn.UseVisualStyleBackColor = false;
             checkAnswerBtn.Click += checkAnswerButton_Click;
             // 
-            // nextButton
+            // nextBtn
             // 
             nextBtn.BackColor = Color.WhiteSmoke;
             nextBtn.Location = new Point(394, 375);
-            nextBtn.Name = "nextButton";
+            nextBtn.Name = "nextBtn";
             nextBtn.Size = new Size(128, 35);
             nextBtn.TabIndex = 9;
             nextBtn.Text = "NextBtn";
             nextBtn.UseVisualStyleBackColor = false;
             nextBtn.Click += nextButton_Click;
             // 
-            // SolveTestWindow
+            // SolveQuizWindow
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSize = true;
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackColor = Color.White;
             ClientSize = new Size(525, 415);
             Controls.Add(nextBtn);
@@ -135,10 +152,12 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(4);
             MaximizeBox = false;
-            Name = "SolveTestWindow";
+            Name = "SolveQuizWindow";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Solve Quiz Window";
+            Load += SolveQuizWindow_Load;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

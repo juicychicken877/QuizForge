@@ -56,8 +56,7 @@ namespace QuizForge
 
             // Randomize questions and answers
             quizQuestions = Support.ShuffleList(quiz.questions);
-            foreach (Question question in quizQuestions)
-            {
+            foreach (Question question in quizQuestions) {
                 question.answers = Support.ShuffleList(question.answers);
             }
 
@@ -139,7 +138,7 @@ namespace QuizForge
         // Select distinct answer buttons that have specific answer and change their mode
         private void SelectDistinctAnswerBtns(string answer, AnswerBtn.AnswerBtnMode mode) {
             foreach (AnswerBtn answerBtn in answerPanel.Controls) {
-                if (answerBtn.GetAnswer() == answer) 
+                if (answerBtn.GetAnswer() == answer)
                     answerBtn.ChangeAnswerBtnMode(mode);
             }
         }
@@ -162,7 +161,7 @@ namespace QuizForge
             checkAnswerBtn.Enabled = false;
 
             // Add user answer if doesnt exist
-            if (userAnswers[currQuestionIndex] == null) 
+            if (userAnswers[currQuestionIndex] == null)
                 userAnswers[currQuestionIndex] = new UserAnswer(quizQuestions[currQuestionIndex].question, answer, currCorrectAnswer);
         }
 
@@ -201,6 +200,10 @@ namespace QuizForge
 
         private void checkAnswerButton_Click(object sender, EventArgs e) {
             this.DisplayAnswerResults(currSelectedAnswerBtn.GetAnswer());
+        }
+
+        private void SolveQuizWindow_Load(object sender, EventArgs e) {
+
         }
     }
 }

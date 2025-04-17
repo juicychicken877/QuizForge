@@ -28,28 +28,34 @@
             // 
             // answer
             // 
+            answer.AutoSize = true;
             answer.Dock = DockStyle.Fill;
             answer.Location = new Point(0, 0);
             answer.Margin = new Padding(0);
+            answer.MaximumSize = new Size(523, 0);
+            answer.MinimumSize = new Size(523, 50);
             answer.Name = "answer";
-            answer.Size = new Size(526, 50);
+            answer.Size = new Size(523, 50);
             answer.TabIndex = 0;
-            answer.Text = "Answer";
             answer.TextAlign = ContentAlignment.MiddleCenter;
             answer.Click += answer_Click;
             // 
-            // AnswerButton
+            // AnswerBtn
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSize = true;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackColor = Color.WhiteSmoke;
             Controls.Add(answer);
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
             Margin = new Padding(0, 3, 0, 3);
-            Name = "AnswerButton";
-            Size = new Size(526, 50);
+            MaximumSize = new Size(523, 0);
+            MinimumSize = new Size(523, 50);
+            Name = "AnswerBtn";
+            Size = new Size(523, 50);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
